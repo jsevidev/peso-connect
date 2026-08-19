@@ -53,3 +53,18 @@ Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 ## License
 
 Capstone project — see your institution's guidelines for use and attribution.
+
+## Deploy live (free public URL)
+
+This repo includes a [Render](https://render.com) config for a free public demo URL.
+
+1. Sign up at [render.com](https://render.com) and connect your GitHub account.
+2. Click **New +** → **Blueprint**.
+3. Select the repo **jsevidev/peso-connect**.
+4. Render reads `render.yaml` and creates the web service.
+5. Click **Apply** and wait for the deploy to finish (~5–10 min first time).
+6. Open your live URL, e.g. `https://peso-connect.onrender.com`.
+
+**Note:** On the free plan, the app sleeps after ~15 minutes of no traffic. The first visit after sleep may take 30–60 seconds to wake up.
+
+After deploy, set **APP_URL** in Render → your service → **Environment** to your exact Render URL if links look wrong.
