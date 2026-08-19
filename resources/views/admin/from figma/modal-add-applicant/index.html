@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://cdn.divriots.com" crossorigin="">
+    <style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+  font-variation-settings: 'slnt' -10;
+}</style>
+    <style media="all">
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: auto;
+}
+
+button {
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+* {
+  padding: 0;
+  margin: 0;
+}a {
+  color: inherit;
+  text-decoration: inherit;
+}
+input {
+  border: none;
+  font: inherit;
+  outline: none;
+  background-color: inherit;
+}
+button {
+  border-style: none;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  font: inherit;
+  line-height: normal;
+  color: inherit;
+}
+textarea {
+  font: inherit;
+  background-color: inherit;
+}
+select {
+  font: inherit;
+  background-color: inherit;
+}
+img {
+  display: block;
+}
+picture {
+  display: block;
+}
+video {
+  display: block;
+}
+canvas {
+  display: block;
+}
+svg {
+  display: block;
+}
+
+[data-visible='false']{
+  display:none!important;
+}
+
+.before-hidden::before {
+  display:none;
+}
+
+.after-hidden::after {
+  display:none;
+}
+
+.before-visible::before {
+  content: "";
+}
+
+.after-visible::after {
+  content: "";
+}
+
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+</style>
+    <meta charset="utf-8">
+  </head>
+  <body style="display: grid;background-color: #fff;">
+    <div style="border-radius: 20px;background-color: #fff;overflow: hidden;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;filter: drop-shadow(0px 20px 40px rgba(15,23,42,0.15));backface-visibility: hidden;transform: translateZ(0);margin: 0px auto 0px 0px;">
+      <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;padding: 24px;">
+        <div style="display: flex;flex-direction: column;row-gap: 4px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"><span class="text" style="display: inline;text-align: left;line-height: 26px;font-size: 20px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Add New Enlistee</span></div>
+        <div style="border-radius: 16px;background-color: #f8fafc;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 32px;height: 32px;position: relative;flex-shrink: 0;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+            <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;"><svg width="17.00119972229004" height="17.00119972229004" viewBox="0 0 17.00119972229004 17.00119972229004" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 2%;top: 2%;right: 3.5%;bottom: 3.5%;width: 94.5%;height: 94.5%;position: absolute;"> <path d="M9.7508 5.2504L5.2504 9.7508M5.2504 5.2504L9.7508 9.7508M15.0012 7.5006C15.0012 11.6431 11.6431 15.0012 7.5006 15.0012 3.3581 15.0012 0 11.6431 0 7.5006 0 3.3581 3.3581 0 7.5006 0 11.6431 0 15.0012 3.3581 15.0012 7.5006Z" transform=" translate(1.1333226699880699 1.1333226699880699)" style="stroke: #0f172a;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;flex-direction: column;row-gap: 20px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 24px;">
+        <div style="display: flex;flex-direction: column;row-gap: 8px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 4px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Full Name</span><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #ef4444;width: max-content;position: relative;flex-shrink: 0;">*</span></div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 10px;background-color: #f8fafc;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;height: 44px;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;line-height: 20px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #64748b;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">e.g. Maria Clara Santos</span></div>
+        </div>
+        <div style="display: flex;flex-direction: column;row-gap: 8px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 4px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Contact Number</span><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #ef4444;width: max-content;position: relative;flex-shrink: 0;">*</span></div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 10px;background-color: #f8fafc;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;height: 44px;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;line-height: 20px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #64748b;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">e.g. +63 917 123 4567</span></div>
+        </div>
+        <div style="display: flex;flex-direction: column;row-gap: 8px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 4px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Address / Barangay</span><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #ef4444;width: max-content;position: relative;flex-shrink: 0;">*</span></div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 10px;background-color: #f8fafc;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;height: 44px;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;line-height: 20px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #64748b;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">e.g. Barangay 76, Pasay City, Metro Manila</span></div>
+        </div>
+        <div style="display: flex;flex-direction: column;row-gap: 8px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 4px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Skills</span><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #ef4444;width: max-content;position: relative;flex-shrink: 0;">*</span></div>
+          <div style="display: flex;flex-wrap: wrap;row-gap: 8px;align-content: start;flex-direction: row;grid-column-gap: 8px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 0px 0px 4px;">
+            <div style="border-radius: 6px;background-color: #eef4f8;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;">
+              <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;text-transform: uppercase;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Customer Service</span>
+              <div style="overflow: hidden;width: 12px;height: 12px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: 10%;top: 10%;right: 10%;bottom: 10%;width: 80%;height: 80%;position: absolute;"><svg width="9.500640869140627" height="9.500640869140627" viewBox="0 0 9.500640869140627 9.500640869140627" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -0.9%;top: -0.9%;right: 2%;bottom: 2%;width: 99%;height: 99%;position: absolute;"> <path d="M5.2004 2.8002L2.8002 5.2004M2.8002 2.8002L5.2004 5.2004M8.0006 4.0003C8.0006 6.2096 6.2096 8.0006 4.0003 8.0006 1.791 8.0006 0 6.2096 0 4.0003 0 1.791 1.791 0 4.0003 0 6.2096 0 8.0006 1.791 8.0006 4.0003Z" transform=" translate(0.8906137356245113 0.8906137356245113)" style="stroke: #1b3a6b;stroke-width: 1.5;stroke-linecap: round;"></path> </svg></div>
+              </div>
+            </div>
+            <div style="border-radius: 6px;background-color: #eef4f8;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;">
+              <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;text-transform: uppercase;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Data Entry</span>
+              <div style="overflow: hidden;width: 12px;height: 12px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: 10%;top: 10%;right: 10%;bottom: 10%;width: 80%;height: 80%;position: absolute;"><svg width="9.500640869140627" height="9.500640869140627" viewBox="0 0 9.500640869140627 9.500640869140627" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -0.9%;top: -0.9%;right: 2%;bottom: 2%;width: 99%;height: 99%;position: absolute;"> <path d="M5.2004 2.8002L2.8002 5.2004M2.8002 2.8002L5.2004 5.2004M8.0006 4.0003C8.0006 6.2096 6.2096 8.0006 4.0003 8.0006 1.791 8.0006 0 6.2096 0 4.0003 0 1.791 1.791 0 4.0003 0 6.2096 0 8.0006 1.791 8.0006 4.0003Z" transform=" translate(0.8906137356245113 0.8906137356245113)" style="stroke: #1b3a6b;stroke-width: 1.5;stroke-linecap: round;"></path> </svg></div>
+              </div>
+            </div>
+            <div style="border-radius: 6px;background-color: #eef4f8;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;">
+              <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;text-transform: uppercase;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">MS Office</span>
+              <div style="overflow: hidden;width: 12px;height: 12px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: 10%;top: 10%;right: 10%;bottom: 10%;width: 80%;height: 80%;position: absolute;"><svg width="9.500640869140627" height="9.500640869140627" viewBox="0 0 9.500640869140627 9.500640869140627" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -0.9%;top: -0.9%;right: 2%;bottom: 2%;width: 99%;height: 99%;position: absolute;"> <path d="M5.2004 2.8002L2.8002 5.2004M2.8002 2.8002L5.2004 5.2004M8.0006 4.0003C8.0006 6.2096 6.2096 8.0006 4.0003 8.0006 1.791 8.0006 0 6.2096 0 4.0003 0 1.791 1.791 0 4.0003 0 6.2096 0 8.0006 1.791 8.0006 4.0003Z" transform=" translate(0.8906137356245113 0.8906137356245113)" style="stroke: #1b3a6b;stroke-width: 1.5;stroke-linecap: round;"></path> </svg></div>
+              </div>
+            </div>
+          </div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 10px;background-color: #f8fafc;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;height: 44px;position: relative;flex-shrink: 0;padding: 10px 16px;">
+            <span class="text" style="display: inline;text-align: left;line-height: 20px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #64748b;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Type and press enter to add skills...</span>
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 16px;height: 16px;position: relative;flex-shrink: 0;">
+              <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;"><svg width="10.167600631713867" height="10.167600631713867" viewBox="0 0 10.167600631713867 10.167600631713867" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 11.9%;top: 11.9%;right: 15.4%;bottom: 15.4%;width: 72.6%;height: 72.6%;position: absolute;"> <path d="M0 4.0838H8.1676M4.0838 0V8.1676" transform=" translate(1.2448699551045905 1.2448699551045905)" style="stroke: #64748b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex;flex-direction: column;row-gap: 8px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 4px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Highest Educational Attainment </span><span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #ef4444;width: max-content;position: relative;flex-shrink: 0;">*</span></div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 10px;background-color: #f8fafc;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;height: 44px;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;line-height: 20px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #64748b;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">e.g. College (Bachelor’s Degree)</span></div>
+        </div>
+      </div>
+      <div style="border-width: 1px 0px 0px;border-style: solid;border-color: #e2e8f0;background-color: #f8fafc;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: start;justify-content: flex-end;width: 100%;position: relative;flex-shrink: 0;padding: 24px;">
+        <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 10px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 12px 20px;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #64748b;width: max-content;position: relative;flex-shrink: 0;">Cancel</span></div>
+        <div style="border-radius: 10px;background-color: #1b3a6b;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 12px 24px;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">Save </span></div>
+      </div>
+    </div>
+  </body>
+</html>

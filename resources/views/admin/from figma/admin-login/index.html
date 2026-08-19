@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://cdn.divriots.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <style>
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwRGFWfOw.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwYGFWfOw.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwTGFWfOw.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwSGFWfOw.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwcGFU.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrodmgPn.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrMdmgPn.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFg08vz7ehw.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrgdmgPn.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrkdmgPn.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zsTjmbI.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+    <style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+  font-variation-settings: 'slnt' -10;
+}</style>
+    <style media="all">
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: auto;
+}
+
+button {
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+* {
+  padding: 0;
+  margin: 0;
+}a {
+  color: inherit;
+  text-decoration: inherit;
+}
+input {
+  border: none;
+  font: inherit;
+  outline: none;
+  background-color: inherit;
+}
+button {
+  border-style: none;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  font: inherit;
+  line-height: normal;
+  color: inherit;
+}
+textarea {
+  font: inherit;
+  background-color: inherit;
+}
+select {
+  font: inherit;
+  background-color: inherit;
+}
+img {
+  display: block;
+}
+picture {
+  display: block;
+}
+video {
+  display: block;
+}
+canvas {
+  display: block;
+}
+svg {
+  display: block;
+}
+
+[data-visible='false']{
+  display:none!important;
+}
+
+.before-hidden::before {
+  display:none;
+}
+
+.after-hidden::after {
+  display:none;
+}
+
+.before-visible::before {
+  content: "";
+}
+
+.after-visible::after {
+  content: "";
+}
+
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+</style>
+    <meta charset="utf-8">
+  </head>
+  <body style="display: grid;background-color: #f8fafc;">
+    <div style="background-color: #f8fafc;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 100%;min-height: 1024px;position: relative;padding: 80px 0px;margin: 0px auto;">
+      <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: center;left: 0px;top: 0px;width: 1440px;height: 1024px;opacity: 0.08;position: absolute;padding: 64px;">
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;"></div>
+          <div style="background-color: #1e293b;width: 2px;height: 2px;position: relative;flex-shrink: 0;"></div>
+        </div>
+      </div>
+      <div style="border-radius: 50%;background-color: rgba(59,130,246,0.08);left: calc(-300px + 50%);top: calc(-350px + 50%);width: 600px;height: 600px;position: absolute;filter: blur(calc(120px / 2));"></div>
+      <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;left: 0px;top: 0px;right: 0px;width: 100%;height: 56px;position: absolute;padding: 0px 32px;">
+        <div style="display: flex;flex-direction: row;grid-column-gap: 10px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+          <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+            <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;"><svg width="13.99880027770996" height="17.00300001125466" viewBox="0 0 13.99880027770996 17.00300001125466" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 10.2%;top: 2%;right: 12%;bottom: 3.5%;width: 77.8%;height: 94.5%;position: absolute;"> <path d="M11.9988 8.2506C11.9988 12.0007 9.3741 13.8758 6.2544 14.9633 6.091 15.0187 5.9136 15.016 5.7519 14.9558 2.6247 13.8758 0 12.0007 0 8.2506V3.0004C0 2.8015 0.079 2.6107 0.2196 2.4701 0.3603 2.3294 0.551 2.2504 0.7499 2.2504 2.2498 2.2504 4.1246 1.3504 5.4295 0.2103 5.5883 0.0746 5.7904 0 5.9994 0 6.2084 0 6.4105 0.0746 6.5693 0.2103 7.8817 1.3579 9.749 2.2504 11.2489 2.2504 11.4478 2.2504 11.6385 2.3294 11.7792 2.4701 11.9198 2.6107 11.9988 2.8015 11.9988 3.0004V8.2506Z" transform=" translate(1.1666833311423124 1.1333066718989324)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+          </div>
+          <span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: &quot;Geist Mono&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">PESO</span>
+        </div>
+      </div>
+      <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 40px;align-items: start;justify-content: flex-start;width: 640px;position: relative;filter: drop-shadow(0px 16px 32px rgba(15,23,42,0.05));flex-shrink: 0;padding: 56px;">
+        <div style="display: flex;flex-direction: column;row-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="border-radius: 36px;background-color: #f57c00;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 72px;height: 72px;position: relative;flex-shrink: 0;">
+            <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 32px;height: 32px;position: relative;flex-shrink: 0;">
+              <div style="overflow: hidden;width: 32px;height: 32px;position: relative;flex-shrink: 0;"><svg width="26.000000000000007" height="28.668800354003906" viewBox="0 0 26.000000000000007 28.668800354003906" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 9.1%;top: 5%;right: 9.6%;bottom: 5.4%;width: 81.3%;height: 89.6%;position: absolute;"> <path d="M5.3333 12.001V6.6672C5.3333 4.8989 6.0357 3.2031 7.286 1.9528 8.5362 0.7024 10.2319 0 12 0 13.7681 0 15.4638 0.7024 16.714 1.9528 17.9643 3.2031 18.6667 4.8989 18.6667 6.6672V12.001M2.6667 12.001H21.3333C22.8061 12.001 24 13.195 24 14.6678V24.0019C24 25.4748 22.8061 26.6688 21.3333 26.6688H2.6667C1.1939 26.6688 0 25.4748 0 24.0019V14.6678C0 13.195 1.1939 12.001 2.6667 12.001Z" transform=" translate(1.0833333333333333 1.0749939994844848)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+            </div>
+          </div>
+          <div style="display: flex;flex-direction: column;row-gap: 6px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: center;line-height: 38.4px;font-size: 32px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #0f172a;width: 100%;position: relative;flex-shrink: 0;">Administrative Access</span><span class="text" style="display: inline;text-align: center;line-height: 24px;font-size: 16px;font-family: &quot;Geist Mono&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #64748b;width: 100%;position: relative;flex-shrink: 0;">PESO • Admin Login</span></div>
+        </div>
+        <div style="display: flex;flex-direction: column;row-gap: 28px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="display: flex;flex-direction: column;row-gap: 12px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Geist, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Username</span></div>
+            <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 8px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;height: 64px;position: relative;flex-shrink: 0;padding: 0px 20px;">
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 20px;height: 20px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;width: 20px;height: 20px;position: relative;flex-shrink: 0;"><svg width="18.667999267578125" height="15.331999778747559" viewBox="0 0 18.667999267578125 15.331999778747559" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 2.7%;top: 10.9%;right: 3.9%;bottom: 12.4%;width: 93.3%;height: 76.7%;position: absolute;"> <path d="M16.668 2.4997L9.1749 7.2718C8.9206 7.4194 8.6318 7.4972 8.3378 7.4972 8.0437 7.4972 7.7549 7.4194 7.5006 7.2718L0 2.4997M1.6668 0H15.0012C15.9217 0 16.668 0.7461 16.668 1.6665V11.6655C16.668 12.5859 15.9217 13.332 15.0012 13.332H1.6668C0.7463 13.332 0 12.5859 0 11.6655V1.6665C0 0.7461 0.7463 0 1.6668 0Z" transform=" translate(1.1199904060405326 1.1500150039897379)" style="stroke: #64748b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Geist, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #0f172a;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">admin</span>
+            </div>
+          </div>
+          <div style="display: flex;flex-direction: column;row-gap: 12px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Geist, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Password</span></div>
+            <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 8px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;height: 64px;position: relative;flex-shrink: 0;padding: 0px 20px;">
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 20px;height: 20px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;width: 20px;height: 20px;position: relative;flex-shrink: 0;"><svg width="17.000000000000004" height="18.667999267578132" viewBox="0 0 17.000000000000004 18.667999267578132" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.8%;top: 2.7%;right: 8.2%;bottom: 3.9%;width: 85%;height: 93.3%;position: absolute;"> <path d="M3.3333 7.5006V4.167C3.3333 3.0618 3.7723 2.002 4.5537 1.2205 5.3351 0.439 6.3949 0 7.5 0 8.6051 0 9.6649 0.439 10.4463 1.2205 11.2277 2.002 11.6667 3.0618 11.6667 4.167V7.5006M1.6667 7.5006H13.3333C14.2538 7.5006 15 8.2469 15 9.1674V15.0012C15 15.9217 14.2538 16.668 13.3333 16.668H1.6667C0.7462 16.668 0 15.9217 0 15.0012V9.1674C0 8.2469 0.7462 7.5006 1.6667 7.5006Z" transform=" translate(1.1333333333333333 1.1199904060405326)" style="stroke: #64748b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Geist, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #0f172a;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">••••••••••••••••</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex;flex-direction: column;row-gap: 24px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="border-radius: 12px;background-color: #f57c00;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;height: 64px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 20px;font-family: Geist, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">Log In</span></div>
+        </div>
+      </div>
+      <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;left: 0px;right: 0px;bottom: 0px;width: 100%;height: 40px;position: absolute;"></div>
+    </div>
+  </body>
+</html>

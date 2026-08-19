@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://cdn.divriots.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <style>
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zsTjmbI.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+    <style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+  font-variation-settings: 'slnt' -10;
+}</style>
+    <style media="all">
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: auto;
+}
+
+button {
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+* {
+  padding: 0;
+  margin: 0;
+}a {
+  color: inherit;
+  text-decoration: inherit;
+}
+input {
+  border: none;
+  font: inherit;
+  outline: none;
+  background-color: inherit;
+}
+button {
+  border-style: none;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  font: inherit;
+  line-height: normal;
+  color: inherit;
+}
+textarea {
+  font: inherit;
+  background-color: inherit;
+}
+select {
+  font: inherit;
+  background-color: inherit;
+}
+img {
+  display: block;
+}
+picture {
+  display: block;
+}
+video {
+  display: block;
+}
+canvas {
+  display: block;
+}
+svg {
+  display: block;
+}
+
+[data-visible='false']{
+  display:none!important;
+}
+
+.before-hidden::before {
+  display:none;
+}
+
+.after-hidden::after {
+  display:none;
+}
+
+.before-visible::before {
+  content: "";
+}
+
+.after-visible::after {
+  content: "";
+}
+
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+</style>
+    <meta charset="utf-8">
+  </head>
+  <body style="display: grid;background-color: #f8fafc;">
+    <div style="background-color: #f8fafc;overflow: hidden;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;margin: 0px auto 0px 0px;">
+      <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 1440px;height: 80px;position: relative;flex-shrink: 0;padding: 0px 80px;">
+        <div style="display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">
+          <div style="overflow: hidden;border-radius: 20px;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 40px;height: 40px;position: relative;flex-shrink: 0;"><img src="https://placehold.co/40x40?text=seal-logo" alt="seal-logo" style="inset: 0;width: 100%;height: 100%;position: absolute;object-fit: cover;"></div>
+          <div style="display: flex;flex-direction: column;row-gap: 2px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Inter, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">PESO</span><span class="text" style="display: inline;text-align: left;font-size: 9px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #626f84;width: max-content;position: relative;flex-shrink: 0;">Department of Labor and Employment</span></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">
+          <div style="border-radius: 8px;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Home</span></div>
+          <div style="border-radius: 8px;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Find Jobs</span></div>
+          <div style="border-radius: 8px;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Referral Requests</span></div>
+          <div style="border-radius: 8px;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">First-Time Job Seeker</span></div>
+          <div style="border-radius: 8px;background-color: rgba(27,58,107,0.06);overflow: hidden;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 16px;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Announcements</span></div>
+        </div>
+        <div style="border-radius: 8px;background-color: #1b3a6b;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: min-content;position: relative;flex-shrink: 0;padding: 10px 24px;"><span class="text" style="display: inline;text-align: center;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">Enlist Now</span></div>
+      </div>
+      <div style="background-image: linear-gradient(180deg, #1b3a6b 0%, #0d2147 100%);background-blend-mode: normal;display: flex;flex-direction: column;row-gap: 24px;align-items: center;justify-content: flex-start;width: 1440px;position: relative;flex-shrink: 0;padding: 64px 80px;">
+        <div style="display: flex;flex-direction: column;row-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: center;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;text-transform: uppercase;color: #f57c00;width: 100%;position: relative;flex-shrink: 0;">Public Bulletins &amp; Community Updates</span><span class="text" style="display: inline;text-align: center;font-size: 56px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #fff;width: 800px;position: relative;flex-shrink: 0;">PESO Announcements</span><span class="text" style="display: inline;text-align: center;line-height: 24px;font-size: 16px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.63);width: 640px;position: relative;flex-shrink: 0;">Stay informed with verified vocational program advisories, national job caravan updates, and official guidelines from your municipal local government unit.</span></div>
+      </div>
+      <div style="background-color: #f8fafc;display: flex;flex-direction: row;grid-column-gap: 32px;align-items: start;justify-content: flex-start;width: 1440px;position: relative;flex-shrink: 0;padding: 48px 80px 80px;">
+        <div style="display: flex;flex-direction: column;row-gap: 24px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 20px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 32px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="border-radius: 12px;background-color: #fff3e0;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 56px;height: 56px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Inter, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">20</span><span class="text" style="display: inline;text-align: left;font-size: 10px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;text-transform: uppercase;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">OCT</span></div>
+              <div style="border-radius: 100px;background-color: rgba(27,58,107,0.04);display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 11px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Job Fair Advisory</span></div>
+            </div>
+            <div style="display: flex;flex-direction: column;row-gap: 10px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 28px;font-size: 20px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #1a253c;width: 100%;position: relative;flex-shrink: 0;">National PESO Job Fair Caravan 2026</span><span class="text" style="display: inline;text-align: left;line-height: 22.4px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: 100%;position: relative;flex-shrink: 0;">Join over 100+ accredited employers at the SM Mega Trade Hall on October 20. Free pre-registration is open for verified job seekers. Bring required documents for faster processing.</span></div>
+            <div style="border-width: 1px 0px 0px;border-style: solid;border-color: #e2e8f0;width: 100%;height: 1px;position: relative;flex-shrink: 0;margin: -1px 0px 0px;"></div>
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                <div style="display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                      <div style="overflow: hidden;left: 16.7%;top: 16.7%;right: 16.7%;bottom: 16.7%;width: 66.7%;height: 66.7%;position: absolute;"><svg width="7.444522380828859" height="8.999300003051758" viewBox="0 0 7.444522380828859 8.999300003051758" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.2%;top: -1.3%;right: 14.1%;bottom: 4.8%;width: 79.8%;height: 96.4%;position: absolute;"> <path d="M5.4445 6.9993V6.2216C5.4445 5.8091 5.2806 5.4135 4.9889 5.1218 4.6972 4.8301 4.3015 4.6662 3.8889 4.6662H1.5556C1.143 4.6662 0.7473 4.8301 0.4556 5.1218 0.1639 5.4135 0 5.8091 0 6.2216V6.9993M4.2778 1.5554C4.2778 2.4144 3.5814 3.1108 2.7223 3.1108 1.8631 3.1108 1.1667 2.4144 1.1667 1.5554 1.1667 0.6964 1.8631 0 2.7223 0 3.5814 0 4.2778 0.6964 4.2778 1.5554Z" transform=" translate(1.367341680335884 1.2857428598756993)" style="stroke: #626f84;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                    </div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: max-content;position: relative;flex-shrink: 0;">Admin Maria Santos</span>
+                </div>
+                <div style="border-radius: 50%;background-color: #626f84;width: 4px;height: 4px;opacity: 0.5;position: relative;flex-shrink: 0;"></div>
+                <div style="display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                      <div style="overflow: hidden;left: 16.7%;top: 16.7%;right: 16.7%;bottom: 16.7%;width: 66.7%;height: 66.7%;position: absolute;"><svg width="8.999300003051756" height="9.77762269973755" viewBox="0 0 8.999300003051756 9.77762269973755" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.3%;top: -5.1%;right: 4.8%;bottom: 0.4%;width: 96.4%;height: 104.8%;position: absolute;"> <path d="M1.9443 0V1.5555M5.0551 0V1.5555M0 3.111H6.9993M0.7777 0.7778H6.2216C6.6511 0.7778 6.9993 1.126 6.9993 1.5555V6.9999C6.9993 7.4294 6.6511 7.7776 6.2216 7.7776H0.7777C0.3482 7.7776 0 7.4294 0 6.9999V1.5555C0 1.126 0.3482 0.7778 0.7777 0.7778Z" transform=" translate(1.285742859875699 1.2571479843149873)" style="stroke: #626f84;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                    </div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: max-content;position: relative;flex-shrink: 0;">Oct 20, 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 20px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 32px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="border-radius: 12px;background-color: #fff3e0;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 56px;height: 56px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Inter, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">15</span><span class="text" style="display: inline;text-align: left;font-size: 10px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;text-transform: uppercase;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">OCT</span></div>
+              <div style="border-radius: 100px;background-color: rgba(27,58,107,0.04);display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 11px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">LGU Announcement</span></div>
+            </div>
+            <div style="display: flex;flex-direction: column;row-gap: 10px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 28px;font-size: 20px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #1a253c;width: 100%;position: relative;flex-shrink: 0;">First-Time Jobseeker Bill Implementation Guidelines (RA 11261)</span><span class="text" style="display: inline;text-align: left;line-height: 22.4px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: 100%;position: relative;flex-shrink: 0;">The First-Time Job Seeker certification offers free barangay and NBI clearance services. Eligible residents can apply through their local PESO office with required documents. Processing typically takes 1-3 working days.</span></div>
+            <div style="border-width: 1px 0px 0px;border-style: solid;border-color: #e2e8f0;width: 100%;height: 1px;position: relative;flex-shrink: 0;margin: -1px 0px 0px;"></div>
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                <div style="display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                      <div style="overflow: hidden;left: 16.7%;top: 16.7%;right: 16.7%;bottom: 16.7%;width: 66.7%;height: 66.7%;position: absolute;"><svg width="7.444522380828859" height="8.999300003051758" viewBox="0 0 7.444522380828859 8.999300003051758" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.2%;top: -1.3%;right: 14.1%;bottom: 4.8%;width: 79.8%;height: 96.4%;position: absolute;"> <path d="M5.4445 6.9993V6.2216C5.4445 5.8091 5.2806 5.4135 4.9889 5.1218 4.6972 4.8301 4.3015 4.6662 3.8889 4.6662H1.5556C1.143 4.6662 0.7473 4.8301 0.4556 5.1218 0.1639 5.4135 0 5.8091 0 6.2216V6.9993M4.2778 1.5554C4.2778 2.4144 3.5814 3.1108 2.7223 3.1108 1.8631 3.1108 1.1667 2.4144 1.1667 1.5554 1.1667 0.6964 1.8631 0 2.7223 0 3.5814 0 4.2778 0.6964 4.2778 1.5554Z" transform=" translate(1.367341680335884 1.2857428598756993)" style="stroke: #626f84;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                    </div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: max-content;position: relative;flex-shrink: 0;">Director Manuel</span>
+                </div>
+                <div style="border-radius: 50%;background-color: #626f84;width: 4px;height: 4px;opacity: 0.5;position: relative;flex-shrink: 0;"></div>
+                <div style="display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                      <div style="overflow: hidden;left: 16.7%;top: 16.7%;right: 16.7%;bottom: 16.7%;width: 66.7%;height: 66.7%;position: absolute;"><svg width="8.999300003051756" height="9.77762269973755" viewBox="0 0 8.999300003051756 9.77762269973755" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.3%;top: -5.1%;right: 4.8%;bottom: 0.4%;width: 96.4%;height: 104.8%;position: absolute;"> <path d="M1.9443 0V1.5555M5.0551 0V1.5555M0 3.111H6.9993M0.7777 0.7778H6.2216C6.6511 0.7778 6.9993 1.126 6.9993 1.5555V6.9999C6.9993 7.4294 6.6511 7.7776 6.2216 7.7776H0.7777C0.3482 7.7776 0 7.4294 0 6.9999V1.5555C0 1.126 0.3482 0.7778 0.7777 0.7778Z" transform=" translate(1.285742859875699 1.2571479843149873)" style="stroke: #626f84;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                    </div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: max-content;position: relative;flex-shrink: 0;">Oct 15, 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 20px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 32px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="border-radius: 12px;background-color: #fff3e0;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 56px;height: 56px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Inter, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">08</span><span class="text" style="display: inline;text-align: left;font-size: 10px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;text-transform: uppercase;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">OCT</span></div>
+              <div style="border-radius: 100px;background-color: rgba(27,58,107,0.04);display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 11px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Skills &amp; Training</span></div>
+            </div>
+            <div style="display: flex;flex-direction: column;row-gap: 10px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 28px;font-size: 20px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #1a253c;width: 100%;position: relative;flex-shrink: 0;">Free Digital Skills Training &amp; Upskilling Caravan</span><span class="text" style="display: inline;text-align: left;line-height: 22.4px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: 100%;position: relative;flex-shrink: 0;">PESO and DICT are offering free digital skills training with micro-credentialing. Tracks include Digital Literacy, Customer Service, and Web Development. Slots are limited and registration is now open.</span></div>
+            <div style="border-width: 1px 0px 0px;border-style: solid;border-color: #e2e8f0;width: 100%;height: 1px;position: relative;flex-shrink: 0;margin: -1px 0px 0px;"></div>
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                <div style="display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                      <div style="overflow: hidden;left: 16.7%;top: 16.7%;right: 16.7%;bottom: 16.7%;width: 66.7%;height: 66.7%;position: absolute;"><svg width="7.444522380828859" height="8.999300003051758" viewBox="0 0 7.444522380828859 8.999300003051758" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.2%;top: -1.3%;right: 14.1%;bottom: 4.8%;width: 79.8%;height: 96.4%;position: absolute;"> <path d="M5.4445 6.9993V6.2216C5.4445 5.8091 5.2806 5.4135 4.9889 5.1218 4.6972 4.8301 4.3015 4.6662 3.8889 4.6662H1.5556C1.143 4.6662 0.7473 4.8301 0.4556 5.1218 0.1639 5.4135 0 5.8091 0 6.2216V6.9993M4.2778 1.5554C4.2778 2.4144 3.5814 3.1108 2.7223 3.1108 1.8631 3.1108 1.1667 2.4144 1.1667 1.5554 1.1667 0.6964 1.8631 0 2.7223 0 3.5814 0 4.2778 0.6964 4.2778 1.5554Z" transform=" translate(1.367341680335884 1.2857428598756993)" style="stroke: #626f84;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                    </div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: max-content;position: relative;flex-shrink: 0;">Coop Officer Jane Diaz</span>
+                </div>
+                <div style="border-radius: 50%;background-color: #626f84;width: 4px;height: 4px;opacity: 0.5;position: relative;flex-shrink: 0;"></div>
+                <div style="display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                      <div style="overflow: hidden;left: 16.7%;top: 16.7%;right: 16.7%;bottom: 16.7%;width: 66.7%;height: 66.7%;position: absolute;"><svg width="8.999300003051756" height="9.77762269973755" viewBox="0 0 8.999300003051756 9.77762269973755" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.3%;top: -5.1%;right: 4.8%;bottom: 0.4%;width: 96.4%;height: 104.8%;position: absolute;"> <path d="M1.9443 0V1.5555M5.0551 0V1.5555M0 3.111H6.9993M0.7777 0.7778H6.2216C6.6511 0.7778 6.9993 1.126 6.9993 1.5555V6.9999C6.9993 7.4294 6.6511 7.7776 6.2216 7.7776H0.7777C0.3482 7.7776 0 7.4294 0 6.9999V1.5555C0 1.126 0.3482 0.7778 0.7777 0.7778Z" transform=" translate(1.285742859875699 1.2571479843149873)" style="stroke: #626f84;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                    </div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #626f84;width: max-content;position: relative;flex-shrink: 0;">Oct 08, 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;padding: 32px 0px 0px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">
+              <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 12px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 16px;">
+                <div style="overflow: hidden;width: 16px;height: 16px;position: relative;flex-shrink: 0;"><svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 28.1%;top: 17.2%;right: 34.4%;bottom: 20.3%;width: 37.5%;height: 62.5%;position: absolute;"> <path d="M4 8L0 4 4 0" transform=" translate(1.5 1.25)" style="stroke: #0f172a;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Previous</span>
+              </div>
+            </div>
+            <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">
+              <div style="border-radius: 12px;background-color: #1b3a6b;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 40px;height: 40px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">1</span></div>
+              <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 12px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 40px;height: 40px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">2</span></div>
+              <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 12px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 40px;height: 40px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">3</span></div>
+              <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 12px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 40px;height: 40px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">...</span></div>
+              <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 12px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 40px;height: 40px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">12</span></div>
+            </div>
+            <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+              <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 12px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 16px;">
+                <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #0f172a;width: max-content;position: relative;flex-shrink: 0;">Next</span>
+                <div style="overflow: hidden;width: 16px;height: 16px;position: relative;flex-shrink: 0;"><svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 28.1%;top: 17.2%;right: 34.4%;bottom: 20.3%;width: 37.5%;height: 62.5%;position: absolute;"> <path d="M0 8L4 4 0 0" transform=" translate(1.5 1.25)" style="stroke: #0f172a;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background-color: #1b3a6b;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 1440px;position: relative;flex-shrink: 0;">
+        <div style="display: flex;flex-direction: row;grid-column-gap: 24px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 80px 80px 64px;">
+          <div style="display: flex;flex-direction: column;row-gap: 24px;align-items: start;justify-content: flex-start;width: 302px;position: relative;flex-shrink: 0;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+              <div style="overflow: hidden;border-radius: 18px;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 36px;height: 36px;position: relative;flex-shrink: 0;"><img src="https://placehold.co/36x36?text=seal-logo" alt="seal-logo" style="inset: 0;width: 100%;height: 100%;position: absolute;object-fit: cover;"></div>
+              <span class="text" style="display: inline;text-align: left;font-size: 18px;font-family: Inter, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">PESO</span>
+            </div>
+            <span class="text" style="display: inline;text-align: left;line-height: 22.4px;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.5);width: 100%;position: relative;flex-shrink: 0;">A unified portal bridging Filipino job seekers directly with verified, LGU-backed employment and counseling services.</span>
+          </div>
+          <div style="display: flex;flex-direction: column;row-gap: 20px;align-items: start;justify-content: flex-start;width: 302px;position: relative;flex-shrink: 0;">
+            <span class="text" style="display: inline;text-align: left;font-size: 16px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: 100%;position: relative;flex-shrink: 0;">Quick Links</span>
+            <div style="display: flex;flex-direction: column;row-gap: 12px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.5);width: 100%;position: relative;flex-shrink: 0;">Find Jobs</span><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.5);width: 100%;position: relative;flex-shrink: 0;">Referral Guidelines</span><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.5);width: 100%;position: relative;flex-shrink: 0;">FTJS Certification</span></div>
+          </div>
+          <div style="display: flex;flex-direction: column;row-gap: 20px;align-items: start;justify-content: flex-start;width: 302px;position: relative;flex-shrink: 0;">
+            <span class="text" style="display: inline;text-align: left;font-size: 16px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: 100%;position: relative;flex-shrink: 0;">Contact Information</span>
+            <div style="display: flex;flex-direction: column;row-gap: 14px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 16px;height: 16px;position: relative;flex-shrink: 0;">
+                  <div style="overflow: hidden;width: 16px;height: 16px;position: relative;flex-shrink: 0;"><svg width="15.334400177001953" height="15.334400177001953" viewBox="0 0 15.334400177001953 15.334400177001953" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 1.1%;top: 1.1%;right: 3%;bottom: 3%;width: 95.8%;height: 95.8%;position: absolute;"> <path d="M7.8886 9.7128C8.0263 9.776 8.1815 9.7905 8.3285 9.7537 8.4755 9.717 8.6056 9.6313 8.6974 9.5108L8.934 9.2007C9.0583 9.0351 9.2193 8.9007 9.4045 8.8081 9.5896 8.7156 9.7938 8.6674 10.0008 8.6674H12.001C12.3546 8.6674 12.6938 8.8078 12.9438 9.0579 13.1939 9.308 13.3344 9.6471 13.3344 10.0008V12.001C13.3344 12.3546 13.1939 12.6938 12.9438 12.9438 12.6938 13.1939 12.3546 13.3344 12.001 13.3344 8.8181 13.3344 5.7656 12.07 3.515 9.8194 1.2644 7.5688 0 4.5163 0 1.3334 0 0.9798 0.1405 0.6406 0.3906 0.3906 0.6406 0.1405 0.9798 0 1.3334 0H3.3336C3.6873 0 4.0264 0.1405 4.2765 0.3906 4.5266 0.6406 4.667 0.9798 4.667 1.3334V3.3336C4.667 3.5406 4.6188 3.7448 4.5263 3.9299 4.4337 4.1151 4.2993 4.2761 4.1337 4.4004L3.8216 4.6344C3.6992 4.7278 3.613 4.8608 3.5775 5.0106 3.542 5.1605 3.5595 5.318 3.627 5.4564 4.5382 7.3072 6.0368 8.8039 7.8886 9.7128Z" transform=" translate(1.1499879989689699 1.1499879989689699)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                </div>
+                <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.5);width: max-content;position: relative;flex-shrink: 0;">Hotline: 1349 (DOLE)</span>
+              </div>
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 16px;height: 16px;position: relative;flex-shrink: 0;">
+                  <div style="overflow: hidden;width: 16px;height: 16px;position: relative;flex-shrink: 0;"><svg width="15.334400177001953" height="12.665599822998047" viewBox="0 0 15.334400177001953 12.665599822998047" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 1.1%;top: 9.2%;right: 3%;bottom: 11.6%;width: 95.8%;height: 79.2%;position: absolute;"> <path d="M13.3344 1.9998L7.3399 5.8174C7.1365 5.9355 6.9054 5.9978 6.6702 5.9978 6.435 5.9978 6.2039 5.9355 6.0005 5.8174L0 1.9998M1.3334 0H12.001C12.7374 0 13.3344 0.5969 13.3344 1.3332V9.3324C13.3344 10.0687 12.7374 10.6656 12.001 10.6656H1.3334C0.597 10.6656 0 10.0687 0 9.3324V1.3332C0 0.5969 0.597 0 1.3334 0Z" transform=" translate(1.1499879989689699 1.1875187549871724)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                </div>
+                <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.5);width: max-content;position: relative;flex-shrink: 0;">support@pesoconnect.gov.ph</span>
+              </div>
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 16px;height: 16px;position: relative;flex-shrink: 0;">
+                  <div style="overflow: hidden;width: 16px;height: 16px;position: relative;flex-shrink: 0;"><svg width="12.665599822998047" height="15.334400177001955" viewBox="0 0 12.665599822998047 15.334400177001955" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 9.2%;top: 1.1%;right: 11.6%;bottom: 3%;width: 79.2%;height: 95.8%;position: absolute;"> <path d="M10.6656 5.3338C10.6656 8.6628 6.9733 12.1298 5.7334 13.2006 5.6179 13.2874 5.4773 13.3344 5.3328 13.3344 5.1883 13.3344 5.0477 13.2874 4.9322 13.2006 3.6923 12.1298 0 8.6628 0 5.3338 0 3.9192 0.5618 2.5625 1.5619 1.5622 2.562 0.562 3.9185 0 5.3328 0 6.7471 0 8.1036 0.562 9.1037 1.5622 10.1038 2.5625 10.6656 3.9192 10.6656 5.3338ZM7.3326 5.3338C7.3326 6.4385 6.4373 7.334 5.3328 7.334 4.2283 7.334 3.333 6.4385 3.333 5.3338 3.333 4.2292 4.2283 3.3336 5.3328 3.3336 6.4373 3.3336 7.3326 4.2292 7.3326 5.3338Z" transform=" translate(1.1875187549871726 1.1499879989689699)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                </div>
+                <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.5);width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Muralla St. cor. General Luna St., Intramuros, Manila, Philippines</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;padding: 24px 80px;">
+          <span class="text" style="display: inline;text-align: left;font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(255,255,255,0.5);width: max-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">© 2026 PESO. Public Employment Service Office - Government of the Philippines.</span>
+          <div style="display: flex;flex-direction: row;grid-column-gap: 16px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+            <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 20px;height: 20px;position: relative;flex-shrink: 0;">
+              <div style="overflow: hidden;width: 20px;height: 20px;position: relative;flex-shrink: 0;"><svg width="11.166000366210938" height="18.667999267578125" viewBox="0 0 11.166000366210938 18.667999267578125" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 23.1%;top: 2.7%;right: 21.1%;bottom: 3.9%;width: 55.8%;height: 93.3%;position: absolute;"> <path d="M9.166 0H6.6662C5.5612 0 4.5015 0.439 3.7201 1.2205 2.9388 2.002 2.4998 3.0618 2.4998 4.167V6.6672H0V10.0008H2.4998V16.668H5.8329V10.0008H8.3327L9.166 6.6672H5.8329V4.167C5.8329 3.946 5.9207 3.734 6.077 3.5777 6.2332 3.4214 6.4452 3.3336 6.6662 3.3336H9.166V0Z" transform=" translate(1.2181976783868234 1.1199904060405326)" style="stroke: rgba(255,255,255,0.5);stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

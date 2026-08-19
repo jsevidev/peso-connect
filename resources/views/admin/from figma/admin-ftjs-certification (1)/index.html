@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://cdn.divriots.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <style>
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zsTjmbI.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+    <style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+  font-variation-settings: 'slnt' -10;
+}</style>
+    <style media="all">
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: auto;
+}
+
+button {
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+* {
+  padding: 0;
+  margin: 0;
+}a {
+  color: inherit;
+  text-decoration: inherit;
+}
+input {
+  border: none;
+  font: inherit;
+  outline: none;
+  background-color: inherit;
+}
+button {
+  border-style: none;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  font: inherit;
+  line-height: normal;
+  color: inherit;
+}
+textarea {
+  font: inherit;
+  background-color: inherit;
+}
+select {
+  font: inherit;
+  background-color: inherit;
+}
+img {
+  display: block;
+}
+picture {
+  display: block;
+}
+video {
+  display: block;
+}
+canvas {
+  display: block;
+}
+svg {
+  display: block;
+}
+
+[data-visible='false']{
+  display:none!important;
+}
+
+.before-hidden::before {
+  display:none;
+}
+
+.after-hidden::after {
+  display:none;
+}
+
+.before-visible::before {
+  content: "";
+}
+
+.after-visible::after {
+  content: "";
+}
+
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+</style>
+    <meta charset="utf-8">
+  </head>
+  <body style="display: grid;background-color: #f4f6f9;">
+    <div style="background-color: #f4f6f9;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;min-height: 1024px;position: relative;margin: 0px auto 0px 0px;">
+      <div style="background-color: #0f2241;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: center;align-self: stretch;width: 260px;position: relative;flex-shrink: 0;padding: 24px 16px;">
+        <div style="display: flex;flex-direction: column;row-gap: 32px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;margin: 0px 0px auto;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 0px 8px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+              <div style="overflow: hidden;border-radius: 20px;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 40px;height: 40px;position: relative;flex-shrink: 0;"><img src="https://placehold.co/40x40?text=seal-logo" alt="seal-logo" style="inset: 0;width: 100%;height: 100%;position: absolute;object-fit: cover;"></div>
+              <div style="display: flex;flex-direction: column;row-gap: 2px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;"><span class="text" style="display: inline;text-align: left;font-size: 20px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">PESO</span><span class="text" style="display: inline;text-align: left;font-size: 10px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #94a3b8;width: max-content;position: relative;flex-shrink: 0;">Gov Employment Platform</span></div>
+            </div>
+          </div>
+          <div style="display: flex;flex-direction: column;row-gap: 4px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+            <div style="border-radius: 10px;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 12px 16px;">
+              <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 5.2%;top: 5.2%;right: 7.3%;bottom: 7.3%;width: 87.5%;height: 87.5%;position: absolute;"> <path d="M0.6667 0H4C4.3682 0 4.6667 0.2985 4.6667 0.6667V4C4.6667 4.3682 4.3682 4.6667 4 4.6667H0.6667C0.2985 4.6667 0 4.3682 0 4V0.6667C0 0.2985 0.2985 0 0.6667 0ZM8 0H11.3333C11.7015 0 12 0.2985 12 0.6667V4C12 4.3682 11.7015 4.6667 11.3333 4.6667H8C7.6318 4.6667 7.3333 4.3682 7.3333 4V0.6667C7.3333 0.2985 7.6318 0 8 0ZM8 7.3333H11.3333C11.7015 7.3333 12 7.6318 12 8V11.3333C12 11.7015 11.7015 12 11.3333 12H8C7.6318 12 7.3333 11.7015 7.3333 11.3333V8C7.3333 7.6318 7.6318 7.3333 8 7.3333ZM0.6667 7.3333H4C4.3682 7.3333 4.6667 7.6318 4.6667 8V11.3333C4.6667 11.7015 4.3682 12 4 12H0.6667C0.2985 12 0 11.7015 0 11.3333V8C0 7.6318 0.2985 7.3333 0.6667 7.3333Z" transform=" translate(1.1666666666666667 1.1666666666666667)" style="stroke: #94a3b8;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #94a3b8;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Dashboard</span>
+            </div>
+            <div style="border-radius: 10px;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 12px 16px;">
+              <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="15.334400177001955" height="14.000000000000002" viewBox="0 0 15.334400177001955 14.000000000000002" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 1.1%;top: 1%;right: 3%;bottom: 11.5%;width: 95.8%;height: 87.5%;position: absolute;"> <path d="M9.3341 12V1.3333C9.3341 0.9797 9.1936 0.6406 8.9435 0.3905 8.6935 0.1405 8.3543 0 8.0006 0H5.3338C4.9801 0 4.6409 0.1405 4.3909 0.3905 4.1408 0.6406 4.0003 0.9797 4.0003 1.3333V12M1.3334 2.6667H12.001C12.7374 2.6667 13.3344 3.2636 13.3344 4V10.6667C13.3344 11.403 12.7374 12 12.001 12H1.3334C0.597 12 0 11.403 0 10.6667V4C0 3.2636 0.597 2.6667 1.3334 2.6667Z" transform=" translate(1.1499879989689699 1.1666666666666667)" style="stroke: #94a3b8;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #94a3b8;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Job Management</span>
+            </div>
+            <div style="border-radius: 10px;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 12px 16px;">
+              <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="15.334400177001953" height="14" viewBox="0 0 15.334400177001953 14" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 1.1%;top: 5.2%;right: 3%;bottom: 7.3%;width: 95.8%;height: 87.5%;position: absolute;"> <path d="M9.3341 12V10.6667C9.3341 9.9594 9.0531 9.2811 8.553 8.781 8.0528 8.281 7.3745 8 6.6672 8H2.6669C1.9596 8 1.2812 8.281 0.7811 8.781 0.281 9.2811 0 9.9594 0 10.6667V12M9.3341 0.0853C9.906 0.2335 10.4124 0.5675 10.774 1.0347 11.1355 1.5019 11.3317 2.0759 11.3317 2.6666 11.3317 3.2574 11.1355 3.8314 10.774 4.2986 10.4124 4.7658 9.906 5.0997 9.3341 5.248M13.3344 11.9999V10.6666C13.334 10.0757 13.1373 9.5018 12.7753 9.0348 12.4132 8.5678 11.9064 8.2343 11.3342 8.0866M7.3339 2.6667C7.3339 4.1394 6.1399 5.3333 4.667 5.3333 3.1942 5.3333 2.0002 4.1394 2.0002 2.6667 2.0002 1.1939 3.1942 0 4.667 0 6.1399 0 7.3339 1.1939 7.3339 2.6667Z" transform=" translate(1.1499879989689699 1.1666666666666667)" style="stroke: #94a3b8;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #94a3b8;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Enlistee Management</span>
+            </div>
+            <div style="border-radius: 10px;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 12px 16px;">
+              <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="12.66559939186293" height="15.334400177001918" viewBox="0 0 12.66559939186293 15.334400177001918" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 9.2%;top: 1.1%;right: 11.6%;bottom: 3%;width: 79.2%;height: 95.8%;position: absolute;"> <path d="M6.666 0H1.3332C0.9796 0 0.6405 0.1405 0.3905 0.3906 0.1405 0.6406 0 0.9798 0 1.3334V12.001C0 12.3546 0.1405 12.6938 0.3905 12.9438 0.6405 13.1939 0.9796 13.3344 1.3332 13.3344H9.3324C9.686 13.3344 10.0251 13.1939 10.2751 12.9438 10.5251 12.6938 10.6656 12.3546 10.6656 12.001V4.0003C10.6659 3.789 10.6244 3.5796 10.5434 3.3844 10.4624 3.1892 10.3435 3.0119 10.1936 2.8629L7.8019 0.4707C7.6529 0.3212 7.4759 0.2026 7.281 0.1219 7.086 0.0411 6.877-0.0003 6.666 0V3.3336C6.666 3.5104 6.7362 3.68 6.8612 3.805 6.9863 3.9301 7.1558 4.0003 7.3326 4.0003L10.6656 4.0003M3.333 8.6674L4.6662 10.0008 7.3326 7.3339" transform=" translate(1.1875187625672359 1.1499879989689277)" style="stroke: #94a3b8;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #94a3b8;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Referral Management</span>
+            </div>
+            <div style="border-width: 1px;border-style: solid;border-color: rgba(255,255,255,0.17);border-radius: 10px;background-color: #1a355e;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 220px;position: relative;flex-shrink: 0;padding: 12px 16px;">
+              <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="10" height="15.332649730515413" viewBox="0 0 10 15.332649730515413" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 17.2%;top: 1.1%;right: 20.3%;bottom: 3%;width: 62.5%;height: 95.8%;position: absolute;"> <path d="M6.3182 7.2598L7.3282 12.9438C7.3395 13.0107 7.3301 13.0795 7.3012 13.1409 7.2724 13.2024 7.2255 13.2536 7.1668 13.2876 7.1081 13.3217 7.0404 13.337 6.9727 13.3316 6.905 13.3261 6.8407 13.3001 6.7882 13.2571L4.4015 11.4658C4.2863 11.3797 4.1463 11.3332 4.0025 11.3332 3.8587 11.3332 3.7187 11.3797 3.6035 11.4658L1.2128 13.2564C1.1604 13.2994 1.0961 13.3253 1.0285 13.3308 0.9609 13.3363 0.8933 13.321 0.8346 13.287 0.7759 13.253 0.729 13.202 0.7001 13.1407 0.6712 13.0793 0.6617 13.0106 0.6728 12.9438L1.6822 7.2598M8 4C8 6.2091 6.2091 8 4 8 1.7909 8 0 6.2091 0 4 0 1.7909 1.7909 0 4 0 6.2091 0 8 1.7909 8 4Z" transform=" translate(1.25 1.150007690926017)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #fff;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">FTJS Certification</span>
+              <div style="border-radius: 3px;background-color: #f57c00;width: 6px;height: 6px;position: relative;flex-shrink: 0;"></div>
+            </div>
+            <div style="border-radius: 10px;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 12px 16px;">
+              <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;"><svg width="12.501199722290039" height="15.5" viewBox="0 0 12.501199722290039 15.5" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 14.2%;top: 6.1%;right: 16.3%;bottom: 7.8%;width: 69.5%;height: 86.1%;position: absolute;"> <path d="M0 13.5V9M5.2506 13.5V0M10.5012 13.5V4.5" transform=" translate(1.1904544292929466 1.1481481481481481)" style="stroke: #94a3b8;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #94a3b8;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Reports &amp; Analytics</span>
+            </div>
+            <div style="border-radius: 10px;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 12px 16px;">
+              <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="14" height="14.666671810577496" viewBox="0 0 14 14.666671810577496" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 5.2%;top: 5.3%;right: 7.3%;bottom: 3.1%;width: 87.5%;height: 91.7%;position: absolute;"> <path d="M2 7.3333C2 9.0643 2.5614 10.7486 3.6 12.1333 3.8122 12.4162 4.128 12.6033 4.4781 12.6533 4.8282 12.7033 5.1838 12.6122 5.4667 12.4 5.7496 12.1878 5.9366 11.872 5.9866 11.5219 6.0366 11.1718 5.9455 10.8162 5.7333 10.5333 5.0409 9.6102 4.6667 8.4873 4.6667 7.3333M3.3333 2V7.3333M5.3333 2C7.3609 2.0522 9.3426 1.3917 10.9333 0.1333 11.0324 0.059 11.1502 0.0138 11.2735 0.0027 11.3968-0.0084 11.5207 0.015 11.6315 0.0704 11.7422 0.1258 11.8353 0.2109 11.9004 0.3162 11.9655 0.4215 12 0.5429 12 0.6667V8.6667C12 8.7905 11.9655 8.9118 11.9004 9.0172 11.8353 9.1225 11.7422 9.2076 11.6315 9.263 11.5207 9.3183 11.3968 9.3418 11.2735 9.3306 11.1502 9.3195 11.0324 9.2743 10.9333 9.2 9.3426 7.9417 7.3609 7.2811 5.3333 7.3333H1.3333C0.9797 7.3333 0.6406 7.1929 0.3905 6.9428 0.1405 6.6928 0 6.3536 0 6V3.3333C0 2.9797 0.1405 2.6406 0.3905 2.3905 0.6406 2.1405 0.9797 2 1.3333 2H5.3333Z" transform=" translate(1.1666666666666667 1.1578946726043635)" style="stroke: #94a3b8;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #94a3b8;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Announcements</span>
+            </div>
+            <div style="border-radius: 10px;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 12px 16px;">
+              <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="15.334400177001955" height="15.334400177001955" viewBox="0 0 15.334400177001955 15.334400177001955" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 1.1%;top: 1.1%;right: 3%;bottom: 3%;width: 95.8%;height: 95.8%;position: absolute;"> <path d="M6.6672 2.6669V6.6672L9.3341 8.0006M13.3344 6.6672C13.3344 10.3494 10.3494 13.3344 6.6672 13.3344 2.985 13.3344 0 10.3494 0 6.6672 0 2.985 2.985 0 6.6672 0 10.3494 0 13.3344 2.985 13.3344 6.6672Z" transform=" translate(1.1499879989689699 1.1499879989689699)" style="stroke: #94a3b8;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+              </div>
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #94a3b8;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Activity Logs</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="border-radius: 8px;background-color: #db3838;display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;padding: 10px 16px;">
+            <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+              <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="14" height="14.000000000000002" viewBox="0 0 14 14.000000000000002" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 5.2%;top: 5.2%;right: 7.3%;bottom: 7.3%;width: 87.5%;height: 87.5%;position: absolute;"> <path d="M8.6667 9.3333L12 6 8.6667 2.6667M12 6H4M4 12H1.3333C0.9797 12 0.6406 11.8595 0.3905 11.6095 0.1405 11.3594 0 11.0203 0 10.6667V1.3333C0 0.9797 0.1405 0.6406 0.3905 0.3905 0.6406 0.1405 0.9797 0 1.3333 0H4" transform=" translate(1.1666666666666667 1.1666666666666667)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+            </div>
+            <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">Logout Session</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;flex-direction: column;row-gap: 24px;align-items: start;justify-content: flex-start;align-self: stretch;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;padding: 32px;">
+        <div style="background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;filter: drop-shadow(0px 4px 12px rgba(15,23,42,0.03));flex-shrink: 0;padding: 16px 32px;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 40px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #64748b;width: max-content;position: relative;flex-shrink: 0;">Admin</span><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #94a3b8;width: max-content;position: relative;flex-shrink: 0;">&gt;</span><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">FTJS Certification</span></div>
+          </div>
+          <div style="display: flex;flex-direction: row;grid-column-gap: 24px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;">
+              <div style="display: flex;flex-direction: column;row-gap: 2px;align-items: end;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1e293b;width: max-content;position: relative;flex-shrink: 0;">Admin User</span><span class="text" style="display: inline;text-align: left;font-size: 11px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">PESO Staff</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="overflow: hidden;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;height: 100px;position: relative;flex-shrink: 0;">
+          <div style="overflow: hidden;display: flex;flex-direction: column;row-gap: 6px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;"><span class="text" style="display: inline;text-align: left;font-size: 32px;font-family: Inter, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;color: #0f172a;width: 100%;position: relative;flex-shrink: 0;">First-time Job Seeker Certification Management</span><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #64748b;width: 100%;position: relative;flex-shrink: 0;">Track and manage FTJS certifications for first-time job seekers in the municipality.</span></div>
+        </div>
+        <div style="display: flex;flex-direction: row;grid-column-gap: 20px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+          <div style="border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 12px;align-items: start;justify-content: flex-start;width: 100%;position: relative;filter: drop-shadow(0px 4px 16px rgba(27,58,107,0.06));flex-grow: 1;flex-basis: 0px;padding: 24px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">Total Certifications</span>
+              <div style="border-radius: 18px;background-color: #e8eef5;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 36px;height: 36px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                  <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="10" height="15.332649730515413" viewBox="0 0 10 15.332649730515413" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 17.2%;top: 1.1%;right: 20.3%;bottom: 3%;width: 62.5%;height: 95.8%;position: absolute;"> <path d="M6.3182 7.2598L7.3282 12.9438C7.3395 13.0107 7.3301 13.0795 7.3012 13.1409 7.2724 13.2024 7.2255 13.2536 7.1668 13.2876 7.1081 13.3217 7.0404 13.337 6.9727 13.3316 6.905 13.3261 6.8407 13.3001 6.7882 13.2571L4.4015 11.4658C4.2863 11.3797 4.1463 11.3332 4.0025 11.3332 3.8587 11.3332 3.7187 11.3797 3.6035 11.4658L1.2128 13.2564C1.1604 13.2994 1.0961 13.3253 1.0285 13.3308 0.9609 13.3363 0.8933 13.321 0.8346 13.287 0.7759 13.253 0.729 13.202 0.7001 13.1407 0.6712 13.0793 0.6617 13.0106 0.6728 12.9438L1.6822 7.2598M8 4C8 6.2091 6.2091 8 4 8 1.7909 8 0 6.2091 0 4 0 1.7909 1.7909 0 4 0 6.2091 0 8 1.7909 8 4Z" transform=" translate(1.25 1.150007690926017)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                </div>
+              </div>
+            </div>
+            <span class="text" style="display: inline;text-align: left;font-size: 32px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">87</span>
+          </div>
+          <div style="border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 12px;align-items: start;justify-content: flex-start;width: 100%;position: relative;filter: drop-shadow(0px 4px 16px rgba(27,58,107,0.06));flex-grow: 1;flex-basis: 0px;padding: 24px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">Pending Approval</span>
+              <div style="border-radius: 18px;background-color: #fff3e0;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 36px;height: 36px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                  <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="15.334400177001955" height="15.334400177001955" viewBox="0 0 15.334400177001955 15.334400177001955" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 1.1%;top: 1.1%;right: 3%;bottom: 3%;width: 95.8%;height: 95.8%;position: absolute;"> <path d="M6.6672 2.6669V6.6672L9.3341 8.0006M13.3344 6.6672C13.3344 10.3494 10.3494 13.3344 6.6672 13.3344 2.985 13.3344 0 10.3494 0 6.6672 0 2.985 2.985 0 6.6672 0 10.3494 0 13.3344 2.985 13.3344 6.6672Z" transform=" translate(1.1499879989689699 1.1499879989689699)" style="stroke: #f57c00;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                </div>
+              </div>
+            </div>
+            <span class="text" style="display: inline;text-align: left;font-size: 32px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">24</span>
+          </div>
+          <div style="border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 12px;align-items: start;justify-content: flex-start;width: 100%;position: relative;filter: drop-shadow(0px 4px 16px rgba(27,58,107,0.06));flex-grow: 1;flex-basis: 0px;padding: 24px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">Claimed</span>
+              <div style="border-radius: 18px;background-color: #e8f5e9;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 36px;height: 36px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                  <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="15.33334788932217" height="15.333347673473357" viewBox="0 0 15.33334788932217 15.333347673473357" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 1.2%;top: 1.1%;right: 3%;bottom: 3%;width: 95.8%;height: 95.8%;position: absolute;"> <path d="M13.1991 5.3356C13.5036 6.8298 13.2866 8.3832 12.5843 9.7368 11.8821 11.0904 10.737 12.1623 9.3401 12.7738 7.9432 13.3853 6.3789 13.4995 4.908 13.0972 3.4371 12.6949 2.1486 11.8005 1.2573 10.5632 0.366 9.3259-0.0741 7.8204 0.0102 6.2979 0.0946 4.7753 0.6984 3.3277 1.7209 2.1964 2.7434 1.0651 4.1228 0.3186 5.6291 0.0812 7.1355-0.1561 8.6776 0.1302 9.9984 0.8923M4.6654 6.002L6.6654 8.002 13.332 1.3353" transform=" translate(1.1499998362837638 1.1499998368133315)" style="stroke: #2e7d32;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                </div>
+              </div>
+            </div>
+            <span class="text" style="display: inline;text-align: left;font-size: 32px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">51</span>
+          </div>
+          <div style="border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 12px;align-items: start;justify-content: flex-start;width: 100%;position: relative;filter: drop-shadow(0px 4px 16px rgba(27,58,107,0.06));flex-grow: 1;flex-basis: 0px;padding: 24px;">
+            <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+              <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;text-transform: uppercase;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">Not Claimed</span>
+              <div style="border-radius: 18px;background-color: #ffebee;display: flex;flex-direction: column;row-gap: 0px;align-items: center;justify-content: center;width: 36px;height: 36px;position: relative;flex-shrink: 0;">
+                <div style="overflow: hidden;width: 18px;height: 18px;position: relative;flex-shrink: 0;">
+                  <div style="overflow: hidden;left: calc(-8px + 50%);top: calc(-8px + 50%);width: 16px;height: 16px;position: absolute;"><svg width="15.334400177001955" height="15.334400177001955" viewBox="0 0 15.334400177001955 15.334400177001955" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 1.1%;top: 1.1%;right: 3%;bottom: 3%;width: 95.8%;height: 95.8%;position: absolute;"> <path d="M6.6672 4.0003V6.6672M6.6672 9.3341H6.6739M13.3344 6.6672C13.3344 10.3494 10.3494 13.3344 6.6672 13.3344 2.985 13.3344 0 10.3494 0 6.6672 0 2.985 2.985 0 6.6672 0 10.3494 0 13.3344 2.985 13.3344 6.6672Z" transform=" translate(1.1499879989689699 1.1499879989689699)" style="stroke: #c62828;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                </div>
+              </div>
+            </div>
+            <span class="text" style="display: inline;text-align: left;font-size: 32px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">12</span>
+          </div>
+        </div>
+        <div style="border-radius: 16px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;position: relative;filter: drop-shadow(0px 4px 16px rgba(27,58,107,0.06));flex-shrink: 0;padding: 16px;">
+          <div style="border-radius: 8px;background-color: #f4f6f9;display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: 100%;height: 40px;position: relative;flex-grow: 1;flex-basis: 0px;padding: 0px 12px;">
+            <div style="overflow: hidden;width: 16px;height: 16px;position: relative;flex-shrink: 0;">
+              <div style="overflow: hidden;left: calc(-7px + 50%);top: calc(-7px + 50%);width: 14px;height: 14px;position: absolute;"><svg width="12.500091552734375" height="12.500091552734375" viewBox="0 0 12.500091552734375 12.500091552734375" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 4%;top: 4%;right: 6.7%;bottom: 6.7%;width: 89.3%;height: 89.3%;position: absolute;"> <path d="M10.5001 10.5001L7.9684 7.9684M9.3333 4.6667C9.3333 7.244 7.244 9.3333 4.6667 9.3333 2.0893 9.3333 0 7.244 0 4.6667 0 2.0893 2.0893 0 4.6667 0 7.244 0 9.3333 2.0893 9.3333 4.6667Z" transform=" translate(1.1904745296700934 1.1904745296700934)" style="stroke: #5a6e85;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+            </div>
+            <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">Search enlistee name</span>
+          </div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 8px;display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 14px;">
+            <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Status: All</span>
+            <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+              <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 13.9%;top: 23.6%;right: 19.4%;bottom: 34.7%;width: 66.7%;height: 41.7%;position: absolute;"> <path d="M0 0L3 3 6 0" transform=" translate(1.3333333333333333 1.6666666666666667)" style="stroke: #5a6e85;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+            </div>
+          </div>
+          <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 8px;display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 10px 14px;">
+            <span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Date: This Month</span>
+            <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+              <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="11" height="12.000800132751465" viewBox="0 0 11 12.000800132751465" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 2.3%;top: -1.7%;right: 6%;bottom: 1.7%;width: 91.7%;height: 100%;position: absolute;"> <path d="M2.5 0V2.0002M6.5 0V2.0002M0 4.0003H9M1 1.0001H8C8.5523 1.0001 9 1.4478 9 2.0002V9.0007C9 9.553 8.5523 10.0008 8 10.0008H1C0.4477 10.0008 0 9.553 0 9.0007V2.0002C0 1.4478 0.4477 1.0001 1 1.0001Z" transform=" translate(1.2222222222222223 1.1999839986252931)" style="stroke: #5a6e85;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+            </div>
+          </div>
+        </div>
+        <div style="border-radius: 20px;overflow: hidden;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;filter: drop-shadow(0px 4px 16px rgba(27,58,107,0.06));backface-visibility: hidden;transform: translateZ(0);flex-shrink: 0;">
+          <div style="background-color: #1b3a6b;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 14px 24px;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: 220px;position: relative;flex-shrink: 0;">ENLISTEE NAME</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: 140px;position: relative;flex-shrink: 0;">DATE APPLIED</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: 240px;position: relative;flex-shrink: 0;">BARANGAY</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: 140px;position: relative;flex-shrink: 0;">STATUS</span><span class="text" style="display: inline;text-align: right;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #fff;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">ACTIONS</span></div>
+          <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+            <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 16px 24px;">
+              <div style="display: flex;flex-direction: column;row-gap: 4px;align-items: start;justify-content: flex-start;width: 220px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Mateo Katigbak</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">First-Time Seeker</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">Oct 24, 2024</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 240px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Brgy. 12, Balayan</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;">
+                <div style="border-radius: 30px;background-color: #fffde7;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #d28e00;width: max-content;position: relative;flex-shrink: 0;">Pending</span></div>
+              </div>
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-end;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                <div style="border-width: 1px;border-style: solid;border-color: #1b3a6b;border-radius: 6px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 72px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="12.000800132751468" height="12.000800132751468" viewBox="0 0 12.000800132751468 12.000800132751468" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.7%;top: -1.7%;right: 1.7%;bottom: 1.7%;width: 100%;height: 100%;position: absolute;"> <path d="M2.0002 8.0006H1.0001C0.7348 8.0006 0.4805 7.8953 0.2929 7.7077 0.1054 7.5202 0 7.2658 0 7.0006V4.5004C0 4.2351 0.1054 3.9807 0.2929 3.7932 0.4805 3.6056 0.7348 3.5003 1.0001 3.5003H9.0007C9.266 3.5003 9.5203 3.6056 9.7079 3.7932 9.8954 3.9807 10.0008 4.2351 10.0008 4.5004V7.0006C10.0008 7.2658 9.8954 7.5202 9.7079 7.7077 9.5203 7.8953 9.266 8.0006 9.0007 8.0006H8.0006M2.0002 3.5003V0.5C2.0002 0.3674 2.0528 0.2402 2.1466 0.1465 2.2404 0.0527 2.3676 0 2.5002 0H7.5006C7.6332 0 7.7604 0.0527 7.8542 0.1465 7.948 0.2402 8.0006 0.3674 8.0006 0.5V3.5003M2.5002 6.0005H7.5006C7.7768 6.0005 8.0006 6.2244 8.0006 6.5005V9.5008C8.0006 9.7769 7.7768 10.0008 7.5006 10.0008H2.5002C2.224 10.0008 2.0002 9.7769 2.0002 9.5008V6.5005C2.0002 6.2244 2.224 6.0005 2.5002 6.0005Z" transform=" translate(1.1999839986252931 1.1999839986252931)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Print</span>
+                </div>
+                <div style="border-radius: 6px;background-color: #1b3a6b;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 124px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="9.999199867248535" height="7.499599933624268" viewBox="0 0 9.999199867248535 7.499599933624268" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.3%;top: 13.6%;right: 10.4%;bottom: 23.9%;width: 83.3%;height: 62.5%;position: absolute;"> <path d="M7.9992 0L2.4997 5.4996 0 2.9998" transform=" translate(1.2500250066495633 1.3636628162299778)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">Mark Claimed</span>
+                </div>
+              </div>
+            </div>
+            <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 16px 24px;">
+              <div style="display: flex;flex-direction: column;row-gap: 4px;align-items: start;justify-content: flex-start;width: 220px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Maria Clara Santos</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">First-Time Seeker</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">Oct 23, 2024</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 240px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Brgy. Kumintang Ilaya, Batangas City</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;">
+                <div style="border-radius: 30px;background-color: #e8f5e9;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #2e7d32;width: max-content;position: relative;flex-shrink: 0;">Claimed</span></div>
+              </div>
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-end;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                <div style="border-width: 1px;border-style: solid;border-color: #1b3a6b;border-radius: 6px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 72px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="12.000800132751468" height="12.000800132751468" viewBox="0 0 12.000800132751468 12.000800132751468" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.7%;top: -1.7%;right: 1.7%;bottom: 1.7%;width: 100%;height: 100%;position: absolute;"> <path d="M2.0002 8.0006H1.0001C0.7348 8.0006 0.4805 7.8953 0.2929 7.7077 0.1054 7.5202 0 7.2658 0 7.0006V4.5004C0 4.2351 0.1054 3.9807 0.2929 3.7932 0.4805 3.6056 0.7348 3.5003 1.0001 3.5003H9.0007C9.266 3.5003 9.5203 3.6056 9.7079 3.7932 9.8954 3.9807 10.0008 4.2351 10.0008 4.5004V7.0006C10.0008 7.2658 9.8954 7.5202 9.7079 7.7077 9.5203 7.8953 9.266 8.0006 9.0007 8.0006H8.0006M2.0002 3.5003V0.5C2.0002 0.3674 2.0528 0.2402 2.1466 0.1465 2.2404 0.0527 2.3676 0 2.5002 0H7.5006C7.6332 0 7.7604 0.0527 7.8542 0.1465 7.948 0.2402 8.0006 0.3674 8.0006 0.5V3.5003M2.5002 6.0005H7.5006C7.7768 6.0005 8.0006 6.2244 8.0006 6.5005V9.5008C8.0006 9.7769 7.7768 10.0008 7.5006 10.0008H2.5002C2.224 10.0008 2.0002 9.7769 2.0002 9.5008V6.5005C2.0002 6.2244 2.224 6.0005 2.5002 6.0005Z" transform=" translate(1.1999839986252931 1.1999839986252931)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Print</span>
+                </div>
+                <div style="border-radius: 6px;background-color: #e2e8f0;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 124px;opacity: 0.6;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="9.999199867248535" height="7.499599933624268" viewBox="0 0 9.999199867248535 7.499599933624268" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.3%;top: 13.6%;right: 10.4%;bottom: 23.9%;width: 83.3%;height: 62.5%;position: absolute;"> <path d="M7.9992 0L2.4997 5.4996 0 2.9998" transform=" translate(1.2500250066495633 1.3636628162299778)" style="stroke: #5a6e85;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">Claimed</span>
+                </div>
+              </div>
+            </div>
+            <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 16px 24px;">
+              <div style="display: flex;flex-direction: column;row-gap: 4px;align-items: start;justify-content: flex-start;width: 220px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Juan dela Cruz Jr.</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">First-Time Seeker</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">Oct 22, 2024</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 240px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Brgy. Wawa, Nasugbu</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;">
+                <div style="border-radius: 30px;background-color: #fff3e0;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">Not Claimed</span></div>
+              </div>
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-end;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                <div style="border-width: 1px;border-style: solid;border-color: #1b3a6b;border-radius: 6px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 72px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="12.000800132751468" height="12.000800132751468" viewBox="0 0 12.000800132751468 12.000800132751468" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.7%;top: -1.7%;right: 1.7%;bottom: 1.7%;width: 100%;height: 100%;position: absolute;"> <path d="M2.0002 8.0006H1.0001C0.7348 8.0006 0.4805 7.8953 0.2929 7.7077 0.1054 7.5202 0 7.2658 0 7.0006V4.5004C0 4.2351 0.1054 3.9807 0.2929 3.7932 0.4805 3.6056 0.7348 3.5003 1.0001 3.5003H9.0007C9.266 3.5003 9.5203 3.6056 9.7079 3.7932 9.8954 3.9807 10.0008 4.2351 10.0008 4.5004V7.0006C10.0008 7.2658 9.8954 7.5202 9.7079 7.7077 9.5203 7.8953 9.266 8.0006 9.0007 8.0006H8.0006M2.0002 3.5003V0.5C2.0002 0.3674 2.0528 0.2402 2.1466 0.1465 2.2404 0.0527 2.3676 0 2.5002 0H7.5006C7.6332 0 7.7604 0.0527 7.8542 0.1465 7.948 0.2402 8.0006 0.3674 8.0006 0.5V3.5003M2.5002 6.0005H7.5006C7.7768 6.0005 8.0006 6.2244 8.0006 6.5005V9.5008C8.0006 9.7769 7.7768 10.0008 7.5006 10.0008H2.5002C2.224 10.0008 2.0002 9.7769 2.0002 9.5008V6.5005C2.0002 6.2244 2.224 6.0005 2.5002 6.0005Z" transform=" translate(1.1999839986252931 1.1999839986252931)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Print</span>
+                </div>
+                <div style="border-radius: 6px;background-color: #1b3a6b;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 124px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="9.999199867248535" height="7.499599933624268" viewBox="0 0 9.999199867248535 7.499599933624268" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.3%;top: 13.6%;right: 10.4%;bottom: 23.9%;width: 83.3%;height: 62.5%;position: absolute;"> <path d="M7.9992 0L2.4997 5.4996 0 2.9998" transform=" translate(1.2500250066495633 1.3636628162299778)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">Mark Claimed</span>
+                </div>
+              </div>
+            </div>
+            <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 16px 24px;">
+              <div style="display: flex;flex-direction: column;row-gap: 4px;align-items: start;justify-content: flex-start;width: 220px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Angelica Panganiban</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">First-Time Seeker</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">Oct 21, 2024</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 240px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Brgy. Calicanto, Batangas City</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;">
+                <div style="border-radius: 30px;background-color: #e8f5e9;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #2e7d32;width: max-content;position: relative;flex-shrink: 0;">Claimed</span></div>
+              </div>
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-end;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                <div style="border-width: 1px;border-style: solid;border-color: #1b3a6b;border-radius: 6px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 72px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="12.000800132751468" height="12.000800132751468" viewBox="0 0 12.000800132751468 12.000800132751468" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.7%;top: -1.7%;right: 1.7%;bottom: 1.7%;width: 100%;height: 100%;position: absolute;"> <path d="M2.0002 8.0006H1.0001C0.7348 8.0006 0.4805 7.8953 0.2929 7.7077 0.1054 7.5202 0 7.2658 0 7.0006V4.5004C0 4.2351 0.1054 3.9807 0.2929 3.7932 0.4805 3.6056 0.7348 3.5003 1.0001 3.5003H9.0007C9.266 3.5003 9.5203 3.6056 9.7079 3.7932 9.8954 3.9807 10.0008 4.2351 10.0008 4.5004V7.0006C10.0008 7.2658 9.8954 7.5202 9.7079 7.7077 9.5203 7.8953 9.266 8.0006 9.0007 8.0006H8.0006M2.0002 3.5003V0.5C2.0002 0.3674 2.0528 0.2402 2.1466 0.1465 2.2404 0.0527 2.3676 0 2.5002 0H7.5006C7.6332 0 7.7604 0.0527 7.8542 0.1465 7.948 0.2402 8.0006 0.3674 8.0006 0.5V3.5003M2.5002 6.0005H7.5006C7.7768 6.0005 8.0006 6.2244 8.0006 6.5005V9.5008C8.0006 9.7769 7.7768 10.0008 7.5006 10.0008H2.5002C2.224 10.0008 2.0002 9.7769 2.0002 9.5008V6.5005C2.0002 6.2244 2.224 6.0005 2.5002 6.0005Z" transform=" translate(1.1999839986252931 1.1999839986252931)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Print</span>
+                </div>
+                <div style="border-radius: 6px;background-color: #e2e8f0;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 124px;opacity: 0.6;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="9.999199867248535" height="7.499599933624268" viewBox="0 0 9.999199867248535 7.499599933624268" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.3%;top: 13.6%;right: 10.4%;bottom: 23.9%;width: 83.3%;height: 62.5%;position: absolute;"> <path d="M7.9992 0L2.4997 5.4996 0 2.9998" transform=" translate(1.2500250066495633 1.3636628162299778)" style="stroke: #5a6e85;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">Claimed</span>
+                </div>
+              </div>
+            </div>
+            <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 16px 24px;">
+              <div style="display: flex;flex-direction: column;row-gap: 4px;align-items: start;justify-content: flex-start;width: 220px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Jose Rizalito Mercado</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">First-Time Seeker</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">Oct 19, 2024</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 240px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Brgy. Bagong Pook, San Jose</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;">
+                <div style="border-radius: 30px;background-color: #fffde7;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #d28e00;width: max-content;position: relative;flex-shrink: 0;">Pending</span></div>
+              </div>
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-end;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                <div style="border-width: 1px;border-style: solid;border-color: #1b3a6b;border-radius: 6px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 72px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="12.000800132751468" height="12.000800132751468" viewBox="0 0 12.000800132751468 12.000800132751468" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.7%;top: -1.7%;right: 1.7%;bottom: 1.7%;width: 100%;height: 100%;position: absolute;"> <path d="M2.0002 8.0006H1.0001C0.7348 8.0006 0.4805 7.8953 0.2929 7.7077 0.1054 7.5202 0 7.2658 0 7.0006V4.5004C0 4.2351 0.1054 3.9807 0.2929 3.7932 0.4805 3.6056 0.7348 3.5003 1.0001 3.5003H9.0007C9.266 3.5003 9.5203 3.6056 9.7079 3.7932 9.8954 3.9807 10.0008 4.2351 10.0008 4.5004V7.0006C10.0008 7.2658 9.8954 7.5202 9.7079 7.7077 9.5203 7.8953 9.266 8.0006 9.0007 8.0006H8.0006M2.0002 3.5003V0.5C2.0002 0.3674 2.0528 0.2402 2.1466 0.1465 2.2404 0.0527 2.3676 0 2.5002 0H7.5006C7.6332 0 7.7604 0.0527 7.8542 0.1465 7.948 0.2402 8.0006 0.3674 8.0006 0.5V3.5003M2.5002 6.0005H7.5006C7.7768 6.0005 8.0006 6.2244 8.0006 6.5005V9.5008C8.0006 9.7769 7.7768 10.0008 7.5006 10.0008H2.5002C2.224 10.0008 2.0002 9.7769 2.0002 9.5008V6.5005C2.0002 6.2244 2.224 6.0005 2.5002 6.0005Z" transform=" translate(1.1999839986252931 1.1999839986252931)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Print</span>
+                </div>
+                <div style="border-radius: 6px;background-color: #1b3a6b;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 124px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="9.999199867248535" height="7.499599933624268" viewBox="0 0 9.999199867248535 7.499599933624268" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.3%;top: 13.6%;right: 10.4%;bottom: 23.9%;width: 83.3%;height: 62.5%;position: absolute;"> <path d="M7.9992 0L2.4997 5.4996 0 2.9998" transform=" translate(1.2500250066495633 1.3636628162299778)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">Mark Claimed</span>
+                </div>
+              </div>
+            </div>
+            <div style="border-width: 0px 0px 1px;border-style: solid;border-color: #e2e8f0;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 16px 24px;">
+              <div style="display: flex;flex-direction: column;row-gap: 4px;align-items: start;justify-content: flex-start;width: 220px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Corazon Aquino Diokno</span><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">First-Time Seeker</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #5a6e85;width: max-content;position: relative;flex-shrink: 0;">Oct 18, 2024</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 240px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 500;font-stretch: 100%;color: #1c2d42;width: max-content;position: relative;flex-shrink: 0;">Brgy. Muzon, Alitagtag</span></div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 140px;position: relative;flex-shrink: 0;">
+                <div style="border-radius: 30px;background-color: #fff3e0;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;padding: 6px 12px;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #f57c00;width: max-content;position: relative;flex-shrink: 0;">Not Claimed</span></div>
+              </div>
+              <div style="display: flex;flex-direction: row;grid-column-gap: 8px;align-items: center;justify-content: flex-end;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                <div style="border-width: 1px;border-style: solid;border-color: #1b3a6b;border-radius: 6px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 72px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="12.000800132751468" height="12.000800132751468" viewBox="0 0 12.000800132751468 12.000800132751468" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: -1.7%;top: -1.7%;right: 1.7%;bottom: 1.7%;width: 100%;height: 100%;position: absolute;"> <path d="M2.0002 8.0006H1.0001C0.7348 8.0006 0.4805 7.8953 0.2929 7.7077 0.1054 7.5202 0 7.2658 0 7.0006V4.5004C0 4.2351 0.1054 3.9807 0.2929 3.7932 0.4805 3.6056 0.7348 3.5003 1.0001 3.5003H9.0007C9.266 3.5003 9.5203 3.6056 9.7079 3.7932 9.8954 3.9807 10.0008 4.2351 10.0008 4.5004V7.0006C10.0008 7.2658 9.8954 7.5202 9.7079 7.7077 9.5203 7.8953 9.266 8.0006 9.0007 8.0006H8.0006M2.0002 3.5003V0.5C2.0002 0.3674 2.0528 0.2402 2.1466 0.1465 2.2404 0.0527 2.3676 0 2.5002 0H7.5006C7.6332 0 7.7604 0.0527 7.8542 0.1465 7.948 0.2402 8.0006 0.3674 8.0006 0.5V3.5003M2.5002 6.0005H7.5006C7.7768 6.0005 8.0006 6.2244 8.0006 6.5005V9.5008C8.0006 9.7769 7.7768 10.0008 7.5006 10.0008H2.5002C2.224 10.0008 2.0002 9.7769 2.0002 9.5008V6.5005C2.0002 6.2244 2.224 6.0005 2.5002 6.0005Z" transform=" translate(1.1999839986252931 1.1999839986252931)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #1b3a6b;width: max-content;position: relative;flex-shrink: 0;">Print</span>
+                </div>
+                <div style="border-radius: 6px;background-color: #1b3a6b;display: flex;flex-direction: row;grid-column-gap: 6px;align-items: center;justify-content: flex-start;width: 124px;position: relative;flex-shrink: 0;padding: 6px 0px 6px 12px;">
+                  <div style="overflow: hidden;width: 14px;height: 14px;position: relative;flex-shrink: 0;">
+                    <div style="overflow: hidden;left: calc(-6px + 50%);top: calc(-6px + 50%);width: 12px;height: 12px;position: absolute;"><svg width="9.999199867248535" height="7.499599933624268" viewBox="0 0 9.999199867248535 7.499599933624268" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 6.3%;top: 13.6%;right: 10.4%;bottom: 23.9%;width: 83.3%;height: 62.5%;position: absolute;"> <path d="M7.9992 0L2.4997 5.4996 0 2.9998" transform=" translate(1.2500250066495633 1.3636628162299778)" style="stroke: #fff;stroke-width: 2;stroke-linecap: round;"></path> </svg></div>
+                  </div>
+                  <span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;font-stretch: 100%;color: #fff;width: max-content;position: relative;flex-shrink: 0;">Mark Claimed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
