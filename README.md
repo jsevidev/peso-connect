@@ -20,7 +20,7 @@ A Laravel web application for the Public Employment Service Office (PESO) — co
 ## Local setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/peso-connect.git
+git clone https://github.com/jsevidev/peso-connect.git
 cd peso-connect
 
 composer install
