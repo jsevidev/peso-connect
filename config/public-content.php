@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Demo seed data for database seeders only.
+ * Live pages read from the database.
+ */
+
 return [
     'jobs' => [
         [
@@ -189,14 +194,5 @@ return [
             'action_route' => 'enlistment',
             'action_label' => 'Register for Training',
         ],
-    ],
-
-    'referral_job_options' => [
-        'Administrative Assistant II',
-        'Customer Service Representative - Healthcare Account',
-        'Civil Engineer (Project-Based, City Engineering)',
-        'Technical Support Associate I',
-        'Software Engineer (React)',
-        'Registered Nurse',
     ],
 ];

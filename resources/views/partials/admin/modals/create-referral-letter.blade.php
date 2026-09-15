@@ -32,8 +32,8 @@
             <span>for the position of</span>
             <select class="admin-referral-letter__field admin-referral-letter__field--inline admin-referral-letter__field--select" id="referral_job" name="job" required>
               <option value="" disabled selected>Choose Job</option>
-              @foreach (config('admin-content.admin_jobs', []) as $job)
-                <option value="{{ $job['title'] }}">{{ $job['title'] }}</option>
+              @foreach (($jobOptions ?? []) as $job)
+                <option value="{{ is_array($job) ? $job['title'] : $job }}">{{ is_array($job) ? $job['title'] : $job }}</option>
               @endforeach
             </select>
             <span>.</span>

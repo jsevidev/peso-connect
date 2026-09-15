@@ -29,6 +29,7 @@
             <div style="display: flex;flex-direction: column;row-gap: 8px;flex: 1 1 240px;">
               <label for="full_name" class="public-field-label">Full Name <span class="public-field-required">*</span></label>
               <input type="text" id="full_name" name="full_name" class="public-input" placeholder="e.g. Juan Dela Cruz" required value="{{ old('full_name') }}">
+              <x-field-error field="full_name" />
             </div>
             <div style="display: flex;flex-direction: column;row-gap: 8px;flex: 1 1 240px;">
               <label for="birth_date" class="public-field-label">Birth Date <span class="public-field-required">*</span></label>
@@ -44,6 +45,7 @@
             <div style="display: flex;flex-direction: column;row-gap: 8px;flex: 1 1 240px;">
               <label for="email" class="public-field-label">Email Address <span class="public-field-required">*</span></label>
               <input type="email" id="email" name="email" class="public-input" placeholder="name@example.com" required value="{{ old('email') }}">
+              <x-field-error field="email" />
             </div>
           </div>
 

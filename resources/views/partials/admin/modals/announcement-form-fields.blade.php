@@ -27,7 +27,7 @@
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.058 0.391C6.808 0.141 6.469 0 6.115 0H1.333C0.98 0 0.641 0.141 0.391 0.391 0.141 0.641 0 0.98 0 1.333V6.115C0 6.469 0.141 6.808 0.391 7.058L6.194 12.861C6.497 13.162 6.907 13.331 7.334 13.331 7.761 13.331 8.171 13.162 8.474 12.861L12.861 8.474C13.162 8.171 13.331 7.761 13.331 7.334 13.331 6.907 13.162 6.497 12.861 6.194L7.058 0.391ZM4 3.667C4 3.851 3.851 4 3.667 4 3.483 4 3.334 3.851 3.334 3.667 3.334 3.483 3.483 3.334 3.667 3.334 3.851 3.334 4 3.483 4 3.667Z" transform="translate(1.15 1.15)" stroke="#64748b" stroke-width="2" stroke-linecap="round"/></svg>
       <input class="admin-input admin-input--with-icon" type="text" id="{{ $prefix }}_category" name="category" data-modal-field="category" list="{{ $prefix }}_category_list" placeholder="e.g. Job Fair, Training, System" value="{{ $categoryValue ?? '' }}" required>
       <datalist id="{{ $prefix }}_category_list">
-        @foreach (config('admin-content.announcement_categories', []) as $category)
+        @foreach (config('peso-options.announcement_categories', []) as $category)
           <option value="{{ $category }}"></option>
         @endforeach
       </datalist>
@@ -39,7 +39,7 @@
   <div class="admin-form-field">
     <label class="admin-field-label" for="{{ $prefix }}_status">Status <span class="admin-field-required">*</span></label>
     <select class="admin-select" id="{{ $prefix }}_status" name="status" data-modal-field="status" required>
-      @foreach (config('admin-content.announcement_statuses', []) as $status)
+      @foreach (config('peso-options.announcement_statuses', []) as $status)
         <option value="{{ $status }}" @selected(($statusValue ?? 'Published') === $status)>{{ $status }}</option>
       @endforeach
     </select>

@@ -36,11 +36,13 @@
             <option value="{{ $job['title'] }}" @selected($selectedJobPosition === $job['title'])>{{ $job['title'] }}</option>
           @endforeach
         </select>
+        <x-field-error field="job_position" />
       </div>
 
       <div style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">
         <label for="full_name" class="public-field-label" style="font-size: 13px;color: #0f172a;">Full Name <span class="public-field-required">*</span></label>
         <input type="text" id="full_name" name="full_name" class="public-input public-enlistment-input" placeholder="e.g. Juan Dela Cruz" required value="{{ old('full_name') }}">
+        <x-field-error field="full_name" />
       </div>
 
       <div style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">
@@ -51,6 +53,7 @@
       <div style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">
         <label for="email" class="public-field-label" style="font-size: 13px;color: #0f172a;">Email Address <span class="public-field-required">*</span></label>
         <input type="email" id="email" name="email" class="public-input public-enlistment-input" placeholder="e.g. juan.delacruz@email.ph" required value="{{ old('email') }}">
+        <x-field-error field="email" />
       </div>
 
       <div style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">

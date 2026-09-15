@@ -13,7 +13,7 @@
 
 <aside class="admin-sidebar">
   <div class="admin-sidebar__brand">
-    <img src="https://placehold.co/40x40?text=seal-logo" alt="PESO logo" class="admin-sidebar__logo">
+    <img src="{{ asset('assets/img/peso-logo.png') }}" alt="PESO logo" class="admin-sidebar__logo">
     <div>
       <div class="admin-sidebar__title">PESO</div>
       <div class="admin-sidebar__subtitle">Gov Employment Platform</div>

@@ -663,8 +663,8 @@ svg {
   width: 100%; max-width: 640px; box-shadow: 0 16px 32px rgba(15,23,42,0.05);
 }
 .admin-login-icon {
-  width: 72px; height: 72px; border-radius: 36px; background: #f57c00; display: flex; align-items: center;
-  justify-content: center; margin: 0 auto 16px;
+  width: 72px; height: 72px; border-radius: 36px; background: #fff; display: flex; align-items: center;
+  justify-content: center; margin: 0 auto 16px; overflow: hidden;
 }
 .admin-login-heading { font-family: "Instrument Serif", system-ui, sans-serif; font-size: clamp(24px, 5vw, 32px); text-align: center; color: #0f172a; }
 .admin-login-sub { text-align: center; color: #64748b; font-size: 16px; margin-top: 6px; font-family: Inter, system-ui, sans-serif; }
@@ -811,6 +811,9 @@ svg {
 .admin-page-header--reports {
   align-items: flex-start;
 }
+.admin-page-header__actions {
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0; flex-wrap: wrap;
+}
 .admin-reports-date-pill {
   display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 10px;
   background: #fff; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
@@ -914,19 +917,6 @@ svg {
 }
 .admin-reports-donut__legend-percent {
   font-size: 12px; color: #94a3b8; font-family: Inter, system-ui, sans-serif;
-}
-.admin-reports-export {
-  border-radius: 20px; background: #fff; padding: 24px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-}
-.admin-reports-export__intro {
-  font-size: 14px; color: #64748b; margin: 8px 0 20px; font-family: Inter, system-ui, sans-serif; line-height: 1.5;
-}
-.admin-reports-export__form {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; align-items: end;
-}
-.admin-reports-export__actions {
-  display: flex; align-items: flex-end;
 }
 
 @media (max-width: 1100px) {

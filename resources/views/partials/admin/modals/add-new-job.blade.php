@@ -35,7 +35,7 @@
         <div class="admin-form-field">
           <label class="admin-field-label" for="job_type">Job Type <span class="admin-field-required">*</span></label>
           <select class="admin-select" id="job_type" name="type" required>
-            @foreach (config('admin-content.job_types', []) as $type)
+            @foreach (config('peso-options.job_types', []) as $type)
               <option value="{{ $type }}">{{ $type }}</option>
             @endforeach
           </select>

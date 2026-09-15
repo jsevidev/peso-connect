@@ -22,7 +22,7 @@
         <div class="admin-form-field">
           <label class="admin-field-label" for="edit_job_type">Job Type</label>
           <select class="admin-select" id="edit_job_type" name="type" data-modal-field="type">
-            @foreach (config('admin-content.job_types', []) as $type)
+            @foreach (config('peso-options.job_types', []) as $type)
               <option value="{{ $type }}">{{ $type }}</option>
             @endforeach
           </select>
@@ -30,7 +30,7 @@
         <div class="admin-form-field">
           <label class="admin-field-label" for="edit_job_status">Status</label>
           <select class="admin-select" id="edit_job_status" name="status" data-modal-field="status">
-            @foreach (config('admin-content.job_statuses', []) as $status)
+            @foreach (config('peso-options.job_statuses', []) as $status)
               <option value="{{ $status }}">{{ $status }}</option>
             @endforeach
           </select>

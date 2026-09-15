@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" agent="Cursor" version="22.1.0">
+  <diagram id="peso-class-diagram" name="PESO Connect Class Diagram">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Admin (center) -->
+        <mxCell id="admin" value="Admin&#xa;&#xa;+ adminId: int&#xa;+ username: string&#xa;+ password: string&#xa;&#xa;+ login()&#xa;+ encodeApplicant()&#xa;+ createJobPosting()&#xa;+ publishJobPosting()&#xa;+ archiveJobPosting()&#xa;+ issueReferral()&#xa;+ processCertification()&#xa;+ postAnnouncement()&#xa;+ recordActivity()&#xa;+ generateReport()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=10;fontFamily=Courier New;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="620" y="80" width="240" height="240" as="geometry"/>
+        </mxCell>
+
+        <!-- Applicant (left) -->
+        <mxCell id="applicant" value="Applicant&#xa;&#xa;+ applicantId: int&#xa;+ emailAddress: string&#xa;+ fullname: string&#xa;+ contactNumber: string&#xa;+ dateOfBirth: date&#xa;+ gender: string&#xa;+ civilStatus: string&#xa;+ address: string&#xa;+ education: string&#xa;+ skills: string&#xa;+ adminId: int&#xa;&#xa;+ submitRegistration()&#xa;+ requestCertification()&#xa;+ requestReferral()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=10;fontFamily=Courier New;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="240" height="260" as="geometry"/>
+        </mxCell>
+
+        <!-- JobPosting (top right) -->
+        <mxCell id="jobposting" value="JobPosting&#xa;&#xa;+ jobId: int&#xa;+ adminId: int&#xa;+ jobTitle: string&#xa;+ company: string&#xa;+ location: string&#xa;+ minSalary: int&#xa;+ maxSalary: int&#xa;+ jobType: string&#xa;+ jobDescription: string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;spacingLeft=10;fontFamily=Courier New;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="980" y="80" width="240" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- Referral (right) -->
+        <mxCell id="referral" value="Referral&#xa;&#xa;+ referralId: int&#xa;+ applicantId: int&#xa;+ jobId: int&#xa;+ adminId: int&#xa;+ status: string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;spacingLeft=10;fontFamily=Courier New;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="980" y="380" width="240" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Certification (bottom left) -->
+        <mxCell id="certification" value="Certification&#xa;&#xa;+ certId: int&#xa;+ applicantId: int&#xa;+ adminId: int&#xa;+ dateRequested: date&#xa;+ status: string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;spacingLeft=10;fontFamily=Courier New;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="680" width="240" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- ActivityLog (bottom center) -->
+        <mxCell id="activitylog" value="ActivityLog&#xa;&#xa;+ logId: int&#xa;+ adminId: int&#xa;+ details: string&#xa;+ createdAt: date" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;spacingLeft=10;fontFamily=Courier New;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="420" y="680" width="240" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- Announcement (bottom right) -->
+        <mxCell id="announcement" value="Announcement&#xa;&#xa;+ anncmtId: int&#xa;+ adminId: int&#xa;+ title: string&#xa;+ description: string&#xa;+ category: string&#xa;+ status: string&#xa;+ publishDate: date&#xa;+ scheduledDate: date&#xa;+ scheduledTime: time" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;spacingLeft=10;fontFamily=Courier New;fontSize=11;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="760" y="680" width="240" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- Relationships -->
+        <mxCell id="r1" value="encodes&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=0;exitY=0.5;entryX=1;entryY=0.35;fontSize=10;" edge="1" parent="1" source="admin" target="applicant">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r2" value="creates&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=1;exitY=0.25;entryX=0;entryY=0.5;fontSize=10;" edge="1" parent="1" source="admin" target="jobposting">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r3" value="issues&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=1;exitY=0.6;entryX=0;entryY=0.3;fontSize=10;" edge="1" parent="1" source="admin" target="referral">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r4" value="records&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=10;" edge="1" parent="1" source="admin" target="activitylog">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r5" value="processes&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=0;exitY=0.85;entryX=1;entryY=0.2;fontSize=10;" edge="1" parent="1" source="admin" target="certification">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="520" y="284"/><mxPoint x="520" y="704"/></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="r6" value="posts&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=0.75;exitY=1;entryX=0.5;entryY=0;fontSize=10;" edge="1" parent="1" source="admin" target="announcement">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r7" value="requests&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=10;" edge="1" parent="1" source="applicant" target="certification">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r8" value="requests&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=1;exitY=0.4;entryX=0;entryY=0.6;fontSize=10;" edge="1" parent="1" source="applicant" target="referral">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r9" value="linked to&#xa;1 .. *" style="endArrow=open;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=10;" edge="1" parent="1" source="jobposting" target="referral">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

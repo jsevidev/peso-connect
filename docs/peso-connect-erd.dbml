@@ -1,0 +1,79 @@
+// PESO Connect ERD — final (matches capstone ERD)
+// Paste at https://dbdiagram.io/d
+
+Table ADMIN {
+  admin_id int [pk]
+  username varchar
+  password varchar
+}
+
+Table JOBS {
+  job_id int [pk]
+  admin_id int
+  job_title varchar
+  company varchar
+  location varchar
+  min_salary int
+  max_salary int
+  job_type varchar
+  job_description varchar
+}
+
+Table APPLICANT {
+  applicant_id int [pk]
+  email_address varchar
+  fullname varchar
+  contact_number int
+  date_of_birth date
+  gender varchar
+  civil_status varchar
+  address varchar
+  education varchar
+  skills varchar
+  admin_id int
+}
+
+Table REFERRAL {
+  referral_id int [pk]
+  applicant_id int
+  job_id int
+  admin_id int
+  status varchar
+}
+
+Table ACTIVITY_LOGS {
+  log_id int [pk]
+  admin_id int
+  details varchar
+  created_at date
+}
+
+Table CERTIFICATION {
+  cert_id int [pk]
+  applicant_id int
+  admin_id int
+  date_requested date
+  status varchar
+}
+
+Table ANNOUNCEMENTS {
+  anncmt_id int [pk]
+  admin_id int
+  title varchar
+  description varchar
+  category varchar
+  status varchar
+  publish_date date
+  scheduled_date date
+  scheduled_time time
+}
+
+Ref admin_creates_jobs: JOBS.admin_id > ADMIN.admin_id
+Ref admin_encodes_applicant: APPLICANT.admin_id > ADMIN.admin_id
+Ref admin_issues_referral: REFERRAL.admin_id > ADMIN.admin_id
+Ref admin_records_logs: ACTIVITY_LOGS.admin_id > ADMIN.admin_id
+Ref admin_processes_cert: CERTIFICATION.admin_id > ADMIN.admin_id
+Ref admin_posts_anncmt: ANNOUNCEMENTS.admin_id > ADMIN.admin_id
+Ref applicant_requests_referral: REFERRAL.applicant_id > APPLICANT.applicant_id
+Ref applicant_requests_cert: CERTIFICATION.applicant_id > APPLICANT.applicant_id
+Ref jobs_linked_referral: REFERRAL.job_id > JOBS.job_id

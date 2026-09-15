@@ -23,7 +23,7 @@
 
   @include('partials.public.flash-status')
 
-  <form action="{{ route('first-time-job-seeker') }}" method="POST" class="public-form-card" style="border-width: 1px;border-style: solid;border-color: #d1d5db;border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 32px;width: 100%;filter: drop-shadow(0px 12px 24px rgba(27,58,107,0.04));padding: 40px;">
+  <form action="{{ route('first-time-job-seeker') }}" method="POST" enctype="multipart/form-data" class="public-form-card" style="border-width: 1px;border-style: solid;border-color: #d1d5db;border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 32px;width: 100%;filter: drop-shadow(0px 12px 24px rgba(27,58,107,0.04));padding: 40px;">
     @csrf
 
     <section style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
@@ -140,10 +140,13 @@
           <option value="sss-umid" @selected(old('id_type') === 'sss-umid')>SSS / UMID</option>
           <option value="voters-id" @selected(old('id_type') === 'voters-id')>Voter's ID</option>
         </select>
+        <x-field-error field="id_type" />
       </div>
-      <div style="border-width: 0px 0px 0px 4px;border-style: solid;border-color: #1b3a6b;border-radius: 12px;background-color: #eef4fc;padding: 16px;">
-        <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">Verification at PESO office</span>
-        <p class="text" style="line-height: 18.2px;font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #4b5563;margin-top: 4px;">Please bring your valid ID when you visit the PESO office for verification. No need to upload any documents online.</p>
+      <div style="display: flex;flex-direction: column;row-gap: 6px;max-width: 548px;width: 100%;">
+        <label for="id_document" class="public-field-label public-field-label--dark">Upload ID copy (optional)</label>
+        <input type="file" id="id_document" name="id_document" class="public-input public-input--gray" accept=".pdf,.jpg,.jpeg,.png">
+        <span class="text" style="font-size: 12px;font-family: Inter, system-ui, sans-serif;color: #64748b;">PDF, JPG, or PNG up to 5 MB. You may also bring your valid ID when visiting the PESO office.</span>
+        <x-field-error field="id_document" />
       </div>
     </section>
 

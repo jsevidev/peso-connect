@@ -2,6 +2,13 @@
 
 namespace App\Support;
 
+use App\Models\ActivityLog;
+use App\Models\Announcement;
+use App\Models\Applicant;
+use App\Models\Certification;
+use App\Models\JobPosting;
+use App\Models\Referral;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AdminListing
@@ -44,91 +51,230 @@ class AdminListing
 
     public static function findJob(int $id): ?array
     {
-        return collect(config('admin-content.admin_jobs', []))->firstWhere('id', $id);
+        $job = JobPosting::withCount('applicants')->find($id);
+
+        return $job ? self::jobToArray($job) : null;
+    }
+
+    public static function jobToArray(JobPosting $job): array
+    {
+        $words = preg_split('/\s+/', $job->company) ?: [];
+        $abbr = '';
+
+        foreach (array_slice($words, 0, 3) as $word) {
+            $abbr .= strtoupper(mb_substr($word, 0, 1));
+        }
+
+        return [
+            'id' => $job->id,
+            'title' => $job->job_title,
+            'company' => $job->company,
+            'company_abbr' => $abbr !== '' ? $abbr : 'JOB',
+            'type' => $job->job_type,
+            'category' => 'General',
+            'posted' => $job->created_at->format('M j, Y'),
+            'enlistments' => $job->applicants_count ?? $job->applicants()->count(),
+            'status' => $job->status,
+        ];
     }
 
     public static function findEnlistee(int $id): ?array
     {
-        return collect(config('admin-content.enlistees', []))->firstWhere('id', $id);
+        $applicant = Applicant::find($id);
+
+        return $applicant ? self::applicantToArray($applicant) : null;
     }
 
     public static function findReferral(int $id): ?array
     {
-        return collect(config('admin-content.referrals', []))->firstWhere('id', $id);
+        $referral = Referral::find($id);
+
+        return $referral ? self::referralToArray($referral) : null;
     }
 
     public static function findAnnouncement(int $id): ?array
     {
-        return collect(config('admin-content.admin_announcements', []))->firstWhere('id', $id);
+        $announcement = Announcement::find($id);
+
+        return $announcement ? self::announcementToArray($announcement) : null;
     }
 
     public static function findCertification(int $id): ?array
     {
-        return collect(config('admin-content.certifications', []))->firstWhere('id', $id);
+        $certification = Certification::find($id);
+
+        return $certification ? self::certificationToArray($certification) : null;
+    }
+
+    public static function applicantToArray(Applicant $applicant): array
+    {
+        return [
+            'id' => $applicant->id,
+            'name' => $applicant->fullname,
+            'position' => $applicant->position ?? 'Unassigned',
+            'date' => $applicant->created_at->format('M j, Y'),
+            'contact' => $applicant->contact_number,
+            'address' => $applicant->address,
+            'skills' => $applicant->skills,
+            'education' => $applicant->education,
+            'status' => $applicant->status,
+        ];
+    }
+
+    public static function referralToArray(Referral $referral): array
+    {
+        return [
+            'id' => $referral->id,
+            'name' => $referral->fullname,
+            'job' => $referral->job_title,
+            'employer' => $referral->employer,
+            'date' => $referral->created_at->format('M j, Y'),
+            'status' => $referral->status,
+        ];
+    }
+
+    public static function announcementToArray(Announcement $announcement): array
+    {
+        $date = $announcement->publish_date ?? $announcement->scheduled_date ?? $announcement->created_at;
+
+        return [
+            'id' => $announcement->id,
+            'title' => $announcement->title,
+            'excerpt' => $announcement->description,
+            'author' => $announcement->author_name ?? 'PESO Admin',
+            'date' => $date->format('M j, Y'),
+            'publish_date' => $announcement->publish_date?->format('Y-m-d') ?? '',
+            'category' => $announcement->category,
+            'status' => $announcement->status,
+        ];
+    }
+
+    public static function certificationToArray(Certification $certification): array
+    {
+        return [
+            'id' => $certification->id,
+            'name' => $certification->fullname,
+            'date' => $certification->date_requested->format('M j, Y'),
+            'barangay' => $certification->barangay,
+            'status' => $certification->status,
+        ];
+    }
+
+    public static function activityLogToArray(ActivityLog $log): array
+    {
+        return [
+            'timestamp' => $log->created_at->format('M j, Y, g:i A'),
+            'user' => $log->admin?->username ?? 'System',
+            'action' => $log->action,
+            'details' => $log->details,
+        ];
+    }
+
+    public static function applyDateFilter(Builder $query, string $column, ?string $filter): void
+    {
+        match ($filter) {
+            'Last 7 Days' => $query->where($column, '>=', now()->subDays(7)),
+            'Last 30 Days', 'This Month' => $query->where($column, '>=', now()->subDays(30)),
+            default => null,
+        };
     }
 
     public static function filterJobs(Request $request): array
     {
-        $jobs = collect(config('admin-content.admin_jobs', []));
+        $query = JobPosting::query()->withCount('applicants');
 
         if ($q = trim((string) $request->input('q', ''))) {
-            $needle = mb_strtolower($q);
-            $jobs = $jobs->filter(fn (array $job) => str_contains(mb_strtolower($job['title']), $needle)
-                || str_contains(mb_strtolower($job['company']), $needle));
+            $needle = '%'.$q.'%';
+            $query->where(function ($builder) use ($needle) {
+                $builder->where('job_title', 'like', $needle)
+                    ->orWhere('company', 'like', $needle);
+            });
         }
 
         if ($status = $request->input('status')) {
-            $jobs = $jobs->filter(fn (array $job) => $job['status'] === $status);
+            $query->where('status', $status);
         }
 
-        if ($category = $request->input('category')) {
-            if ($category !== 'All') {
-                $jobs = $jobs->filter(fn (array $job) => ($job['category'] ?? '') === $category);
-            }
+        if ($posted = $request->input('posted')) {
+            match ($posted) {
+                'Last 7 Days' => $query->where('created_at', '>=', now()->subDays(7)),
+                'Last 30 Days' => $query->where('created_at', '>=', now()->subDays(30)),
+                default => null,
+            };
         }
 
-        return self::paginate($jobs->values()->all(), $request);
+        $jobs = $query
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(fn (JobPosting $job) => self::jobToArray($job))
+            ->all();
+
+        return self::paginate($jobs, $request);
     }
 
     public static function filterEnlistees(Request $request): array
     {
-        $items = collect(config('admin-content.enlistees', []));
+        $query = Applicant::query();
 
         if ($q = trim((string) $request->input('q', ''))) {
-            $needle = mb_strtolower($q);
-            $items = $items->filter(fn (array $row) => str_contains(mb_strtolower($row['name']), $needle)
-                || str_contains(mb_strtolower($row['position']), $needle)
-                || str_contains(mb_strtolower($row['contact']), $needle));
+            $needle = '%'.$q.'%';
+            $query->where(function ($builder) use ($needle) {
+                $builder->where('fullname', 'like', $needle)
+                    ->orWhere('position', 'like', $needle)
+                    ->orWhere('contact_number', 'like', $needle)
+                    ->orWhere('email_address', 'like', $needle);
+            });
         }
 
         if ($status = $request->input('status')) {
-            $items = $items->filter(fn (array $row) => $row['status'] === $status);
+            $query->where('status', $status);
         }
 
         if ($position = $request->input('position')) {
             if ($position !== 'All Positions') {
-                $items = $items->filter(fn (array $row) => str_contains($row['position'], explode(' ', $position)[0]));
+                $query->where('position', 'like', '%'.explode(' ', $position)[0].'%');
             }
         }
 
-        return self::paginate($items->values()->all(), $request);
+        if ($date = $request->input('date')) {
+            self::applyDateFilter($query, 'created_at', $date);
+        }
+
+        $items = $query->orderByDesc('created_at')
+            ->get()
+            ->map(fn (Applicant $applicant) => self::applicantToArray($applicant))
+            ->all();
+
+        return self::paginate($items, $request);
     }
 
     public static function filterReferrals(Request $request): array
     {
-        $items = collect(config('admin-content.referrals', []));
+        $query = Referral::query();
 
         if ($q = trim((string) $request->input('q', ''))) {
-            $needle = mb_strtolower($q);
-            $items = $items->filter(fn (array $row) => str_contains(mb_strtolower($row['name']), $needle)
-                || str_contains(mb_strtolower($row['job']), $needle));
+            $needle = '%'.$q.'%';
+            $query->where(function ($builder) use ($needle) {
+                $builder->where('fullname', 'like', $needle)
+                    ->orWhere('job_title', 'like', $needle)
+                    ->orWhere('employer', 'like', $needle);
+            });
         }
 
         if ($status = $request->input('status')) {
-            $items = $items->filter(fn (array $row) => $row['status'] === $status);
+            $query->where('status', $status);
         }
 
-        return self::paginate($items->values()->all(), $request);
+        if ($date = $request->input('date')) {
+            self::applyDateFilter($query, 'created_at', $date);
+        }
+
+        $items = $query->orderByDesc('created_at')
+            ->get()
+            ->map(fn (Referral $referral) => self::referralToArray($referral))
+            ->all();
+
+        return self::paginate($items, $request);
     }
 
     public static function announcementStatusClass(string $status): string
@@ -143,30 +289,30 @@ class AdminListing
 
     public static function announcementCounts(): array
     {
-        $items = collect(config('admin-content.admin_announcements', []));
-
         return [
-            'all' => $items->count(),
-            'Published' => $items->where('status', 'Published')->count(),
-            'Scheduled' => $items->where('status', 'Scheduled')->count(),
-            'Draft' => $items->where('status', 'Draft')->count(),
+            'all' => Announcement::count(),
+            'Published' => Announcement::where('status', 'Published')->count(),
+            'Scheduled' => Announcement::where('status', 'Scheduled')->count(),
+            'Draft' => Announcement::where('status', 'Draft')->count(),
         ];
     }
 
     public static function filterAnnouncements(Request $request): array
     {
-        $items = collect(config('admin-content.admin_announcements', []));
+        $query = Announcement::query();
 
         if ($status = $request->input('status')) {
-            $items = $items->filter(fn (array $row) => $row['status'] === $status);
+            $query->where('status', $status);
         }
 
         $sort = $request->input('sort', 'Recent First');
-        $items = $sort === 'Oldest First'
-            ? $items->sortBy('id')
-            : $items->sortByDesc('id');
+        $query->orderBy('id', $sort === 'Oldest First' ? 'asc' : 'desc');
 
-        return self::paginate($items->values()->all(), $request, 10);
+        $items = $query->get()
+            ->map(fn (Announcement $announcement) => self::announcementToArray($announcement))
+            ->all();
+
+        return self::paginate($items, $request, 10);
     }
 
     public static function certificationStatusClass(string $status): string
@@ -181,19 +327,30 @@ class AdminListing
 
     public static function filterCertifications(Request $request): array
     {
-        $items = collect(config('admin-content.certifications', []));
+        $query = Certification::query();
 
         if ($q = trim((string) $request->input('q', ''))) {
-            $needle = mb_strtolower($q);
-            $items = $items->filter(fn (array $row) => str_contains(mb_strtolower($row['name']), $needle)
-                || str_contains(mb_strtolower($row['barangay']), $needle));
+            $needle = '%'.$q.'%';
+            $query->where(function ($builder) use ($needle) {
+                $builder->where('fullname', 'like', $needle)
+                    ->orWhere('barangay', 'like', $needle);
+            });
         }
 
         if ($status = $request->input('status')) {
-            $items = $items->filter(fn (array $row) => $row['status'] === $status);
+            $query->where('status', $status);
         }
 
-        return self::paginate($items->values()->all(), $request);
+        if ($date = $request->input('date')) {
+            self::applyDateFilter($query, 'date_requested', $date);
+        }
+
+        $items = $query->orderByDesc('date_requested')
+            ->get()
+            ->map(fn (Certification $certification) => self::certificationToArray($certification))
+            ->all();
+
+        return self::paginate($items, $request);
     }
 
     public static function activityLogActionClass(string $action): string
@@ -210,47 +367,37 @@ class AdminListing
 
     public static function filterActivityLogs(Request $request): array
     {
-        $items = collect(config('admin-content.activity_logs', []));
+        $query = ActivityLog::query()->with('admin');
 
         if ($q = trim((string) $request->input('q', ''))) {
-            $needle = mb_strtolower($q);
-            $items = $items->filter(fn (array $row) => str_contains(mb_strtolower($row['details']), $needle)
-                || str_contains(mb_strtolower($row['action']), $needle)
-                || str_contains(mb_strtolower($row['user']), $needle));
+            $needle = '%'.$q.'%';
+            $query->where(function ($builder) use ($needle) {
+                $builder->where('details', 'like', $needle)
+                    ->orWhere('action', 'like', $needle);
+            });
         }
 
         if ($user = $request->input('user')) {
             if ($user !== 'All Users') {
-                $items = $items->filter(fn (array $row) => $row['user'] === $user);
+                $query->whereHas('admin', fn ($builder) => $builder->where('username', $user));
             }
         }
 
         if ($action = $request->input('action')) {
             if ($action !== 'All Actions') {
-                $items = $items->filter(fn (array $row) => $row['action'] === $action);
+                $query->where('action', $action);
             }
         }
 
         if ($date = $request->input('date')) {
-            if ($date !== 'All Time') {
-                $items = $items->filter(function (array $row) use ($date) {
-                    if (! preg_match('/^([A-Za-z]+ \d+) - ([A-Za-z]+ \d+), (\d{4})$/', $date, $matches)) {
-                        return true;
-                    }
-
-                    [, $startLabel, $endLabel, $year] = $matches;
-                    $startDay = (int) filter_var($startLabel, FILTER_SANITIZE_NUMBER_INT);
-                    $endDay = (int) filter_var($endLabel, FILTER_SANITIZE_NUMBER_INT);
-                    $month = strtok($startLabel, ' ');
-
-                    if (! preg_match('/^'.preg_quote($month, '/').' (\d+), '.$year.'/', $row['timestamp'], $rowMatch)) {
-                        return false;
-                    }
-
-                    $rowDay = (int) $rowMatch[1];
-
-                    return $rowDay >= $startDay && $rowDay <= $endDay;
-                });
+            if ($date !== 'All Time' && preg_match('/^([A-Za-z]+ \d+) - ([A-Za-z]+ \d+), (\d{4})$/', $date, $matches)) {
+                [, $startLabel, $endLabel, $year] = $matches;
+                $month = strtok($startLabel, ' ');
+                $startDay = (int) filter_var($startLabel, FILTER_SANITIZE_NUMBER_INT);
+                $endDay = (int) filter_var($endLabel, FILTER_SANITIZE_NUMBER_INT);
+                $start = \Carbon\Carbon::parse("$month $startDay, $year")->startOfDay();
+                $end = \Carbon\Carbon::parse("$month $endDay, $year")->endOfDay();
+                $query->whereBetween('created_at', [$start, $end]);
             }
         }
 
@@ -259,11 +406,14 @@ class AdminListing
             || ($request->input('action') && $request->input('action') !== 'All Actions')
             || ($request->input('date') && $request->input('date') !== 'All Time');
 
-        $result = self::paginate($items->values()->all(), $request, 10);
+        $items = $query->orderByDesc('created_at')
+            ->get()
+            ->map(fn (ActivityLog $log) => self::activityLogToArray($log))
+            ->all();
+
+        $result = self::paginate($items, $request, 10);
         $result['has_filters'] = $hasFilters;
-        $result['display_total'] = $hasFilters
-            ? $result['total']
-            : (int) config('admin-content.activity_total', $result['total']);
+        $result['display_total'] = $result['total'];
 
         return $result;
     }

@@ -2,13 +2,19 @@
 
 namespace App\Support;
 
+use App\Models\JobPosting;
 use Illuminate\Http\Request;
 
 class PublicJobListing
 {
     public static function all(): array
     {
-        return config('public-content.jobs', []);
+        return JobPosting::query()
+            ->where('status', 'Active')
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(fn (JobPosting $job) => self::toArray($job))
+            ->all();
     }
 
     public static function findById(int|string|null $id): ?array
@@ -17,7 +23,32 @@ class PublicJobListing
             return null;
         }
 
-        return collect(self::all())->firstWhere('id', (int) $id);
+        $job = JobPosting::query()
+            ->where('status', 'Active')
+            ->find((int) $id);
+
+        return $job ? self::toArray($job) : null;
+    }
+
+    public static function toArray(JobPosting $job): array
+    {
+        $typeKey = strtolower(str_replace(' ', '-', $job->job_type));
+        $daysAgo = max(0, (int) $job->created_at->diffInDays(now()));
+
+        return [
+            'id' => $job->id,
+            'title' => $job->job_title,
+            'company' => $job->company,
+            'description' => $job->job_description,
+            'location' => $job->location,
+            'salary_min' => $job->min_salary ?? 0,
+            'salary_max' => $job->max_salary ?? 0,
+            'type' => $job->job_type,
+            'type_key' => $typeKey,
+            'posted_days_ago' => $daysAgo,
+            'bookmarked' => false,
+            'peso_verified' => true,
+        ];
     }
 
     public static function filter(Request $request, int $perPage = 4): array
@@ -110,6 +141,10 @@ class PublicJobListing
 
     public static function formatSalary(array $job): string
     {
+        if (($job['salary_min'] ?? 0) === 0 && ($job['salary_max'] ?? 0) === 0) {
+            return 'Contact for details';
+        }
+
         return '₱'.number_format($job['salary_min']).' - ₱'.number_format($job['salary_max']);
     }
 
@@ -126,6 +161,10 @@ class PublicJobListing
     {
         $min = $job['salary_min'];
         $max = $job['salary_max'];
+
+        if ($min === 0 && $max === 0) {
+            return false;
+        }
 
         return match ($range) {
             '15-25' => $max >= 15000 && $min <= 25000,

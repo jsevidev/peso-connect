@@ -1,6 +1,17 @@
 <?php
 
-use App\Support\AdminListing;
+use App\Http\Controllers\Admin\ActivityLogController;
+use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\ApplicantController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CertificationController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\JobPostingController;
+use App\Http\Controllers\Admin\ReferralController;
+use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\PublicAnnouncementController;
+use App\Http\Controllers\PublicFormController;
+use App\Support\PublicAnnouncementListing;
 use App\Support\PublicJobListing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +21,7 @@ Route::get('/', function () {
 
     return view('public.landing', [
         'featuredJobs' => $jobs,
-        'announcements' => config('public-content.announcements', []),
+        'announcements' => array_slice(PublicAnnouncementListing::published(), 0, 3),
     ]);
 })->name('home');
 
@@ -36,35 +47,29 @@ Route::get('/jobs', function (Request $request) {
 
 Route::get('/referral-requests', function () {
     return view('public.referral-requests', [
-        'jobOptions' => config('public-content.referral_job_options', []),
+        'jobOptions' => collect(PublicJobListing::all())->pluck('title')->all(),
     ]);
 })->name('referral-requests');
 
-Route::post('/referral-requests', function () {
-    return redirect()->route('referral-requests')->with('status', 'Referral request received. Backend processing is not yet implemented.');
-});
+Route::post('/referral-requests', [PublicFormController::class, 'storeReferral']);
 
 Route::get('/first-time-job-seeker', function () {
     return view('public.first-time-job-seeker');
 })->name('first-time-job-seeker');
 
-Route::post('/first-time-job-seeker', function () {
-    return redirect()->route('first-time-job-seeker')->with('status', 'Certification request received. Backend processing is not yet implemented.');
-});
+Route::post('/first-time-job-seeker', [PublicFormController::class, 'storeCertification']);
 
 Route::get('/announcements', function (Request $request) {
-    $announcements = config('public-content.announcements', []);
-    $perPage = 3;
-    $total = count($announcements);
-    $lastPage = max(1, (int) ceil($total / $perPage));
-    $page = min(max(1, (int) $request->input('page', 1)), $lastPage);
+    $listing = PublicAnnouncementListing::paginate($request);
 
     return view('public.announcements', [
-        'announcements' => array_slice($announcements, ($page - 1) * $perPage, $perPage),
-        'currentPage' => $page,
-        'lastPage' => $lastPage,
+        'announcements' => $listing['items'],
+        'currentPage' => $listing['page'],
+        'lastPage' => $listing['last_page'],
     ]);
 })->name('announcements');
+
+Route::get('/announcements/{slug}', [PublicAnnouncementController::class, 'show'])->name('announcements.show');
 
 Route::get('/enlistment', function () {
     $selectedJobListing = PublicJobListing::findById(request('job'));
@@ -75,222 +80,49 @@ Route::get('/enlistment', function () {
     ]);
 })->name('enlistment');
 
-Route::post('/enlistment', function () {
-    return redirect()->route('enlistment')->with('status', 'Enlistment request received. Backend processing is not yet implemented.');
-});
+Route::post('/enlistment', [PublicFormController::class, 'storeEnlistment']);
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/login', function () {
-        return view('admin.login');
-    })->name('login');
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
-    Route::post('/login', function (Request $request) {
-        $username = (string) $request->input('username');
-        $password = (string) $request->input('password');
+    Route::middleware('admin.auth')->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-        $validUsername = config('admin-content.credentials.username', 'admin');
-        $validPassword = config('admin-content.credentials.password', 'admin');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        if ($username === $validUsername && $password === $validPassword) {
-            return redirect()->route('admin.dashboard')->with('status', 'Welcome back, Admin User.');
-        }
+        Route::get('/jobs', [JobPostingController::class, 'index'])->name('jobs.index');
+        Route::post('/jobs', [JobPostingController::class, 'store'])->name('jobs.store');
+        Route::post('/jobs/update', [JobPostingController::class, 'update'])->name('jobs.update');
+        Route::post('/jobs/archive', [JobPostingController::class, 'archive'])->name('jobs.archive');
+        Route::post('/jobs/delete', [JobPostingController::class, 'destroy'])->name('jobs.delete');
 
-        return redirect()->route('admin.login')
-            ->withInput($request->only('username'))
-            ->with('error', 'Invalid username or password.');
-    })->name('login.submit');
+        Route::get('/enlistees', [ApplicantController::class, 'index'])->name('enlistees.index');
+        Route::post('/enlistees', [ApplicantController::class, 'store'])->name('enlistees.store');
+        Route::post('/enlistees/export', [ApplicantController::class, 'export'])->name('enlistees.export');
+        Route::post('/enlistees/update', [ApplicantController::class, 'update'])->name('enlistees.update');
+        Route::post('/enlistees/status', [ApplicantController::class, 'updateStatus'])->name('enlistees.status');
+        Route::post('/enlistees/delete', [ApplicantController::class, 'destroy'])->name('enlistees.delete');
 
-    Route::post('/logout', function () {
-        return redirect()->route('admin.login')->with('status', 'You have been logged out.');
-    })->name('logout');
+        Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
+        Route::post('/referrals', [ReferralController::class, 'store'])->name('referrals.store');
+        Route::post('/referrals/approve', [ReferralController::class, 'approve'])->name('referrals.approve');
+        Route::post('/referrals/deny', [ReferralController::class, 'deny'])->name('referrals.deny');
 
-    Route::get('/dashboard', function () {
-        $dashboard = config('admin-content.dashboard', []);
+        Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
+        Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
+        Route::post('/announcements/update', [AnnouncementController::class, 'update'])->name('announcements.update');
+        Route::post('/announcements/delete', [AnnouncementController::class, 'destroy'])->name('announcements.delete');
 
-        return view('admin.dashboard', [
-            'stats' => $dashboard['stats'] ?? [],
-            'recentEnlistees' => $dashboard['recent_enlistees'] ?? [],
-            'categories' => $dashboard['categories'] ?? [],
-            'upcomingActivities' => $dashboard['upcoming_activities'] ?? [],
-        ]);
-    })->name('dashboard');
+        Route::get('/certifications', [CertificationController::class, 'index'])->name('certifications.index');
+        Route::post('/certifications/approve', [CertificationController::class, 'approve'])->name('certifications.approve');
+        Route::post('/certifications/print', [CertificationController::class, 'print'])->name('certifications.print');
+        Route::post('/certifications/claim', [CertificationController::class, 'claim'])->name('certifications.claim');
 
-    Route::get('/jobs', function (Request $request) {
-        $listing = AdminListing::filterJobs($request);
+        Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+        Route::post('/reports/export', [ReportController::class, 'export'])->name('reports.export');
 
-        return view('admin.job-management', [
-            'jobs' => $listing['items'],
-            'currentPage' => $listing['page'],
-            'lastPage' => $listing['last_page'],
-            'query' => $request->input('q'),
-            'statuses' => config('admin-content.job_statuses', []),
-            'categories' => config('admin-content.job_categories', []),
-            'postedFilters' => config('admin-content.posted_filters', []),
-        ]);
-    })->name('jobs.index');
-
-    Route::post('/jobs', function (Request $request) {
-        return redirect()->route('admin.jobs.index')->with('status', 'Job post "'.$request->input('title').'" received. Backend processing is not yet implemented.');
-    })->name('jobs.store');
-
-    Route::post('/jobs/update', function (Request $request) {
-        return redirect()->route('admin.jobs.index')->with('status', 'Job "'.$request->input('title').'" updated. Backend processing is not yet implemented.');
-    })->name('jobs.update');
-
-    Route::post('/jobs/archive', function (Request $request) {
-        return redirect()->route('admin.jobs.index')->with('status', 'Job "'.$request->input('title').'" archived. Backend processing is not yet implemented.');
-    })->name('jobs.archive');
-
-    Route::post('/jobs/delete', function (Request $request) {
-        return redirect()->route('admin.jobs.index')->with('status', 'Job "'.$request->input('title').'" deleted. Backend processing is not yet implemented.');
-    })->name('jobs.delete');
-
-    Route::get('/enlistees', function (Request $request) {
-        $listing = AdminListing::filterEnlistees($request);
-
-        return view('admin.enlistee-management', [
-            'enlistees' => $listing['items'],
-            'currentPage' => $listing['page'],
-            'lastPage' => $listing['last_page'],
-            'query' => $request->input('q'),
-            'statuses' => config('admin-content.enlistee_statuses', []),
-            'positionFilters' => config('admin-content.position_filters', []),
-            'dateFilters' => config('admin-content.date_filters', []),
-        ]);
-    })->name('enlistees.index');
-
-    Route::post('/enlistees', function (Request $request) {
-        return redirect()->route('admin.enlistees.index')->with('status', 'Enlistee "'.$request->input('name').'" added. Backend processing is not yet implemented.');
-    })->name('enlistees.store');
-
-    Route::post('/enlistees/export', function () {
-        return redirect()->route('admin.enlistees.index')->with('status', 'Enlistee list export started. Backend processing is not yet implemented.');
-    })->name('enlistees.export');
-
-    Route::post('/enlistees/update', function (Request $request) {
-        return redirect()->route('admin.enlistees.index')->with('status', 'Enlistee "'.$request->input('name').'" updated. Backend processing is not yet implemented.');
-    })->name('enlistees.update');
-
-    Route::post('/enlistees/status', function (Request $request) {
-        return redirect()->route('admin.enlistees.index')->with('status', 'Enlistee status changed to "'.$request->input('status').'". Backend processing is not yet implemented.');
-    })->name('enlistees.status');
-
-    Route::get('/referrals', function (Request $request) {
-        $listing = AdminListing::filterReferrals($request);
-
-        return view('admin.referral-management', [
-            'referrals' => $listing['items'],
-            'currentPage' => $listing['page'],
-            'lastPage' => $listing['last_page'],
-            'query' => $request->input('q'),
-            'stats' => config('admin-content.referral_stats', []),
-            'statuses' => config('admin-content.referral_statuses', []),
-            'dateFilters' => config('admin-content.referral_date_filters', []),
-        ]);
-    })->name('referrals.index');
-
-    Route::post('/referrals', function (Request $request) {
-        return redirect()->route('admin.referrals.index')->with('status', 'Referral letter for "'.$request->input('name').'" created. Backend processing is not yet implemented.');
-    })->name('referrals.store');
-
-    Route::post('/referrals/approve', function (Request $request) {
-        return redirect()->route('admin.referrals.index')->with('status', 'Referral for "'.$request->input('name').'" approved. Backend processing is not yet implemented.');
-    })->name('referrals.approve');
-
-    Route::post('/referrals/deny', function (Request $request) {
-        return redirect()->route('admin.referrals.index')->with('status', 'Referral for "'.$request->input('name').'" denied. Backend processing is not yet implemented.');
-    })->name('referrals.deny');
-
-    Route::get('/announcements', function (Request $request) {
-        $listing = AdminListing::filterAnnouncements($request);
-
-        return view('admin.announcement-management', [
-            'announcements' => $listing['items'],
-            'currentPage' => $listing['page'],
-            'lastPage' => $listing['last_page'],
-            'filterTabs' => config('admin-content.announcement_filter_tabs', []),
-            'sortOptions' => config('admin-content.announcement_sort_options', []),
-            'tabCounts' => AdminListing::announcementCounts(),
-        ]);
-    })->name('announcements.index');
-
-    Route::post('/announcements', function (Request $request) {
-        return redirect()->route('admin.announcements.index')->with('status', 'Announcement "'.$request->input('title').'" published. Backend processing is not yet implemented.');
-    })->name('announcements.store');
-
-    Route::post('/announcements/update', function (Request $request) {
-        return redirect()->route('admin.announcements.index')->with('status', 'Announcement "'.$request->input('title').'" updated. Backend processing is not yet implemented.');
-    })->name('announcements.update');
-
-    Route::post('/announcements/delete', function (Request $request) {
-        return redirect()->route('admin.announcements.index')->with('status', 'Announcement "'.$request->input('title').'" deleted. Backend processing is not yet implemented.');
-    })->name('announcements.delete');
-
-    Route::get('/certifications', function (Request $request) {
-        $listing = AdminListing::filterCertifications($request);
-
-        return view('admin.first-time-job-seeker-certification', [
-            'certifications' => $listing['items'],
-            'currentPage' => $listing['page'],
-            'lastPage' => $listing['last_page'],
-            'query' => $request->input('q'),
-            'stats' => config('admin-content.certification_stats', []),
-            'statuses' => config('admin-content.certification_statuses', []),
-            'dateFilters' => config('admin-content.certification_date_filters', []),
-        ]);
-    })->name('certifications.index');
-
-    Route::post('/certifications/approve', function (Request $request) {
-        return redirect()->route('admin.certifications.index')->with('status', 'Certification for "'.$request->input('name').'" approved. Backend processing is not yet implemented.');
-    })->name('certifications.approve');
-
-    Route::post('/certifications/print', function (Request $request) {
-        return redirect()->route('admin.certifications.index')->with('status', 'Certificate for "'.$request->input('name').'" sent to print queue. Backend processing is not yet implemented.');
-    })->name('certifications.print');
-
-    Route::post('/certifications/claim', function (Request $request) {
-        return redirect()->route('admin.certifications.index')->with('status', 'Certification for "'.$request->input('name').'" marked as claimed. Backend processing is not yet implemented.');
-    })->name('certifications.claim');
-
-    Route::get('/reports', function () {
-        $reports = config('admin-content.reports', []);
-
-        return view('admin.reports', [
-            'stats' => $reports['stats'] ?? [],
-            'monthlyEnlistments' => $reports['monthly_enlistments'] ?? [],
-            'categories' => $reports['categories'] ?? [],
-            'categoryTotal' => $reports['category_total'] ?? '0',
-            'reportTypes' => $reports['report_types'] ?? [],
-            'dateFilters' => $reports['date_filters'] ?? [],
-            'displayDate' => $reports['display_date'] ?? now()->format('F j, Y'),
-        ]);
-    })->name('reports.index');
-
-    Route::post('/reports/export', function () {
-        return redirect()->route('admin.reports.index')->with('status', 'Report export requested. Backend processing is not yet implemented.');
-    })->name('reports.export');
-
-    Route::get('/activity-logs', function (Request $request) {
-        $listing = AdminListing::filterActivityLogs($request);
-        $perPage = 10;
-        $from = $listing['total'] === 0 ? 0 : (($listing['page'] - 1) * $perPage) + 1;
-        $to = min($listing['page'] * $perPage, $listing['total']);
-
-        return view('admin.activity-logs', [
-            'logs' => $listing['items'],
-            'currentPage' => $listing['page'],
-            'lastPage' => $listing['last_page'],
-            'displayTotal' => $listing['display_total'],
-            'rangeFrom' => $from,
-            'rangeTo' => $to,
-            'query' => $request->input('q'),
-            'users' => config('admin-content.activity_users', []),
-            'actions' => config('admin-content.activity_actions', []),
-            'dateFilters' => config('admin-content.activity_date_filters', []),
-        ]);
-    })->name('activity-logs.index');
-
-    Route::post('/activity-logs/export', function () {
-        return redirect()->route('admin.activity-logs.index')->with('status', 'Activity logs export started. Backend processing is not yet implemented.');
-    })->name('activity-logs.export');
+        Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity-logs.index');
+        Route::post('/activity-logs/export', [ActivityLogController::class, 'export'])->name('activity-logs.export');
+    });
 });

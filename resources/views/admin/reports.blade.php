@@ -29,7 +29,13 @@
     <h1 class="admin-page-title">Reports & Analytics</h1>
     <p class="admin-page-subtitle">Employment metrics and exportable reports for PESO staff.</p>
   </div>
-  <span class="admin-reports-date-pill">{{ $displayDate }}</span>
+  <div class="admin-page-header__actions">
+    <span class="admin-reports-date-pill">{{ $displayDate }}</span>
+    <button type="button" class="admin-btn admin-btn--accent" data-open-modal="modal-generate-report">
+      <svg width="12" height="12" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M0 4.667H9.334M4.667 0V9.334" transform="translate(1.21 1.21)" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      Generate Report
+    </button>
+  </div>
 </div>
 
 <div class="admin-reports-stats">
@@ -102,12 +108,15 @@
     <h2 class="admin-section-title">Enlistments by Category</h2>
     <div class="admin-reports-donut">
       <div class="admin-reports-donut__chart">
-        <svg viewBox="0 0 140 140" aria-hidden="true">
-          <path d="M70 0A70 70 0 0 1 126.6312 111.145L106.8103 96.7442A45.5 45.5 0 0 0 70 24.5Z" fill="#1b3a6b"/>
-          <path d="M126.6312 111.145A70 70 0 0 1 28.855 126.6312L43.2558 106.8103A45.5 45.5 0 0 0 106.8103 96.7442Z" fill="#f57c00"/>
-          <path d="M28.855 126.6312A70 70 0 0 1 0 70L24.5 70A45.5 45.5 0 0 0 43.2558 106.8103Z" fill="#009688"/>
-          <path d="M0 70A70 70 0 0 1 28.855 13.3688L43.2558 33.1897A45.5 45.5 0 0 0 24.5 70Z" fill="#4f46e5"/>
-          <path d="M28.855 13.3688A70 70 0 0 1 70 0L70 24.5A45.5 45.5 0 0 0 43.2558 33.1897Z" fill="#94a3b8"/>
+        <svg viewBox="0 0 140 140" aria-hidden="true" role="img" aria-label="Enlistments by category chart">
+          @forelse ($donutSegments as $segment)
+            <path d="{{ $segment['d'] }}" fill="{{ $segment['color'] }}">
+              <title>{{ $segment['name'] }}: {{ $segment['count'] }}</title>
+            </path>
+          @empty
+            <circle cx="70" cy="70" r="70" fill="#e2e8f0"/>
+            <circle cx="70" cy="70" r="45.5" fill="#fff"/>
+          @endforelse
         </svg>
         <div class="admin-reports-donut__center">
           <span class="admin-reports-donut__total">{{ $categoryTotal }}</span>
@@ -131,31 +140,8 @@
     </div>
   </div>
 </div>
-
-<div class="admin-reports-export">
-  <h2 class="admin-section-title">Export Reports</h2>
-  <p class="admin-reports-export__intro">Download summary reports for enlistments, referrals, job postings, and FTJS certifications.</p>
-  <form action="{{ route('admin.reports.export') }}" method="POST" class="admin-reports-export__form">
-    @csrf
-    <div class="admin-form-field">
-      <label class="admin-field-label" for="report_type">Report Type</label>
-      <select class="admin-select" id="report_type" name="report_type" required>
-        @foreach ($reportTypes as $type)
-          <option value="{{ $type['value'] }}">{{ $type['label'] }}</option>
-        @endforeach
-      </select>
-    </div>
-    <div class="admin-form-field">
-      <label class="admin-field-label" for="date_range">Date Range</label>
-      <select class="admin-select" id="date_range" name="date_range">
-        @foreach ($dateFilters as $filter)
-          <option value="{{ $filter }}" @selected($filter === 'This Month')>{{ $filter }}</option>
-        @endforeach
-      </select>
-    </div>
-    <div class="admin-reports-export__actions">
-      <button type="submit" class="admin-btn admin-btn--primary">Generate Report</button>
-    </div>
-  </form>
-</div>
 @endsection
+
+@push('modals')
+  @include('partials.admin.modals.generate-report')
+@endpush
