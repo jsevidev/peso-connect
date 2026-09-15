@@ -7,8 +7,14 @@ if [ ! -f .env ]; then
   cp .env.example .env
 fi
 
-if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "" ]; then
-  php artisan key:generate --force
+# Render may inject an empty APP_KEY env var, which overrides .env and breaks encryption.
+if [ -z "$APP_KEY" ] || ! printf '%s' "$APP_KEY" | grep -qE '^base64:'; then
+  export APP_KEY="$(php artisan key:generate --show --force)"
+fi
+if grep -q '^APP_KEY=' .env; then
+  sed -i "s|^APP_KEY=.*|APP_KEY=${APP_KEY}|" .env
+else
+  echo "APP_KEY=${APP_KEY}" >> .env
 fi
 
 # Fix common Render mistake: full URL pasted into DB_CONNECTION instead of DB_URL.
