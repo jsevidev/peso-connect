@@ -1,5 +1,32 @@
 # PESO Connect — Deployment Guide
 
+## Render (recommended for capstone demo — persistent online data)
+
+The repo `render.yaml` provisions:
+
+| Resource | Purpose |
+|----------|---------|
+| **Web service** (`peso-connect`) | Runs the Laravel app in Docker |
+| **PostgreSQL** (`peso-connect-db`) | **Persistent online database** — data survives redeploys |
+
+Local dev uses SQLite (`database/database.sqlite`). Production on Render uses PostgreSQL automatically via `DB_URL`.
+
+On each deploy, the entrypoint runs `migrate --force` and seeds demo data **only if no admin accounts exist yet** — so your live data is not wiped on every redeploy.
+
+### Deploy steps
+
+1. Push latest code to GitHub `main`.
+2. [Render Dashboard](https://dashboard.render.com) → **New +** → **Blueprint** → select `jsevidev/peso-connect`.
+3. Click **Apply** (creates web + database).
+4. Wait for deploy, then open your Render URL.
+5. Log in with `admin` / `admin123`.
+
+Uploaded FTJS files are still stored on the web container filesystem (not in Postgres). For a capstone demo, that is usually fine; only metadata paths are in the database.
+
+---
+
+## VPS (MySQL) — school or LGU hosting
+
 Minimal steps to deploy on a typical Linux VPS (Ubuntu) with Nginx, PHP 8.2+, and MySQL.
 
 ## 1. Server requirements

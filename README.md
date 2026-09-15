@@ -26,10 +26,16 @@ cd peso-connect
 composer install
 cp .env.example .env
 php artisan key:generate
+php artisan migrate:fresh --seed
+php artisan storage:link
 php artisan serve
 ```
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+**Local database:** SQLite file at `database/database.sqlite` (created by migrate).
+
+**Default admin login:** `admin` / `admin123`
 
 ## Admin routes
 
@@ -48,7 +54,7 @@ Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 - [Laravel](https://laravel.com)
 - Blade templates
-- Config-driven sample data (`config/admin-content.php`)
+- SQLite locally; PostgreSQL on Render (persistent online storage)
 
 ## License
 
@@ -61,10 +67,12 @@ This repo includes a [Render](https://render.com) config for a free public demo 
 1. Sign up at [render.com](https://render.com) and connect your GitHub account.
 2. Click **New +** → **Blueprint**.
 3. Select the repo **jsevidev/peso-connect**.
-4. Render reads `render.yaml` and creates the web service.
+4. Render reads `render.yaml` and creates **two** resources: the web app **and** a free PostgreSQL database.
 5. Click **Apply** and wait for the deploy to finish (~5–10 min first time).
 6. Open your live URL, e.g. `https://peso-connect.onrender.com`.
 
-**Note:** On the free plan, the app sleeps after ~15 minutes of no traffic. The first visit after sleep may take 30–60 seconds to wake up.
+**Online data storage:** The PostgreSQL database (`peso-connect-db`) persists separately from the web container. New enlistments, jobs, and admin logins survive redeploys and restarts. On first boot, migrations run and demo seed data is loaded automatically if the database is empty.
+
+**Note:** On the free plan, the app sleeps after ~15 minutes of no traffic. The first visit after sleep may take 30–60 seconds to wake up. The free PostgreSQL database expires after 90 days of inactivity (Render policy) — use it for demos and capstone defense.
 
 After deploy, set **APP_URL** in Render → your service → **Environment** to your exact Render URL if links look wrong.

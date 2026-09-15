@@ -1,3 +1,9 @@
+databases:
+  - name: peso-connect-db
+    plan: free
+    databaseName: peso_connect
+    user: peso_connect
+
 services:
   - type: web
     name: peso-connect
@@ -17,12 +23,20 @@ services:
       - key: APP_URL
         value: https://peso-connect.onrender.com
       - key: DB_CONNECTION
-        value: sqlite
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: peso-connect-db
+          property: connectionString
       - key: SESSION_DRIVER
-        value: file
+        value: database
       - key: CACHE_STORE
-        value: file
+        value: database
       - key: QUEUE_CONNECTION
         value: sync
       - key: LOG_CHANNEL
         value: stderr
+      - key: MAIL_MAILER
+        value: log
+      - key: PESO_ADMIN_EMAIL
+        value: admin@peso.local
