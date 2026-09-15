@@ -67,11 +67,14 @@ This repo includes a [Render](https://render.com) config for a free public demo 
 1. Sign up at [render.com](https://render.com) and connect your GitHub account.
 2. Click **New +** → **Blueprint**.
 3. Select the repo **jsevidev/peso-connect**.
-4. Render reads `render.yaml` and creates **two** resources: the web app **and** a free PostgreSQL database.
+4. Render reads `render.yaml` and creates the **web service** (one free Postgres DB per account — create or reuse separately; see below).
 5. Click **Apply** and wait for the deploy to finish (~5–10 min first time).
-6. Open your live URL, e.g. `https://peso-connect.onrender.com`.
+6. In the web service → **Environment**, set:
+   - **`DB_URL`** — Internal Database URL from your Render PostgreSQL instance
+   - **`APP_URL`** — your live web URL (e.g. `https://peso-connect-xxxx.onrender.com`)
+7. Save (triggers redeploy), then open your live URL.
 
-**Online data storage:** The PostgreSQL database (`peso-connect-db`) persists separately from the web container. New enlistments, jobs, and admin logins survive redeploys and restarts. On first boot, migrations run and demo seed data is loaded automatically if the database is empty.
+**PostgreSQL (online data):** Render Dashboard → **New +** → **PostgreSQL** (free) if you do not already have one. Copy **Internal Database URL** into the web service `DB_URL`. Data persists across redeploys. On first boot, migrations run and demo seed data loads if the database is empty.
 
 **Note:** On the free plan, the app sleeps after ~15 minutes of no traffic. The first visit after sleep may take 30–60 seconds to wake up. The free PostgreSQL database expires after 90 days of inactivity (Render policy) — use it for demos and capstone defense.
 
