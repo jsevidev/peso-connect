@@ -164,6 +164,14 @@ svg {
 .admin-topbar__role { font-size: 11px; font-weight: 600; color: #f57c00; font-family: Inter, system-ui, sans-serif; }
 .admin-content { padding: clamp(20px, 4vw, 32px); flex: 1; }
 .admin-page-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.admin-live-badge {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
+  border-radius: 100px; background: #dcfce7; flex-shrink: 0;
+  font-size: 12px; font-weight: 600; color: #15803d; font-family: Inter, system-ui, sans-serif;
+}
+.admin-live-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; background: #15803d; flex-shrink: 0;
+}
 .admin-page-title { font-family: "Instrument Serif", system-ui, sans-serif; font-size: clamp(24px, 4vw, 32px); color: #1e293b; }
 .admin-page-subtitle { font-size: 14px; color: #64748b; font-family: Inter, system-ui, sans-serif; margin-top: 4px; }
 .admin-card {

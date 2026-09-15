@@ -73,61 +73,25 @@
       }
     }
 
-    document.querySelectorAll('[data-schedule-toggle]').forEach(function (input) {
-      input.addEventListener('change', function () {
-        var target = document.getElementById(input.getAttribute('data-schedule-toggle'));
-        if (target) target.hidden = !input.checked;
-      });
-    });
-
-    document.querySelectorAll('[data-open-modal]').forEach(function (trigger) {
-      trigger.addEventListener('click', function () {
-        var id = trigger.getAttribute('data-open-modal');
-        var modal = document.getElementById(id);
-        if (!modal) return;
-        populateModalFromTrigger(trigger, modal);
-        openModal(id);
-      });
-    });
-
-    document.querySelectorAll('[data-close-modal]').forEach(function (trigger) {
-      trigger.addEventListener('click', function () {
-        closeModal(trigger.closest('.admin-modal-backdrop'));
-      });
-    });
-
-    document.querySelectorAll('.admin-modal-backdrop').forEach(function (backdrop) {
-      backdrop.addEventListener('click', function (event) {
-        if (event.target === backdrop) closeModal(backdrop);
-      });
-    });
-
-    document.querySelectorAll('[data-admin-print]').forEach(function (trigger) {
-      trigger.addEventListener('click', function () {
-        window.print();
-      });
-    });
-
-    document.querySelectorAll('[data-edit-referral-letter]').forEach(function (trigger) {
-      trigger.addEventListener('click', function () {
-        var preview = document.getElementById('modal-referral-preview');
-        if (!preview) return;
-
-        var data = {
-          name: preview.querySelector('[data-modal-field="name"]')?.textContent || '',
-          job: preview.querySelector('[data-modal-field="job"]')?.textContent || '',
-          employer: preview.querySelector('[data-modal-field="employer"]')?.textContent || '',
-        };
-
-        closeModal(preview);
-
-        if (typeof window.populateCreateReferralModal === 'function') {
-          window.populateCreateReferralModal(data);
+    function syncAdminNav() {
+      var path = window.location.pathname.replace(/\/$/, '');
+      document.querySelectorAll('.admin-nav__link').forEach(function (link) {
+        var href = link.getAttribute('href');
+        if (!href) return;
+        var linkPath = href.replace(/^https?:\/\/[^/]+/, '').replace(/\/$/, '');
+        var isActive = path === linkPath;
+        link.classList.toggle('is-active', isActive);
+        var dot = link.querySelector('.admin-nav__dot');
+        if (isActive && !dot) {
+          dot = document.createElement('span');
+          dot.className = 'admin-nav__dot';
+          dot.setAttribute('aria-hidden', 'true');
+          link.appendChild(dot);
+        } else if (!isActive && dot) {
+          dot.remove();
         }
-
-        openModal('modal-create-referral');
       });
-    });
+    }
 
     var confirmDefaults = {
       danger: { title: 'Confirm deletion', ok: 'Delete', cancel: 'Keep' },
@@ -190,8 +154,75 @@
       },
     };
 
-    document.querySelectorAll('form[data-confirm]').forEach(function (form) {
-      form.addEventListener('submit', function (event) {
+    function bindAdminUi() {
+      if (window.__pesoAdminUiBound) {
+        syncAdminNav();
+        return;
+      }
+
+      window.__pesoAdminUiBound = true;
+
+      document.addEventListener('change', function (event) {
+        var input = event.target.closest('[data-schedule-toggle]');
+        if (!input) return;
+        var target = document.getElementById(input.getAttribute('data-schedule-toggle'));
+        if (target) target.hidden = !input.checked;
+      });
+
+      document.addEventListener('click', function (event) {
+        var openTrigger = event.target.closest('[data-open-modal]');
+        if (openTrigger) {
+          var id = openTrigger.getAttribute('data-open-modal');
+          var modal = document.getElementById(id);
+          if (!modal) return;
+          populateModalFromTrigger(openTrigger, modal);
+          openModal(id);
+          return;
+        }
+
+        var closeTrigger = event.target.closest('[data-close-modal]');
+        if (closeTrigger) {
+          closeModal(closeTrigger.closest('.admin-modal-backdrop'));
+          return;
+        }
+
+        var backdrop = event.target.closest('.admin-modal-backdrop');
+        if (backdrop && event.target === backdrop) {
+          closeModal(backdrop);
+          return;
+        }
+
+        var printTrigger = event.target.closest('[data-admin-print]');
+        if (printTrigger) {
+          window.print();
+          return;
+        }
+
+        var editReferralTrigger = event.target.closest('[data-edit-referral-letter]');
+        if (editReferralTrigger) {
+          var preview = document.getElementById('modal-referral-preview');
+          if (!preview) return;
+
+          var data = {
+            name: preview.querySelector('[data-modal-field="name"]')?.textContent || '',
+            job: preview.querySelector('[data-modal-field="job"]')?.textContent || '',
+            employer: preview.querySelector('[data-modal-field="employer"]')?.textContent || '',
+          };
+
+          closeModal(preview);
+
+          if (typeof window.populateCreateReferralModal === 'function') {
+            window.populateCreateReferralModal(data);
+          }
+
+          openModal('modal-create-referral');
+        }
+      });
+
+      document.addEventListener('submit', function (event) {
+        var form = event.target.closest('form[data-confirm]');
+        if (!form) return;
+
         if (form.dataset.confirmed === '1') {
           delete form.dataset.confirmed;
           return;
@@ -215,6 +246,11 @@
           }
         });
       });
-    });
+
+      syncAdminNav();
+    }
+
+    document.addEventListener('turbo:load', bindAdminUi);
+    document.addEventListener('DOMContentLoaded', bindAdminUi);
   })();
 </script>

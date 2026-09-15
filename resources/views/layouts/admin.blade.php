@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     @include('partials.admin.styles')
     @stack('styles')
+    @include('partials.shared.turbo')
   </head>
   <body class="admin-body">
     <div class="admin-shell">
@@ -25,6 +26,7 @@
     @stack('modals')
     @include('partials.admin.confirm-dialog')
     @include('partials.admin.scripts')
+    @include('partials.admin.live-polling')
     @stack('scripts')
   </body>
 </html>

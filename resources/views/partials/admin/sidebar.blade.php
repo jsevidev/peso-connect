@@ -11,7 +11,7 @@
   ];
 @endphp
 
-<aside class="admin-sidebar">
+<aside id="admin-sidebar" class="admin-sidebar" data-turbo-permanent>
   <div class="admin-sidebar__brand">
     <img src="{{ asset('assets/img/peso-logo.png') }}" alt="PESO logo" class="admin-sidebar__logo">
     <div>

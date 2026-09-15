@@ -19,15 +19,34 @@ class ApplicantController extends Controller
     {
         $listing = AdminListing::filterEnlistees($request);
 
-        return view('admin.enlistee-management', [
+        return view('admin.enlistee-management', array_merge(
+            $this->enlisteeViewData($request, $listing),
+            [
+                'currentPage' => $listing['page'],
+                'lastPage' => $listing['last_page'],
+                'query' => $request->input('q'),
+                'positionFilters' => config('peso-options.position_filters', []),
+                'dateFilters' => config('peso-options.date_filters', []),
+            ]
+        ));
+    }
+
+    public function live(Request $request): View
+    {
+        abort_unless($request->header('X-Live-Refresh') === '1', 404);
+
+        $listing = AdminListing::filterEnlistees($request);
+
+        return view('admin.live.enlistee-table', $this->enlisteeViewData($request, $listing));
+    }
+
+    private function enlisteeViewData(Request $request, array $listing): array
+    {
+        return [
             'enlistees' => $listing['items'],
-            'currentPage' => $listing['page'],
-            'lastPage' => $listing['last_page'],
-            'query' => $request->input('q'),
             'statuses' => config('peso-options.enlistee_statuses', []),
-            'positionFilters' => config('peso-options.position_filters', []),
-            'dateFilters' => config('peso-options.date_filters', []),
-        ]);
+            'liveQuery' => $request->except('page'),
+        ];
     }
 
     public function store(Request $request): RedirectResponse

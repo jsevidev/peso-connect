@@ -39,7 +39,7 @@
     @endforeach
   </select>
 </form>
-<form action="{{ route('admin.activity-logs.export') }}" method="POST">
+<form action="{{ route('admin.activity-logs.export') }}" method="POST" data-turbo="false">
   @csrf
   <button type="submit" class="admin-activity-toolbar__export">
     <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">

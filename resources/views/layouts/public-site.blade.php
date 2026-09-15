@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     @include('partials.public.styles')
+    @include('partials.shared.turbo')
   </head>
   <body style="background-color: @yield('body-bg', '#fff');margin:0;">
     <div class="public-page" style="background-color: @yield('page-bg', '#fff');display: flex;flex-direction: column;row-gap: 0px;align-items: stretch;justify-content: flex-start;width: 100%;min-height: 100vh;position: relative;">

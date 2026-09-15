@@ -1,6 +1,6 @@
 <div id="modal-generate-report" class="admin-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-generate-report-title">
   <div class="admin-modal">
-    <form action="{{ route('admin.reports.export') }}" method="POST">
+    <form action="{{ route('admin.reports.export') }}" method="POST" data-turbo="false">
       @csrf
       <div class="admin-modal__header">
         <div>

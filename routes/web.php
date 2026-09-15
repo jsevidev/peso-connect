@@ -91,6 +91,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/live/dashboard', [DashboardController::class, 'live'])->name('live.dashboard');
 
         Route::get('/jobs', [JobPostingController::class, 'index'])->name('jobs.index');
         Route::post('/jobs', [JobPostingController::class, 'store'])->name('jobs.store');
@@ -99,6 +100,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/jobs/delete', [JobPostingController::class, 'destroy'])->name('jobs.delete');
 
         Route::get('/enlistees', [ApplicantController::class, 'index'])->name('enlistees.index');
+        Route::get('/live/enlistees', [ApplicantController::class, 'live'])->name('live.enlistees');
         Route::post('/enlistees', [ApplicantController::class, 'store'])->name('enlistees.store');
         Route::post('/enlistees/export', [ApplicantController::class, 'export'])->name('enlistees.export');
         Route::post('/enlistees/update', [ApplicantController::class, 'update'])->name('enlistees.update');

@@ -84,12 +84,103 @@ Render free tier does not include a built-in SQL editor. Use a desktop tool belo
 
 ### B. DBeaver or pgAdmin (full table view)
 
-1. Install [DBeaver](https://dbeaver.io/) (free) or [pgAdmin](https://www.pgadmin.org/)  
-2. Render → **peso-connect-db** → **Connections** → copy **External Database URL**  
-3. New connection → PostgreSQL → paste URL (or host, port, database, user, password)  
-4. Browse schemas → **public** → tables → **View data**
+**Security:** Use the External URL only on your machine. Do not commit connection strings to GitHub or show passwords on screen recordings.
 
-**Security:** Use External URL only on your machine. Do not commit connection strings to GitHub.
+#### Step 1 — Get the connection string from Render
+
+1. Go to [dashboard.render.com](https://dashboard.render.com) and sign in.  
+2. Open your PostgreSQL instance (**`peso-connect-db`**).  
+3. Click the **Connections** tab.  
+4. Find **External Database URL** and click **Copy** (eye icon to reveal first if needed).
+
+It looks like:
+
+```text
+postgresql://peso_connect:YOUR_PASSWORD@dpg-xxxxx-a.oregon-postgres.render.com/peso_connect
+```
+
+Use **External** (not Internal) — Internal only works from other Render services in the same region.
+
+#### Step 2 — Install DBeaver (recommended)
+
+1. Download [DBeaver Community](https://dbeaver.io/download/) (Windows 64-bit installer).  
+2. Run the installer → Next → Finish.  
+3. Open **DBeaver**.
+
+#### Step 3 — Create a PostgreSQL connection in DBeaver
+
+DBeaver does **not** accept Render’s `postgresql://user:pass@host/db` string in the URL box (you may see **Invalid JDBC URL**). Use the **Main** tab fields instead.
+
+1. **Database** menu → **New Database Connection** (plug icon).  
+2. Choose **PostgreSQL** → **Next**.  
+3. On the **Main** tab, fill in (from your External Database URL):
+
+| DBeaver field | Example / where to get it |
+|---------------|---------------------------|
+| **Host** | `dpg-xxxxx-a.oregon-postgres.render.com` (between `@` and `/`) |
+| **Port** | `5432` |
+| **Database** | `peso_connect` (after the last `/`) |
+| **Username** | `peso_connect` (after `://` and before `:`) |
+| **Password** | characters between `:` and `@` |
+
+4. Open the **SSL** tab → **SSL mode** = `require`.  
+5. Click **Test Connection** → allow driver download if prompted → **Finish**.
+
+**Optional — JDBC URL format** (only if you use the URL tab):
+
+```text
+jdbc:postgresql://dpg-xxxxx-a.oregon-postgres.render.com:5432/peso_connect
+```
+
+Use `jdbc:postgresql://` (not `postgresql://`). Put username and password on the **Main** tab, not in the URL.
+
+#### Step 4 — Browse your tables
+
+1. In the left **Database Navigator**, expand your connection.  
+2. Expand **Databases** → **peso_connect** → **Schemas** → **public** → **Tables**.  
+3. You should see tables such as:
+   - `admins`
+   - `job_postings`
+   - `applicants`
+   - `referrals`
+   - `certifications`
+   - `announcements`
+   - `activity_logs`
+   - (plus Laravel tables: `sessions`, `cache`, `migrations`, etc.)
+4. Right-click a table (e.g. **`job_postings`**) → **View Data** → **All rows**.
+
+That opens a spreadsheet-like view you can show your adviser.
+
+#### Step 5 — Simple SQL (optional)
+
+1. Right-click the connection → **SQL Editor** → **New SQL Script**.  
+2. Example queries:
+
+```sql
+SELECT * FROM admins;
+SELECT job_title, company, status FROM job_postings WHERE status = 'Active';
+SELECT fullname, status, created_at FROM applicants ORDER BY created_at DESC LIMIT 10;
+```
+
+3. Highlight a query → **Execute** (Ctrl+Enter).
+
+#### pgAdmin (alternative to DBeaver)
+
+1. Install [pgAdmin](https://www.pgadmin.org/download/).  
+2. Open pgAdmin → **Add New Server**.  
+3. **General** tab → Name: `PESO Connect Render`.  
+4. **Connection** tab → enter Host, Port, Database, Username, Password from the External URL.  
+5. **SSL** tab → SSL mode: **Require** → **Save**.  
+6. Expand **Servers** → **Databases** → **peso_connect** → **Schemas** → **public** → **Tables** → right-click → **View/Edit Data**.
+
+#### Troubleshooting
+
+| Issue | Fix |
+|-------|-----|
+| Connection timeout | Confirm you copied **External** URL; check internet / firewall |
+| SSL required | Set SSL mode to `require` |
+| Authentication failed | Re-copy URL from Render (password may have changed if DB was recreated) |
+| No tables | Run migrations on Render Shell: `php artisan migrate --force` |
 
 ### C. Render Shell (quick counts, no install)
 
