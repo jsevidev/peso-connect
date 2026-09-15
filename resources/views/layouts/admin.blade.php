@@ -23,6 +23,7 @@
       </div>
     </div>
     @stack('modals')
+    @include('partials.admin.confirm-dialog')
     @include('partials.admin.scripts')
     @stack('scripts')
   </body>

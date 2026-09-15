@@ -80,7 +80,11 @@
           <span class="admin-badge {{ \App\Support\AdminListing::referralStatusClass($referral['status']) }}">{{ $referral['status'] }}</span>
         </div>
         <div class="admin-referral-table__col-actions">
-          <form action="{{ route('admin.referrals.approve') }}" method="POST" style="display: inline;">
+          <form action="{{ route('admin.referrals.approve') }}" method="POST" style="display: inline;"
+            data-confirm="Approve the referral request for {{ $referral['name'] }} and mark it ready for endorsement."
+            data-confirm-type="success"
+            data-confirm-title="Approve referral?"
+            data-confirm-ok="Approve">
             @csrf
             <input type="hidden" name="id" value="{{ $referral['id'] }}">
             <input type="hidden" name="name" value="{{ $referral['name'] }}">
@@ -88,7 +92,11 @@
               <svg width="14" height="14" viewBox="0 0 13 10" fill="none"><path d="M10.666 0L3.333 7.333 0 4" transform="translate(1.19 1.27)" stroke="#404d66" stroke-width="2" stroke-linecap="round"/></svg>
             </button>
           </form>
-          <form action="{{ route('admin.referrals.deny') }}" method="POST" style="display: inline;">
+          <form action="{{ route('admin.referrals.deny') }}" method="POST" style="display: inline;"
+            data-confirm="Deny the referral request for {{ $referral['name'] }}. The applicant will remain on record as denied."
+            data-confirm-type="warning"
+            data-confirm-title="Deny referral?"
+            data-confirm-ok="Deny request">
             @csrf
             <input type="hidden" name="id" value="{{ $referral['id'] }}">
             <input type="hidden" name="name" value="{{ $referral['name'] }}">

@@ -129,12 +129,91 @@
       });
     });
 
+    var confirmDefaults = {
+      danger: { title: 'Confirm deletion', ok: 'Delete', cancel: 'Keep' },
+      warning: { title: 'Please confirm', ok: 'Continue', cancel: 'Cancel' },
+      success: { title: 'Confirm action', ok: 'Approve', cancel: 'Go back' },
+      info: { title: 'Are you sure?', ok: 'Confirm', cancel: 'Cancel' },
+    };
+
+    window.PesoConfirm = {
+      show: function (options) {
+        var backdrop = document.getElementById('peso-confirm');
+        if (!backdrop) {
+          return Promise.resolve(window.confirm(options.message || 'Continue?'));
+        }
+
+        var panel = backdrop.querySelector('[data-confirm-panel]');
+        var type = options.type || 'info';
+        var defaults = confirmDefaults[type] || confirmDefaults.info;
+        var titleEl = backdrop.querySelector('#peso-confirm-title');
+        var messageEl = backdrop.querySelector('#peso-confirm-message');
+        var okBtn = backdrop.querySelector('[data-confirm-ok]');
+        var cancelBtn = backdrop.querySelector('[data-confirm-cancel]');
+
+        panel.className = 'peso-confirm peso-confirm--' + type;
+        titleEl.textContent = options.title || defaults.title;
+        messageEl.textContent = options.message || '';
+        okBtn.textContent = options.ok || defaults.ok;
+        cancelBtn.textContent = options.cancel || defaults.cancel;
+
+        return new Promise(function (resolve) {
+          function finish(result) {
+            backdrop.hidden = true;
+            document.body.style.overflow = '';
+            okBtn.removeEventListener('click', onOk);
+            cancelBtn.removeEventListener('click', onCancel);
+            backdrop.removeEventListener('click', onBackdrop);
+            document.removeEventListener('keydown', onKeydown);
+            resolve(result);
+          }
+
+          function onOk() { finish(true); }
+          function onCancel() { finish(false); }
+          function onBackdrop(event) {
+            if (event.target === backdrop) finish(false);
+          }
+          function onKeydown(event) {
+            if (event.key === 'Escape') finish(false);
+            if (event.key === 'Enter') finish(true);
+          }
+
+          okBtn.addEventListener('click', onOk);
+          cancelBtn.addEventListener('click', onCancel);
+          backdrop.addEventListener('click', onBackdrop);
+          document.addEventListener('keydown', onKeydown);
+
+          backdrop.hidden = false;
+          document.body.style.overflow = 'hidden';
+          cancelBtn.focus();
+        });
+      },
+    };
+
     document.querySelectorAll('form[data-confirm]').forEach(function (form) {
       form.addEventListener('submit', function (event) {
-        var message = form.getAttribute('data-confirm');
-        if (message && !window.confirm(message)) {
-          event.preventDefault();
+        if (form.dataset.confirmed === '1') {
+          delete form.dataset.confirmed;
+          return;
         }
+
+        event.preventDefault();
+
+        window.PesoConfirm.show({
+          type: form.getAttribute('data-confirm-type') || 'info',
+          title: form.getAttribute('data-confirm-title') || '',
+          message: form.getAttribute('data-confirm') || 'Continue with this action?',
+          ok: form.getAttribute('data-confirm-ok') || '',
+          cancel: form.getAttribute('data-confirm-cancel') || '',
+        }).then(function (confirmed) {
+          if (!confirmed) return;
+          form.dataset.confirmed = '1';
+          if (typeof form.requestSubmit === 'function') {
+            form.requestSubmit();
+          } else {
+            form.submit();
+          }
+        });
       });
     });
   })();

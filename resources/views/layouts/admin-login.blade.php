@@ -12,6 +12,7 @@
   </head>
   <body class="admin-login-body">
     @yield('content')
+    @include('partials.admin.confirm-dialog')
     @include('partials.admin.scripts')
     @stack('scripts')
   </body>

@@ -111,7 +111,11 @@
                   data-education="{{ $enlistee['education'] ?? '' }}">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7s2.5-4 6-4 6 4 6 4-2.5 4-6 4-6-4-6-4z" stroke="#64748b" stroke-width="1.5"/><circle cx="7" cy="7" r="2" stroke="#64748b" stroke-width="1.5"/></svg>
                 </button>
-                <form action="{{ route('admin.enlistees.delete') }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete enlistee {{ addslashes($enlistee['name']) }}? This cannot be undone.');">
+                <form action="{{ route('admin.enlistees.delete') }}" method="POST" style="display: inline;"
+                  data-confirm="This will permanently remove {{ $enlistee['name'] }} from enlistee records."
+                  data-confirm-type="danger"
+                  data-confirm-title="Delete enlistee?"
+                  data-confirm-ok="Delete enlistee">
                   @csrf
                   <input type="hidden" name="id" value="{{ $enlistee['id'] }}">
                   <button type="submit" class="admin-icon-btn" title="Delete enlistee" aria-label="Delete enlistee">

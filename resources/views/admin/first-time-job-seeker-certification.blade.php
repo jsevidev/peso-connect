@@ -90,7 +90,11 @@
                 Claimed
               </button>
             @else
-              <form action="{{ route('admin.certifications.claim') }}" method="POST">
+              <form action="{{ route('admin.certifications.claim') }}" method="POST"
+                data-confirm="Mark {{ $cert['name'] }}'s FTJS certification as claimed at the PESO office?"
+                data-confirm-type="success"
+                data-confirm-title="Mark as claimed?"
+                data-confirm-ok="Mark claimed">
                 @csrf
                 <input type="hidden" name="id" value="{{ $cert['id'] }}">
                 <input type="hidden" name="name" value="{{ $cert['name'] }}">

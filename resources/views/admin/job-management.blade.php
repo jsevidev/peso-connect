@@ -72,7 +72,11 @@
                   data-status="{{ $job['status'] }}">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 1l3 3L4 13H1v-3L10 1z" stroke="#1b3a6b" stroke-width="1.5"/></svg>
                 </button>
-                <form action="{{ route('admin.jobs.archive') }}" method="POST">
+                <form action="{{ route('admin.jobs.archive') }}" method="POST"
+                  data-confirm="“{{ $job['title'] }}” will be moved to archived listings and hidden from the public jobs page."
+                  data-confirm-type="warning"
+                  data-confirm-title="Archive this job?"
+                  data-confirm-ok="Archive job">
                   @csrf
                   <input type="hidden" name="id" value="{{ $job['id'] }}">
                   <input type="hidden" name="title" value="{{ $job['title'] }}">
@@ -80,7 +84,11 @@
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 4h12M4 4V2h6v2M5 7v3M9 7v3M2 4l1 8h8l1-8" stroke="#d97706" stroke-width="1.5"/></svg>
                   </button>
                 </form>
-                <form action="{{ route('admin.jobs.delete') }}" method="POST" data-confirm="Delete this job listing?">
+                <form action="{{ route('admin.jobs.delete') }}" method="POST"
+                  data-confirm="“{{ $job['title'] }}” will be permanently deleted. This cannot be undone."
+                  data-confirm-type="danger"
+                  data-confirm-title="Delete job listing?"
+                  data-confirm-ok="Delete job">
                   @csrf
                   <input type="hidden" name="id" value="{{ $job['id'] }}">
                   <input type="hidden" name="title" value="{{ $job['title'] }}">

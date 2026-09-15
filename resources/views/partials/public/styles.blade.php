@@ -1114,5 +1114,27 @@ html, body {
     justify-content: center !important;
   }
 }
+
+.public-flash {
+  display: flex; align-items: flex-start; gap: 12px;
+  border-radius: 12px; padding: 16px 20px; width: 100%; margin-bottom: 24px;
+  font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.5;
+  border: 1px solid transparent; border-left-width: 4px;
+}
+.public-flash--danger {
+  background-color: #fef2f2; border-color: rgba(185,28,28,0.2); border-left-color: #b91c1c; color: #b91c1c;
+}
+.public-flash--success {
+  background-color: #ecfdf5; border-color: rgba(21,128,61,0.2); border-left-color: #15803d; color: #166534;
+}
+.public-flash__icon {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+.public-flash--danger .public-flash__icon { background: #fee2e2; }
+.public-flash--success .public-flash__icon { background: #d1fae5; }
+.public-flash__title { display: block; font-weight: 600; margin-bottom: 8px; }
+.public-flash__list { margin: 0; padding-left: 18px; font-size: 13px; }
 </style>
 @stack('styles')

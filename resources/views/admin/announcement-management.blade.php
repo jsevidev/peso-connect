@@ -72,7 +72,11 @@
             data-schedule-later="{{ $item['status'] === 'Scheduled' ? '1' : '0' }}">
             <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M12.784 3.208C13.136 2.856 13.334 2.378 13.334 1.88 13.335 1.381 13.137 0.903 12.784 0.551 12.432 0.198 11.954 0 11.455 0 10.957 0 10.479 0.198 10.126 0.55L1.228 9.449C1.073 9.604 0.959 9.794 0.895 10.003L0.014 12.904C-0.003 12.962-0.005 13.023 0.01 13.081 0.025 13.14 0.055 13.193 0.098 13.235 0.14 13.278 0.194 13.308 0.252 13.323 0.31 13.337 0.372 13.336 0.429 13.319L3.332 12.439C3.54 12.375 3.73 12.261 3.885 12.107L12.784 3.208Z" transform="translate(1.15 1.15)" stroke="#475569" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
-          <form action="{{ route('admin.announcements.delete') }}" method="POST" data-confirm="Delete this announcement?">
+          <form action="{{ route('admin.announcements.delete') }}" method="POST"
+            data-confirm="“{{ $item['title'] }}” will be permanently removed from public announcements."
+            data-confirm-type="danger"
+            data-confirm-title="Delete announcement?"
+            data-confirm-ok="Delete announcement">
             @csrf
             <input type="hidden" name="id" value="{{ $item['id'] }}">
             <input type="hidden" name="title" value="{{ $item['title'] }}">

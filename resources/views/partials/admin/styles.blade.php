@@ -652,9 +652,25 @@ svg {
   .admin-form-row-2 { grid-template-columns: 1fr; }
 }
 .admin-flash {
+  display: flex; align-items: flex-start; gap: 12px;
   border-radius: 12px; background: #eef4fc; border: 1px solid rgba(27,58,107,0.15);
-  padding: 16px 20px; margin-bottom: 24px; font-size: 14px; color: #1b3a6b; font-family: Inter, system-ui, sans-serif;
+  border-left-width: 4px; border-left-color: #1b3a6b;
+  padding: 14px 18px; margin-bottom: 24px; font-size: 14px; color: #1b3a6b;
+  font-family: Inter, system-ui, sans-serif; line-height: 1.5;
 }
+.admin-flash--danger {
+  background: #fef2f2; border-color: rgba(185,28,28,0.2); border-left-color: #b91c1c; color: #b91c1c;
+}
+.admin-flash--success {
+  background: #ecfdf5; border-color: rgba(21,128,61,0.2); border-left-color: #15803d; color: #166534;
+}
+.admin-flash__icon {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; line-height: 1;
+}
+.admin-flash--danger .admin-flash__icon { background: #fee2e2; color: #b91c1c; }
+.admin-flash--success .admin-flash__icon { background: #d1fae5; color: #15803d; }
 .admin-login-wrap {
   min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px;
 }
@@ -1061,5 +1077,66 @@ svg {
   padding: 48px 24px; text-align: center; color: #64748b; font-size: 14px;
   font-family: Inter, system-ui, sans-serif;
 }
+
+/* Custom confirm prompts (replaces native browser confirm) */
+.peso-confirm-backdrop {
+  position: fixed; inset: 0; z-index: 1100;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(2px);
+}
+.peso-confirm-backdrop[hidden] { display: none !important; }
+.peso-confirm {
+  width: 100%; max-width: 420px;
+  border-radius: 16px; background: #fff;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+  border: 1px solid #e2e8f0; overflow: hidden;
+  font-family: Inter, system-ui, sans-serif;
+  animation: peso-confirm-in 0.18s ease-out;
+}
+@keyframes peso-confirm-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.peso-confirm__icon-wrap {
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px 24px 0;
+}
+.peso-confirm__icon {
+  display: none; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border-radius: 50%;
+}
+.peso-confirm--danger .peso-confirm__icon--danger { display: inline-flex; background: #fef2f2; color: #b91c1c; }
+.peso-confirm--warning .peso-confirm__icon--warning { display: inline-flex; background: #fffbeb; color: #d97706; }
+.peso-confirm--success .peso-confirm__icon--success { display: inline-flex; background: #ecfdf5; color: #15803d; }
+.peso-confirm--info .peso-confirm__icon--info { display: inline-flex; background: #eef4fc; color: #1b3a6b; }
+.peso-confirm__body { padding: 16px 28px 24px; text-align: center; }
+.peso-confirm__title {
+  margin: 0 0 8px; font-size: 18px; font-weight: 700; color: #0f172a; line-height: 1.3;
+}
+.peso-confirm__message {
+  margin: 0; font-size: 14px; line-height: 1.55; color: #64748b;
+}
+.peso-confirm__actions {
+  display: flex; gap: 10px; justify-content: center;
+  padding: 0 24px 24px; flex-wrap: wrap;
+}
+.peso-confirm__btn {
+  min-width: 112px; padding: 11px 18px; border-radius: 10px;
+  font-size: 14px; font-weight: 600; font-family: inherit;
+  cursor: pointer; border: 1px solid transparent; transition: background 0.15s, border-color 0.15s;
+}
+.peso-confirm__btn--cancel {
+  background: #fff; border-color: #e2e8f0; color: #64748b;
+}
+.peso-confirm__btn--cancel:hover { background: #f8fafc; }
+.peso-confirm--danger .peso-confirm__btn--ok { background: #b91c1c; color: #fff; }
+.peso-confirm--danger .peso-confirm__btn--ok:hover { background: #991b1b; }
+.peso-confirm--warning .peso-confirm__btn--ok { background: #d97706; color: #fff; }
+.peso-confirm--warning .peso-confirm__btn--ok:hover { background: #b45309; }
+.peso-confirm--success .peso-confirm__btn--ok { background: #15803d; color: #fff; }
+.peso-confirm--success .peso-confirm__btn--ok:hover { background: #166534; }
+.peso-confirm--info .peso-confirm__btn--ok { background: #1b3a6b; color: #fff; }
+.peso-confirm--info .peso-confirm__btn--ok:hover { background: #152d54; }
 
 </style>
