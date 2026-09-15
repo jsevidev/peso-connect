@@ -83,6 +83,7 @@ Route::get('/enlistment', function () {
 Route::post('/enlistment', [PublicFormController::class, 'storeEnlistment']);
 
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', fn () => redirect()->route('admin.login'));
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
