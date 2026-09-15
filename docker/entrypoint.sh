@@ -37,8 +37,9 @@ fi
 
 php artisan storage:link --force 2>/dev/null || true
 
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+# Do not cache config — Render env vars (DB_URL) must be read fresh each boot.
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 
 exec php artisan serve --host=0.0.0.0 --port="${PORT:-10000}"
