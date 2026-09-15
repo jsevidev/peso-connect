@@ -11,11 +11,6 @@ fi
 if [ -z "$APP_KEY" ] || ! printf '%s' "$APP_KEY" | grep -qE '^base64:'; then
   export APP_KEY="$(php artisan key:generate --show --force)"
 fi
-if grep -q '^APP_KEY=' .env; then
-  sed -i "s|^APP_KEY=.*|APP_KEY=${APP_KEY}|" .env
-else
-  echo "APP_KEY=${APP_KEY}" >> .env
-fi
 
 # Fix common Render mistake: full URL pasted into DB_CONNECTION instead of DB_URL.
 case "$DB_CONNECTION" in
@@ -34,6 +29,35 @@ if [ -z "$DB_URL" ]; then
   exit 1
 fi
 
+# Force production DB/session settings so .env.example (sqlite + database sessions) cannot win.
+export DB_CONNECTION=pgsql
+export SESSION_DRIVER="${SESSION_DRIVER:-file}"
+export CACHE_STORE="${CACHE_STORE:-file}"
+
+php <<'PHP'
+<?php
+$path = '.env';
+$contents = file_exists($path) ? file_get_contents($path) : '';
+$updates = [
+    'APP_KEY' => getenv('APP_KEY') ?: '',
+    'APP_ENV' => getenv('APP_ENV') ?: 'production',
+    'DB_CONNECTION' => 'pgsql',
+    'SESSION_DRIVER' => getenv('SESSION_DRIVER') ?: 'file',
+    'CACHE_STORE' => getenv('CACHE_STORE') ?: 'file',
+];
+foreach ($updates as $key => $value) {
+    if ($value === '') {
+        continue;
+    }
+    $pattern = '/^' . preg_quote($key, '/') . '=.*/m';
+    $line = $key . '=' . $value;
+    $contents = preg_match($pattern, $contents)
+        ? preg_replace($pattern, $line, $contents)
+        : ($contents . PHP_EOL . $line);
+}
+file_put_contents($path, rtrim($contents) . PHP_EOL);
+PHP
+
 php artisan migrate --force
 
 ADMIN_COUNT=$(php artisan tinker --execute="echo \\App\\Models\\Admin::count();" 2>/dev/null | tail -n 1)
@@ -43,7 +67,6 @@ fi
 
 php artisan storage:link --force 2>/dev/null || true
 
-# Do not cache config — Render env vars (DB_URL) must be read fresh each boot.
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
