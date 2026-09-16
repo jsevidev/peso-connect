@@ -252,7 +252,12 @@
       syncAdminNav();
     }
 
-    document.addEventListener('turbo:load', bindAdminUi);
-    document.addEventListener('DOMContentLoaded', bindAdminUi);
+    function handleAdminPageLoad() {
+      bindAdminUi();
+    }
+
+    document.addEventListener('turbo:load', handleAdminPageLoad);
+    document.addEventListener('turbo:frame-load', handleAdminPageLoad);
+    document.addEventListener('DOMContentLoaded', handleAdminPageLoad);
   })();
 </script>

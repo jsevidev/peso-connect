@@ -125,6 +125,18 @@ svg {
 
 /* Admin layout */
 .admin-body { margin: 0; background: #f4f6f9; }
+.turbo-progress-bar {
+  height: 3px;
+  background-color: #1b3a6b;
+}
+turbo-frame#admin-content {
+  display: block;
+  min-height: 100%;
+}
+turbo-frame#admin-content[busy] .admin-content {
+  opacity: 0.72;
+  transition: opacity 0.15s ease;
+}
 .admin-login-body { margin: 0; background: #f8fafc; min-height: 100vh; }
 .admin-shell { display: flex; min-height: 100vh; width: 100%; }
 .admin-sidebar {

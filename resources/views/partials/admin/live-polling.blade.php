@@ -70,8 +70,13 @@
       pollTimer = null;
     }
 
-    document.addEventListener('turbo:load', startLivePolling);
-    document.addEventListener('DOMContentLoaded', startLivePolling);
+    function handleLivePageLoad() {
+      startLivePolling();
+    }
+
+    document.addEventListener('turbo:load', handleLivePageLoad);
+    document.addEventListener('turbo:frame-load', handleLivePageLoad);
+    document.addEventListener('DOMContentLoaded', handleLivePageLoad);
     document.addEventListener('turbo:before-cache', stopLivePolling);
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden) pollLiveRegions();

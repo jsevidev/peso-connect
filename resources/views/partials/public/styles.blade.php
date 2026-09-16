@@ -67,6 +67,21 @@ html, body {
   overflow-x: hidden;
 }
 
+.turbo-progress-bar {
+  height: 3px;
+  background-color: #1b3a6b;
+}
+
+turbo-frame#public-content {
+  display: block;
+  width: 100%;
+}
+
+turbo-frame#public-content[busy] {
+  opacity: 0.72;
+  transition: opacity 0.15s ease;
+}
+
 .public-page {
   width: 100%;
   max-width: 100%;

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="turbo-cache-control" content="no-preview">
     <title>@yield('title', 'Admin') - PESO Connect</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/img/peso-logo.png') }}">
     <link rel="preconnect" href="https://cdn.divriots.com" crossorigin="">
@@ -10,23 +11,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     @include('partials.admin.styles')
     @stack('styles')
-    @include('partials.shared.turbo')
   </head>
   <body class="admin-body">
     <div class="admin-shell">
       @include('partials.admin.sidebar')
+
       <div class="admin-main">
-        @include('partials.admin.topbar')
-        <div class="admin-content">
-          @include('partials.admin.flash-status')
-          @yield('content')
-        </div>
+        <turbo-frame id="admin-content" data-turbo-action="advance">
+          @include('partials.admin.topbar')
+          <div class="admin-content">
+            @include('partials.admin.flash-status')
+            @yield('content')
+          </div>
+          @stack('modals')
+        </turbo-frame>
       </div>
     </div>
-    @stack('modals')
+
     @include('partials.admin.confirm-dialog')
     @include('partials.admin.scripts')
     @include('partials.admin.live-polling')
+    @include('partials.shared.turbo')
     @stack('scripts')
   </body>
 </html>

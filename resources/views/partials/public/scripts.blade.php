@@ -30,8 +30,13 @@
       syncPublicNav();
     }
 
-    document.addEventListener('turbo:load', bindPublicUi);
-    document.addEventListener('DOMContentLoaded', bindPublicUi);
+    function handlePublicPageLoad() {
+      bindPublicUi();
+    }
+
+    document.addEventListener('turbo:load', handlePublicPageLoad);
+    document.addEventListener('turbo:frame-load', handlePublicPageLoad);
+    document.addEventListener('DOMContentLoaded', handlePublicPageLoad);
   })();
 </script>
 @stack('scripts')
