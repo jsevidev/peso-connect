@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Employer;
-use App\Models\JobPosting;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,24 +14,30 @@ return new class extends Migration
             $table->foreignId('employer_id')->nullable()->after('admin_id')->constrained()->nullOnDelete();
         });
 
-        JobPosting::query()
+        DB::table('job_postings')
             ->select('company')
             ->distinct()
             ->pluck('company')
             ->filter()
             ->each(function (string $company) {
-                $employer = Employer::query()->firstOrCreate(
-                    ['name' => Employer::normalizeName($company)],
-                    [
+                $name = Employer::normalizeName($company);
+
+                $employerId = DB::table('employers')->where('name', $name)->value('id');
+
+                if (! $employerId) {
+                    $employerId = DB::table('employers')->insertGetId([
+                        'name' => $name,
                         'abbr' => Employer::makeAbbr($company),
                         'peso_verified' => Employer::detectPesoVerified($company),
                         'status' => 'Active',
-                    ]
-                );
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
 
-                JobPosting::query()
+                DB::table('job_postings')
                     ->where('company', $company)
-                    ->update(['employer_id' => $employer->id]);
+                    ->update(['employer_id' => $employerId]);
             });
     }
 

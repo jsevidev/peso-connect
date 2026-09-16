@@ -73,20 +73,58 @@ file_put_contents($path, rtrim($contents).PHP_EOL);
 PHP
 
 echo "Running migrations against Postgres..."
-php artisan migrate --force
+php artisan migrate --force --no-interaction
+php artisan migrate:status --no-interaction || true
 
-ADMIN_COUNT=$(php artisan tinker --execute="echo \\App\\Models\\Admin::count();" 2>/dev/null | tail -n 1)
-echo "Admin count after migrate: ${ADMIN_COUNT:-unknown}"
+set +e
+ADMIN_COUNT=$(php <<'PHP'
+<?php
+require __DIR__.'/vendor/autoload.php';
+$app = require __DIR__.'/bootstrap/app.php';
+$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+$kernel->bootstrap();
+echo App\Models\Admin::query()->count();
+PHP
+)
+set -e
+ADMIN_COUNT=${ADMIN_COUNT:-0}
+echo "Admin count after migrate: ${ADMIN_COUNT}"
 
 if [ "$ADMIN_COUNT" = "0" ]; then
   echo "Seeding demo data..."
-  php artisan db:seed --force
+  php artisan db:seed --force --no-interaction
 fi
+
+set +e
+SCHEMA_OK=$(php <<'PHP'
+<?php
+require __DIR__.'/vendor/autoload.php';
+$app = require __DIR__.'/bootstrap/app.php';
+$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+$kernel->bootstrap();
+
+if (! Illuminate\Support\Facades\Schema::hasTable('employers')) {
+    exit(1);
+}
+
+echo "Schema OK: employers table present.";
+PHP
+)
+SCHEMA_STATUS=$?
+set -e
+
+if [ "$SCHEMA_STATUS" -ne 0 ]; then
+  echo "WARN: employers table missing after migrate. Retrying migrations..."
+  php artisan migrate --force --no-interaction
+fi
+
+echo "${SCHEMA_OK:-Schema check complete.}"
 
 php artisan storage:link --force 2>/dev/null || true
 
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
+php artisan config:clear --no-interaction || true
+php artisan route:clear --no-interaction || true
+php artisan view:clear --no-interaction || true
 
+echo "Starting Laravel server on port ${PORT:-10000}..."
 exec php artisan serve --host=0.0.0.0 --port="${PORT:-10000}"
