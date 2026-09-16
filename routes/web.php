@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ApplicantController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CertificationController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EmployerController;
 use App\Http\Controllers\Admin\JobPostingController;
 use App\Http\Controllers\Admin\ReferralController;
 use App\Http\Controllers\Admin\ReportController;
@@ -92,6 +93,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/live/dashboard', [DashboardController::class, 'live'])->name('live.dashboard');
+
+        Route::get('/employers', [EmployerController::class, 'index'])->name('employers.index');
+        Route::post('/employers', [EmployerController::class, 'store'])->name('employers.store');
+        Route::post('/employers/update', [EmployerController::class, 'update'])->name('employers.update');
+        Route::post('/employers/delete', [EmployerController::class, 'destroy'])->name('employers.delete');
 
         Route::get('/jobs', [JobPostingController::class, 'index'])->name('jobs.index');
         Route::post('/jobs', [JobPostingController::class, 'store'])->name('jobs.store');

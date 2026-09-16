@@ -16,8 +16,12 @@
           <input class="admin-input" type="text" id="edit_job_title" name="title" data-modal-field="title" required>
         </div>
         <div class="admin-form-field">
-          <label class="admin-field-label" for="edit_job_company">Agency / Company</label>
-          <input class="admin-input" type="text" id="edit_job_company" name="company" data-modal-field="company" required>
+          <label class="admin-field-label" for="edit_job_employer_id">Agency / Company</label>
+          <select class="admin-select" id="edit_job_employer_id" name="employer_id" data-modal-field="employer-id" required>
+            @foreach ($employers ?? [] as $employer)
+              <option value="{{ $employer['id'] }}">{{ $employer['name'] }}</option>
+            @endforeach
+          </select>
         </div>
         <div class="admin-form-field">
           <label class="admin-field-label" for="edit_job_type">Job Type</label>

@@ -21,6 +21,7 @@ class JobPostingController extends Controller
             'currentPage' => $listing['page'],
             'lastPage' => $listing['last_page'],
             'query' => $request->input('q'),
+            'employers' => AdminListing::activeEmployerOptions(),
             'statuses' => config('peso-options.job_statuses', []),
             'categories' => config('peso-options.job_categories', []),
             'postedFilters' => config('peso-options.posted_filters', []),
@@ -31,7 +32,7 @@ class JobPostingController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'company' => ['required', 'string', 'max:255'],
+            'employer_id' => ['required', 'integer', 'exists:employers,id'],
             'location' => ['required', 'string', 'max:255'],
             'salary_min' => ['required', 'string', 'max:50'],
             'salary_max' => ['required', 'string', 'max:50'],
@@ -41,8 +42,8 @@ class JobPostingController extends Controller
 
         $job = JobPosting::create([
             'admin_id' => session('admin_id'),
+            'employer_id' => $validated['employer_id'],
             'job_title' => $validated['title'],
-            'company' => $validated['company'],
             'location' => $validated['location'],
             'min_salary' => $this->parseSalary($validated['salary_min']),
             'max_salary' => $this->parseSalary($validated['salary_max']),
@@ -67,7 +68,7 @@ class JobPostingController extends Controller
         $validated = $request->validate([
             'id' => ['required', 'integer', 'exists:job_postings,id'],
             'title' => ['required', 'string', 'max:255'],
-            'company' => ['required', 'string', 'max:255'],
+            'employer_id' => ['required', 'integer', 'exists:employers,id'],
             'type' => ['required', 'string', 'max:50'],
             'status' => ['required', 'string', 'max:50'],
         ]);
@@ -75,7 +76,7 @@ class JobPostingController extends Controller
         $job = JobPosting::findOrFail($validated['id']);
         $job->update([
             'job_title' => $validated['title'],
-            'company' => $validated['company'],
+            'employer_id' => $validated['employer_id'],
             'job_type' => $validated['type'],
             'status' => $validated['status'],
         ]);

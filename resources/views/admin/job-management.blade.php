@@ -55,6 +55,9 @@
               <span style="display: inline-flex; align-items: center; gap: 8px;">
                 <span class="admin-company-badge">{{ $job['company_abbr'] }}</span>
                 {{ $job['company'] }}
+                @if ($job['peso_verified'])
+                  <span class="admin-badge admin-badge--green" style="font-size: 11px;">Verified</span>
+                @endif
               </span>
             </td>
             <td>{{ $job['type'] }}</td>
@@ -67,7 +70,7 @@
                   data-open-modal="modal-edit-job"
                   data-item-id="{{ $job['id'] }}"
                   data-title="{{ $job['title'] }}"
-                  data-company="{{ $job['company'] }}"
+                  data-employer-id="{{ $job['employer_id'] }}"
                   data-type="{{ $job['type'] }}"
                   data-status="{{ $job['status'] }}">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 1l3 3L4 13H1v-3L10 1z" stroke="#1b3a6b" stroke-width="1.5"/></svg>

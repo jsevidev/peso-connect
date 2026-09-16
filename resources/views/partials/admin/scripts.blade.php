@@ -29,8 +29,10 @@
         if (key === 'openModal' || key === 'itemId') return;
         var field = key.replace(/([A-Z])/g, '-$1').toLowerCase();
         modal.querySelectorAll('[data-modal-field="' + field + '"]').forEach(function (el) {
-          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
-            el.value = trigger.dataset[key];
+          if (el.type === 'checkbox' && el.dataset.modalBoolean === '1') {
+            el.checked = trigger.dataset[key] === '1' || trigger.dataset[key] === 'true';
+          } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+            el.value = trigger.dataset[key] || '';
           } else {
             el.textContent = trigger.dataset[key];
           }

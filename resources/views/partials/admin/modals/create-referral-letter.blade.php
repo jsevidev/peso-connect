@@ -20,7 +20,12 @@
           <div class="admin-referral-letter__meta">
             <span>{{ now()->format('M j, Y') }}</span>
             <span class="admin-referral-letter__meta-label">HIRING MANAGER</span>
-            <input class="admin-referral-letter__field" type="text" id="referral_employer" name="employer" placeholder="Company Name" required>
+            <select class="admin-referral-letter__field admin-referral-letter__field--select" id="referral_employer_id" name="employer_id" required>
+              <option value="" disabled selected>Select employer</option>
+              @foreach (($employers ?? []) as $employer)
+                <option value="{{ $employer['id'] }}">{{ $employer['name'] }}</option>
+              @endforeach
+            </select>
           </div>
           <div class="admin-referral-letter__subject">
             <span>Subject: Endorsement of</span>
@@ -74,9 +79,15 @@
         nameInput.value = data.name;
         syncName();
       }
-      var employerInput = document.getElementById('referral_employer');
+      var employerSelect = document.getElementById('referral_employer_id');
       var jobSelect = document.getElementById('referral_job');
-      if (employerInput && data.employer) employerInput.value = data.employer;
+      if (employerSelect && data.employerId) {
+        employerSelect.value = data.employerId;
+      } else if (employerSelect && data.employer) {
+        Array.prototype.forEach.call(employerSelect.options, function (option) {
+          if (option.textContent.trim() === data.employer) option.selected = true;
+        });
+      }
       if (jobSelect && data.job) jobSelect.value = data.job;
     };
   })();

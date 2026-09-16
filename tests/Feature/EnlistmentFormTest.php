@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Mail\AdminFormSubmitted;
 use App\Models\Admin;
 use App\Models\Applicant;
+use App\Models\Employer;
 use App\Models\JobPosting;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
@@ -23,8 +24,15 @@ class EnlistmentFormTest extends TestCase
             'password' => 'admin123',
         ]);
 
+        $employer = Employer::create([
+            'name' => 'BPO Corp',
+            'abbr' => 'BPO',
+            'status' => 'Active',
+        ]);
+
         JobPosting::create([
             'admin_id' => $admin->id,
+            'employer_id' => $employer->id,
             'job_title' => 'Customer Service Representative',
             'company' => 'BPO Corp',
             'job_type' => 'Full-Time',

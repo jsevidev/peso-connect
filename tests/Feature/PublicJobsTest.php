@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Admin;
+use App\Models\Employer;
 use App\Models\JobPosting;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -18,8 +19,15 @@ class PublicJobsTest extends TestCase
             'password' => 'admin123',
         ]);
 
+        $employer = Employer::create([
+            'name' => 'LGU Pasay',
+            'abbr' => 'LGU',
+            'status' => 'Active',
+        ]);
+
         JobPosting::create([
             'admin_id' => $admin->id,
+            'employer_id' => $employer->id,
             'job_title' => 'Administrative Assistant',
             'company' => 'LGU Pasay',
             'job_type' => 'Full-Time',

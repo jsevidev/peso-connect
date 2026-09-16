@@ -10,6 +10,7 @@ class PublicJobListing
     public static function all(): array
     {
         return JobPosting::query()
+            ->with('employer')
             ->where('status', 'Active')
             ->orderByDesc('created_at')
             ->get()
@@ -24,6 +25,7 @@ class PublicJobListing
         }
 
         $job = JobPosting::query()
+            ->with('employer')
             ->where('status', 'Active')
             ->find((int) $id);
 
@@ -35,10 +37,12 @@ class PublicJobListing
         $typeKey = strtolower(str_replace(' ', '-', $job->job_type));
         $daysAgo = max(0, (int) $job->created_at->diffInDays(now()));
 
+        $employer = $job->relationLoaded('employer') ? $job->employer : $job->employer()->first();
+
         return [
             'id' => $job->id,
             'title' => $job->job_title,
-            'company' => $job->company,
+            'company' => $employer?->name ?? $job->company,
             'description' => $job->job_description,
             'location' => $job->location,
             'salary_min' => $job->min_salary ?? 0,
@@ -47,7 +51,7 @@ class PublicJobListing
             'type_key' => $typeKey,
             'posted_days_ago' => $daysAgo,
             'bookmarked' => false,
-            'peso_verified' => true,
+            'peso_verified' => (bool) ($employer?->peso_verified ?? false),
         ];
     }
 

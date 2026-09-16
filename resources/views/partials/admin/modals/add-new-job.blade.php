@@ -15,8 +15,14 @@
           <input class="admin-input" type="text" id="job_title" name="title" placeholder="e.g., Administrative Assistant II" required>
         </div>
         <div class="admin-form-field">
-          <label class="admin-field-label" for="job_company">Agency / Company Name <span class="admin-field-required">*</span></label>
-          <input class="admin-input" type="text" id="job_company" name="company" placeholder="e.g., Department of Social Welfare and Development (DSWD)" required>
+          <label class="admin-field-label" for="job_employer_id">Agency / Company <span class="admin-field-required">*</span></label>
+          <select class="admin-select" id="job_employer_id" name="employer_id" required>
+            <option value="" disabled selected>Select employer</option>
+            @foreach ($employers ?? [] as $employer)
+              <option value="{{ $employer['id'] }}">{{ $employer['name'] }}</option>
+            @endforeach
+          </select>
+          <p style="margin: 8px 0 0; font-size: 12px; color: #64748b;">Need a new company? Add it first in <a href="{{ route('admin.employers.index') }}">Employer Management</a>.</p>
         </div>
         <div class="admin-form-field">
           <label class="admin-field-label" for="job_location">Location (City, Province) <span class="admin-field-required">*</span></label>

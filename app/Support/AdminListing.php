@@ -6,6 +6,7 @@ use App\Models\ActivityLog;
 use App\Models\Announcement;
 use App\Models\Applicant;
 use App\Models\Certification;
+use App\Models\Employer;
 use App\Models\JobPosting;
 use App\Models\Referral;
 use Illuminate\Database\Eloquent\Builder;
@@ -51,30 +52,43 @@ class AdminListing
 
     public static function findJob(int $id): ?array
     {
-        $job = JobPosting::withCount('applicants')->find($id);
+        $job = JobPosting::with(['employer'])->withCount('applicants')->find($id);
 
         return $job ? self::jobToArray($job) : null;
     }
 
     public static function jobToArray(JobPosting $job): array
     {
-        $words = preg_split('/\s+/', $job->company) ?: [];
-        $abbr = '';
-
-        foreach (array_slice($words, 0, 3) as $word) {
-            $abbr .= strtoupper(mb_substr($word, 0, 1));
-        }
+        $employer = $job->relationLoaded('employer') ? $job->employer : $job->employer()->first();
+        $company = $employer?->name ?? $job->company;
 
         return [
             'id' => $job->id,
             'title' => $job->job_title,
-            'company' => $job->company,
-            'company_abbr' => $abbr !== '' ? $abbr : 'JOB',
+            'company' => $company,
+            'company_abbr' => $employer?->abbr ?? Employer::makeAbbr($company),
+            'employer_id' => $employer?->id ?? $job->employer_id,
+            'peso_verified' => (bool) ($employer?->peso_verified ?? false),
             'type' => $job->job_type,
             'category' => 'General',
             'posted' => $job->created_at->format('M j, Y'),
             'enlistments' => $job->applicants_count ?? $job->applicants()->count(),
             'status' => $job->status,
+        ];
+    }
+
+    public static function employerToArray(Employer $employer): array
+    {
+        return [
+            'id' => $employer->id,
+            'name' => $employer->name,
+            'abbr' => $employer->abbr ?? Employer::makeAbbr($employer->name),
+            'peso_verified' => (bool) $employer->peso_verified,
+            'contact_person' => $employer->contact_person,
+            'contact_email' => $employer->contact_email,
+            'address' => $employer->address,
+            'status' => $employer->status,
+            'job_count' => $employer->job_postings_count ?? $employer->jobPostings()->count(),
         ];
     }
 
@@ -179,15 +193,48 @@ class AdminListing
         };
     }
 
+    public static function filterEmployers(Request $request): array
+    {
+        $query = Employer::query()->withCount('jobPostings');
+
+        if ($q = trim((string) $request->input('q', ''))) {
+            $needle = '%'.$q.'%';
+            $query->where(function ($builder) use ($needle) {
+                $builder->where('name', 'like', $needle)
+                    ->orWhere('abbr', 'like', $needle)
+                    ->orWhere('contact_person', 'like', $needle);
+            });
+        }
+
+        $items = $query
+            ->orderBy('name')
+            ->get()
+            ->map(fn (Employer $employer) => self::employerToArray($employer))
+            ->all();
+
+        return self::paginate($items, $request, perPage: 8);
+    }
+
+    public static function activeEmployerOptions(): array
+    {
+        return Employer::query()
+            ->where('status', 'Active')
+            ->orderBy('name')
+            ->get()
+            ->map(fn (Employer $employer) => self::employerToArray($employer))
+            ->all();
+    }
+
     public static function filterJobs(Request $request): array
     {
-        $query = JobPosting::query()->withCount('applicants');
+        $query = JobPosting::query()->with(['employer'])->withCount('applicants');
 
         if ($q = trim((string) $request->input('q', ''))) {
             $needle = '%'.$q.'%';
             $query->where(function ($builder) use ($needle) {
                 $builder->where('job_title', 'like', $needle)
-                    ->orWhere('company', 'like', $needle);
+                    ->orWhere('company', 'like', $needle)
+                    ->orWhereHas('employer', fn ($employer) => $employer->where('name', 'like', $needle));
             });
         }
 

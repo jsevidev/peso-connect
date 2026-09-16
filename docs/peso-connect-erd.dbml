@@ -1,79 +1,110 @@
-// PESO Connect ERD — final (matches capstone ERD)
-// Paste at https://dbdiagram.io/d
+// PESO Connect ERD — matches implemented Laravel schema
 
-Table ADMIN {
-  admin_id int [pk]
-  username varchar
+Table admins {
+  id int [pk, increment]
+  username varchar [unique]
   password varchar
+  created_at timestamp
+  updated_at timestamp
 }
 
-Table JOBS {
-  job_id int [pk]
-  admin_id int
+Table employers {
+  id int [pk, increment]
+  name varchar [unique]
+  abbr varchar
+  peso_verified boolean
+  contact_person varchar
+  contact_email varchar
+  address text
+  status varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table job_postings {
+  id int [pk, increment]
+  admin_id int [ref: > admins.id]
+  employer_id int [ref: > employers.id, null]
   job_title varchar
   company varchar
   location varchar
   min_salary int
   max_salary int
   job_type varchar
-  job_description varchar
+  job_description text
+  status varchar
+  created_at timestamp
+  updated_at timestamp
 }
 
-Table APPLICANT {
-  applicant_id int [pk]
+Table applicants {
+  id int [pk, increment]
+  admin_id int [ref: > admins.id, null]
+  job_posting_id int [ref: > job_postings.id, null]
   email_address varchar
   fullname varchar
-  contact_number int
+  contact_number varchar
   date_of_birth date
   gender varchar
   civil_status varchar
-  address varchar
+  address text
   education varchar
-  skills varchar
-  admin_id int
-}
-
-Table REFERRAL {
-  referral_id int [pk]
-  applicant_id int
-  job_id int
-  admin_id int
+  skills text
+  position varchar
   status varchar
+  created_at timestamp
+  updated_at timestamp
 }
 
-Table ACTIVITY_LOGS {
-  log_id int [pk]
-  admin_id int
-  details varchar
-  created_at date
+Table referrals {
+  id int [pk, increment]
+  applicant_id int [ref: > applicants.id, null]
+  job_posting_id int [ref: > job_postings.id, null]
+  admin_id int [ref: > admins.id, null]
+  employer_id int [ref: > employers.id, null]
+  fullname varchar
+  job_title varchar
+  employer varchar
+  status varchar
+  created_at timestamp
+  updated_at timestamp
 }
 
-Table CERTIFICATION {
-  cert_id int [pk]
-  applicant_id int
-  admin_id int
+Table certifications {
+  id int [pk, increment]
+  applicant_id int [ref: > applicants.id, null]
+  admin_id int [ref: > admins.id, null]
+  fullname varchar
+  barangay varchar
+  id_type varchar
+  id_document_path varchar
   date_requested date
   status varchar
+  created_at timestamp
+  updated_at timestamp
 }
 
-Table ANNOUNCEMENTS {
-  anncmt_id int [pk]
-  admin_id int
+Table announcements {
+  id int [pk, increment]
+  admin_id int [ref: > admins.id, null]
+  slug varchar [unique]
   title varchar
-  description varchar
+  description text
   category varchar
   status varchar
   publish_date date
   scheduled_date date
   scheduled_time time
+  author_name varchar
+  created_at timestamp
+  updated_at timestamp
 }
 
-Ref admin_creates_jobs: JOBS.admin_id > ADMIN.admin_id
-Ref admin_encodes_applicant: APPLICANT.admin_id > ADMIN.admin_id
-Ref admin_issues_referral: REFERRAL.admin_id > ADMIN.admin_id
-Ref admin_records_logs: ACTIVITY_LOGS.admin_id > ADMIN.admin_id
-Ref admin_processes_cert: CERTIFICATION.admin_id > ADMIN.admin_id
-Ref admin_posts_anncmt: ANNOUNCEMENTS.admin_id > ADMIN.admin_id
-Ref applicant_requests_referral: REFERRAL.applicant_id > APPLICANT.applicant_id
-Ref applicant_requests_cert: CERTIFICATION.applicant_id > APPLICANT.applicant_id
-Ref jobs_linked_referral: REFERRAL.job_id > JOBS.job_id
+Table activity_logs {
+  id int [pk, increment]
+  admin_id int [ref: > admins.id, null]
+  action varchar
+  details text
+  created_at timestamp
+  updated_at timestamp
+}

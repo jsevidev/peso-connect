@@ -6,7 +6,7 @@ Quick reference for progress meetings when your adviser asks to see the database
 
 ## One-minute summary (say this out loud)
 
-> PESO Connect stores data in **PostgreSQL on Render** for our live demo site. Locally we use **SQLite** during development. The database has **7 main tables** from our ERD: admins, job_postings, applicants, referrals, certifications, announcements, and activity_logs. Laravel **migrations** create the tables; **seeders** load demo data; **Eloquent models** connect the app to the database.
+> PESO Connect stores data in **PostgreSQL on Render** for our live demo site. Locally we use **SQLite** during development. The database has **8 main tables** from our ERD: admins, **employers**, job_postings, applicants, referrals, certifications, announcements, and activity_logs. Job postings and referrals link to employers through foreign keys instead of duplicate company text. Laravel **migrations** create the tables; **seeders** load demo data; **Eloquent models** connect the app to the database.
 
 **Live site:** https://peso-connect-8i0o.onrender.com  
 **Admin login:** `/admin/login` — `admin` / `admin123`
@@ -29,7 +29,8 @@ No SQL tools needed. This proves the database is connected and working.
 | Admin page | Main table(s) |
 |------------|----------------|
 | Dashboard | applicants, referrals, certifications, job_postings |
-| Job Management | job_postings |
+| Employer Management | employers |
+| Job Management | job_postings, employers |
 | Enlistee Management | applicants |
 | Referral Management | referrals, applicants |
 | FTJS Certification | certifications, applicants |
@@ -59,11 +60,11 @@ Use this when she asks about **schema, relationships, or normalization**.
 ### Tables at a glance
 
 ```
-admins ──┬── job_postings ──┬── applicants ──┬── referrals
-         │                  │                └── certifications
-         │                  │
-         └── announcements  └── (public enlistment forms)
-         
+admins ──┬── employers ──► job_postings ──┬── applicants ──┬── referrals
+         │                                │                └── certifications
+         │                                └── referrals (employer_id)
+         └── announcements
+
 activity_logs (audit trail for admin actions)
 ```
 
@@ -140,6 +141,7 @@ Use `jdbc:postgresql://` (not `postgresql://`). Put username and password on the
 2. Expand **Databases** → **peso_connect** → **Schemas** → **public** → **Tables**.  
 3. You should see tables such as:
    - `admins`
+   - `employers`
    - `job_postings`
    - `applicants`
    - `referrals`

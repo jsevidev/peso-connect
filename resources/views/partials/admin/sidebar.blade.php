@@ -1,6 +1,7 @@
 @php
   $navItems = [
     ['route' => 'admin.dashboard', 'label' => 'Dashboard'],
+    ['route' => 'admin.employers.index', 'label' => 'Employer Management'],
     ['route' => 'admin.jobs.index', 'label' => 'Job Management'],
     ['route' => 'admin.enlistees.index', 'label' => 'Enlistee Management'],
     ['route' => 'admin.referrals.index', 'label' => 'Referral Management'],

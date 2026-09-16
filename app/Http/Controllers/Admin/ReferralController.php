@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employer;
 use App\Models\JobPosting;
 use App\Models\Referral;
 use App\Support\ActivityLogger;
@@ -27,6 +28,7 @@ class ReferralController extends Controller
             'statuses' => config('peso-options.referral_statuses', []),
             'dateFilters' => config('peso-options.referral_date_filters', []),
             'jobOptions' => JobPosting::query()->where('status', 'Active')->orderBy('job_title')->pluck('job_title'),
+            'employers' => AdminListing::activeEmployerOptions(),
         ]);
     }
 
@@ -34,18 +36,20 @@ class ReferralController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'employer' => ['required', 'string', 'max:255'],
+            'employer_id' => ['required', 'integer', 'exists:employers,id'],
             'job' => ['required', 'string', 'max:255'],
         ]);
 
+        $employer = Employer::findOrFail($validated['employer_id']);
         $jobPosting = JobPosting::where('job_title', $validated['job'])->first();
 
         Referral::create([
             'admin_id' => session('admin_id'),
+            'employer_id' => $employer->id,
             'job_posting_id' => $jobPosting?->id,
             'fullname' => $validated['name'],
             'job_title' => $validated['job'],
-            'employer' => $validated['employer'],
+            'employer' => $employer->name,
             'status' => 'Pending Review',
         ]);
 
