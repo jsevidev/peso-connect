@@ -12,9 +12,9 @@
   ];
 @endphp
 
-<aside id="admin-sidebar" class="admin-sidebar">
+<aside id="admin-sidebar" class="admin-sidebar" data-turbo-permanent>
   <div class="admin-sidebar__brand">
-    <img src="{{ asset('assets/img/peso-logo.png') }}" alt="PESO logo" class="admin-sidebar__logo">
+    <img src="{{ asset('assets/img/peso-logo.png') }}" alt="PESO logo" class="admin-sidebar__logo" width="40" height="40" decoding="async" fetchpriority="high">
     <div>
       <div class="admin-sidebar__title">PESO</div>
       <div class="admin-sidebar__subtitle">Gov Employment Platform</div>
@@ -23,7 +23,7 @@
 
   <nav class="admin-nav" aria-label="Admin navigation">
     @foreach ($navItems as $item)
-      <a href="{{ route($item['route']) }}" class="admin-nav__link @if (request()->routeIs($item['route'])) is-active @endif" data-turbo-frame="admin-content">
+      <a href="{{ route($item['route']) }}" class="admin-nav__link @if (request()->routeIs($item['route'])) is-active @endif">
         <span>{{ $item['label'] }}</span>
         @if (request()->routeIs($item['route']))
           <span class="admin-nav__dot" aria-hidden="true"></span>
@@ -32,7 +32,7 @@
     @endforeach
   </nav>
 
-  <form action="{{ route('admin.logout') }}" method="POST" data-turbo-frame="_top">
+  <form action="{{ route('admin.logout') }}" method="POST">
     @csrf
     <button type="submit" class="admin-sidebar__logout">Logout Session</button>
   </form>

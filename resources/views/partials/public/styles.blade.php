@@ -68,18 +68,11 @@ html, body {
 }
 
 .turbo-progress-bar {
-  height: 3px;
-  background-color: #1b3a6b;
+  display: none;
 }
 
-turbo-frame#public-content {
-  display: block;
-  width: 100%;
-}
-
-turbo-frame#public-content[busy] {
-  opacity: 0.72;
-  transition: opacity 0.15s ease;
+#public-header {
+  contain: layout style paint;
 }
 
 .public-page {

@@ -1,1 +1,7 @@
-<script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.12/dist/turbo.min.js"></script>
+<script src="{{ asset('js/turbo.min.js') }}"></script>
+<script>
+  (function () {
+    if (!window.Turbo) return;
+    Turbo.config.progressBarDelay = 999999;
+  })();
+</script>
