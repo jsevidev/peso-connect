@@ -9,7 +9,7 @@
 @section('content')
 <div class="public-content public-layout-row" style="display: flex;flex-direction: column;row-gap: 32px;width: 100%;padding: 40px clamp(20px, 5vw, 80px);">
   <div style="display: flex;flex-direction: column;row-gap: 6px;">
-    <span class="text" style="font-size: 40px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1e293b;">Referral Requests</span>
+    <span class="text" style="font-size: 40px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1e293b;">Referral Requests</span>
     <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #475569;">Request formal referral letters from Public Employment Service Office to potential employers</span>
   </div>
 
@@ -20,7 +20,7 @@
       <form action="{{ route('referral-requests') }}" method="POST" class="public-form-card" style="border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 24px;width: 100%;filter: drop-shadow(0px 4px 12px rgba(15,23,42,0.05));padding: 32px;">
         @csrf
         <div style="display: flex;flex-direction: row;align-items: center;width: 100%;flex-wrap: wrap;gap: 8px;">
-          <span class="text" style="font-size: 28px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1b3a6b;margin-right: auto;">Submit New Referral Request</span>
+          <span class="text" style="font-size: 28px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;margin-right: auto;">Submit New Referral Request</span>
           <span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #f57c00;">* Required fields</span>
         </div>
 
@@ -88,7 +88,7 @@
 
     <aside class="public-sidebar" style="display: flex;flex-direction: column;row-gap: 24px;width: 320px;flex-shrink: 0;">
       <div style="border-radius: 20px;background-color: #fff;display: flex;flex-direction: column;row-gap: 16px;width: 100%;filter: drop-shadow(0px 4px 12px rgba(15,23,42,0.05));padding: 24px;">
-        <span class="text" style="font-size: 20px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1b3a6b;">How Referrals Work</span>
+        <span class="text" style="font-size: 20px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">How Referrals Work</span>
         <ul style="list-style: none;display: flex;flex-direction: column;row-gap: 12px;padding: 0;margin: 0;">
           <li class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;line-height: 1.4;color: #475569;"><strong style="color:#1e293b;">Validate First:</strong> Ensure the target company is currently hiring or open to applications.</li>
           <li class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;line-height: 1.4;color: #475569;"><strong style="color:#1e293b;">Processing Time:</strong> Standard referral processing takes 1 to 2 working days.</li>

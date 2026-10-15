@@ -10,7 +10,7 @@
 <div class="public-banner" style="background-color: #1b3a6b;display: flex;flex-direction: column;row-gap: 24px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 48px clamp(20px, 5vw, 64px) 40px;">
   <div style="display: flex;flex-direction: column;row-gap: 8px;align-items: center;justify-content: flex-start;width: 100%;max-width:800px;position: relative;flex-shrink: 0;">
     <span class="text" style="display: inline;text-align: center;font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 700;text-transform: uppercase;color: #f57c00;width: 100%;">Official Local &amp; Public Sector Opportunities</span>
-    <span class="text" style="display: inline;text-align: center;font-size: 48px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;font-weight: 400;color: #fff;width: 100%;">Connecting Filipinos to Dignified Employment</span>
+    <span class="text" style="display: inline;text-align: center;font-size: 48px;font-family: Inter, system-ui, sans-serif;font-weight: 800;letter-spacing: -0.02em;color: #fff;width: 100%;">Connecting Filipinos to Dignified Employment</span>
   </div>
   <form action="{{ route('jobs.index') }}" method="GET" class="public-search" style="border-radius: 32px;background-color: #fff;display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;justify-content: flex-start;width: 100%;max-width:1120px;height: 64px;filter: drop-shadow(0px 4px 16px rgba(15,23,42,0.03));padding: 8px 8px 8px 24px;">
     @foreach (request()->except('q', 'page') as $key => $value)

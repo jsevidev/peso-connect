@@ -1,25 +1,5 @@
 <style>
 
-/* latin-ext */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zsTjmbI.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjg.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -139,7 +119,7 @@ svg {
 }
 .admin-sidebar__brand { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
 .admin-sidebar__logo { width: 40px; height: 40px; border-radius: 20px; object-fit: cover; }
-.admin-sidebar__title { font-family: "Instrument Serif", system-ui, sans-serif; font-size: 20px; color: #fff; }
+.admin-sidebar__title { font-family: Inter, system-ui, sans-serif; font-size: 20px; font-weight: 800; color: #fff; }
 .admin-sidebar__subtitle { font-size: 10px; font-weight: 600; text-transform: uppercase; color: #94a3b8; }
 .admin-nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
 .admin-nav__link {
@@ -178,7 +158,7 @@ svg {
 .admin-live-badge::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%; background: #15803d; flex-shrink: 0;
 }
-.admin-page-title { font-family: "Instrument Serif", system-ui, sans-serif; font-size: clamp(24px, 4vw, 32px); color: #1e293b; }
+.admin-page-title { font-family: Inter, system-ui, sans-serif; font-size: clamp(24px, 4vw, 32px); font-weight: 700; letter-spacing: -0.02em; color: #1e293b; }
 .admin-page-subtitle { font-size: 14px; color: #64748b; font-family: Inter, system-ui, sans-serif; margin-top: 4px; }
 .admin-card {
   background: #fff; border-radius: 20px; padding: 24px; box-shadow: 0 4px 12px rgba(15,23,42,0.03);
@@ -696,7 +676,7 @@ svg {
   width: 72px; height: 72px; border-radius: 36px; background: #fff; display: flex; align-items: center;
   justify-content: center; margin: 0 auto 16px; overflow: hidden;
 }
-.admin-login-heading { font-family: "Instrument Serif", system-ui, sans-serif; font-size: clamp(24px, 5vw, 32px); text-align: center; color: #0f172a; }
+.admin-login-heading { font-family: Inter, system-ui, sans-serif; font-size: clamp(24px, 5vw, 32px); font-weight: 700; letter-spacing: -0.02em; text-align: center; color: #0f172a; }
 .admin-login-sub { text-align: center; color: #64748b; font-size: 16px; margin-top: 6px; font-family: Inter, system-ui, sans-serif; }
 .admin-form-stack { display: flex; flex-direction: column; gap: 28px; margin-top: 32px; }
 .admin-form-field { display: flex; flex-direction: column; gap: 8px; }
@@ -783,8 +763,9 @@ svg {
 
 .admin-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
 .admin-section-title {
-  font-size: 22px; font-weight: 400; color: #1e293b; margin: 0 0 16px;
-  font-family: "Instrument Serif", system-ui, sans-serif;
+  font-size: 22px; font-weight: 700; color: #1e293b; margin: 0 0 16px;
+  font-family: Inter, system-ui, sans-serif;
+  letter-spacing: -0.01em;
 }
 .admin-card--flush { padding: 0; overflow: hidden; }
 .admin-card__header {

@@ -9,7 +9,7 @@
 @section('content')
 <div class="public-content" style="display: flex;flex-direction: column;row-gap: 32px;width: 100%;padding: 48px clamp(20px, 5vw, 120px) 96px;">
   <div style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">
-    <span class="text" style="font-size: 48px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1b3a6b;">First-Time Job Seeker Certification Request</span>
+    <span class="text" style="font-size: 48px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">First-Time Job Seeker Certification Request</span>
     <span class="text" style="line-height: 24px;font-size: 16px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Complete the form below to register with the Public Employment Service Office (PESO) and avail of the free pre-employment document assistance benefits under Republic Act No. 11261.</span>
   </div>
 
@@ -28,7 +28,7 @@
 
     <section style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
       <div style="display: flex;flex-direction: column;row-gap: 6px;">
-        <span class="text" style="font-size: 24px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1b3a6b;">Step 1: Personal Information</span>
+        <span class="text" style="font-size: 24px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">Step 1: Personal Information</span>
         <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Provide your legal name and demographic details exactly as they appear on your government identification.</span>
       </div>
       <div style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
@@ -79,7 +79,7 @@
 
     <section style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
       <div style="display: flex;flex-direction: column;row-gap: 6px;">
-        <span class="text" style="font-size: 24px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1b3a6b;">Step 2: Address</span>
+        <span class="text" style="font-size: 24px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">Step 2: Address</span>
         <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Provide your current residence details.</span>
       </div>
       <div style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
@@ -104,7 +104,7 @@
 
     <section style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
       <div style="display: flex;flex-direction: column;row-gap: 6px;">
-        <span class="text" style="font-size: 24px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1b3a6b;">Step 3: Eligibility</span>
+        <span class="text" style="font-size: 24px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">Step 3: Eligibility</span>
         <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Please confirm the following:</span>
       </div>
       <fieldset style="border: none;display: flex;flex-direction: column;row-gap: 12px;padding: 0;margin: 0;">
@@ -127,7 +127,7 @@
 
     <section style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
       <div style="display: flex;flex-direction: column;row-gap: 6px;">
-        <span class="text" style="font-size: 24px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1b3a6b;">Step 4: Identification</span>
+        <span class="text" style="font-size: 24px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">Step 4: Identification</span>
         <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Select the type of valid ID you will present at the PESO office.</span>
       </div>
       <div style="display: flex;flex-direction: column;row-gap: 6px;max-width: 548px;width: 100%;">
@@ -154,7 +154,7 @@
 
     <section style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
       <div style="display: flex;flex-direction: column;row-gap: 6px;">
-        <span class="text" style="font-size: 24px;font-family: &quot;Instrument Serif&quot;, system-ui, sans-serif;color: #1b3a6b;">Step 5: Declaration</span>
+        <span class="text" style="font-size: 24px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">Step 5: Declaration</span>
         <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Confirm your declaration to proceed.</span>
       </div>
       <fieldset style="border: none;display: flex;flex-direction: column;row-gap: 12px;padding: 0;margin: 0;">
