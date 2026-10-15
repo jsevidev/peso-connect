@@ -35,13 +35,14 @@
             <span>This is to formally endorse</span>
             <strong id="referral_name_mirror">Full name</strong>
             <span>for the position of</span>
-            <select class="admin-referral-letter__field admin-referral-letter__field--inline admin-referral-letter__field--select" id="referral_job" name="job" required>
-              <option value="" disabled selected>Choose Job</option>
-              @foreach (($jobOptions ?? []) as $job)
-                <option value="{{ is_array($job) ? $job['title'] : $job }}">{{ is_array($job) ? $job['title'] : $job }}</option>
-              @endforeach
-            </select>
-            <span>.</span>
+            <span class="admin-referral-letter__inline-field-wrap">
+              <select class="admin-referral-letter__field admin-referral-letter__field--inline admin-referral-letter__field--select" id="referral_job" name="job" required>
+                <option value="" disabled selected>Choose Job</option>
+                @foreach (($jobOptions ?? []) as $job)
+                  <option value="{{ is_array($job) ? $job['title'] : $job }}">{{ is_array($job) ? $job['title'] : $job }}</option>
+                @endforeach
+              </select><span class="admin-referral-letter__period" aria-hidden="true">.</span>
+            </span>
           </div>
           <p class="admin-referral-letter__paragraph">He has successfully undergone our screening process and is deemed highly qualified for your workforce needs.</p>
           <p class="admin-referral-letter__paragraph">We look forward to a successful placement partnership.</p>
