@@ -22,7 +22,7 @@
         <div class="admin-referral-letter__meta">
           <span data-modal-field="date">Oct 25, 2024</span>
           <span class="admin-referral-letter__meta-label">HIRING MANAGER</span>
-          <span data-modal-field="employer" style="color: #5a6e85;">Company Name</span>
+          <span data-modal-field="employer">Company Name</span>
         </div>
         <p class="admin-referral-letter__paragraph admin-referral-letter__paragraph--preview" style="font-weight: 700;" data-modal-field="subject">Subject: Endorsement of Juanito dela Cruz</p>
         <p class="admin-referral-letter__paragraph admin-referral-letter__paragraph--preview">

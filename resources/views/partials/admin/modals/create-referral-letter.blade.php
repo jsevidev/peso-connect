@@ -10,7 +10,7 @@
         <button type="button" class="admin-modal__close" data-close-modal aria-label="Close">&times;</button>
       </div>
       <div class="admin-referral-letter-modal__body">
-        <div class="admin-referral-letter">
+        <div class="admin-referral-letter admin-referral-letter--form">
           <div class="admin-referral-letter__masthead">
             <small>Republic of the Philippines</small>
             <strong>PUBLIC EMPLOYMENT SERVICE OFFICE</strong>
