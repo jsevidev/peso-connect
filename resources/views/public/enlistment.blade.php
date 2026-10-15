@@ -15,7 +15,7 @@
     @php
       $selectedJobPosition = old('job_position', $selectedJobListing['title'] ?? '');
     @endphp
-    <input type="hidden" id="skills" name="skills" value="{{ old('skills', 'Customer Service, Data Entry, MS Office') }}">
+    <input type="hidden" id="skills" name="skills" value="{{ old('skills') }}">
 
     <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;display: flex;flex-direction: row;align-items: center;width: 100%;padding: 24px;">
       <div style="display: flex;flex-direction: column;row-gap: 4px;flex: 1;min-width: 0;">
@@ -66,13 +66,16 @@
         <input type="text" id="education" name="education" class="public-input public-enlistment-input" placeholder="e.g. College (Bachelor's Degree)" required value="{{ old('education') }}">
       </div>
 
-      <div style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">
+      <div id="enlistment-skills-root" style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">
         <label for="skills_input" class="public-field-label" style="font-size: 13px;color: #0f172a;">Skills <span class="public-field-required">*</span></label>
-        <div id="enlistment-skills-tags" style="display: flex;flex-wrap: wrap;row-gap: 8px;grid-column-gap: 8px;width: 100%;padding-bottom: 4px;"></div>
-        <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 10px;background-color: #f8fafc;display: flex;align-items: center;width: 100%;height: 44px;padding: 10px 16px;">
-          <input type="text" id="skills_input" class="public-enlistment-input" placeholder="Type and press enter to add skills..." style="border: none;background: transparent;width: 100%;padding: 0;font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #0f172a;outline: none;">
-          <svg width="16" height="16" viewBox="0 0 10 10" fill="none" aria-hidden="true" style="flex-shrink: 0;"><path d="M0 4.0838H8.1676M4.0838 0V8.1676" transform="translate(1.24 1.24)" style="stroke: #64748b;stroke-width: 2;stroke-linecap: round;"></path></svg>
+        <div id="enlistment-skills-tags" style="display: flex;flex-wrap: wrap;row-gap: 8px;grid-column-gap: 8px;width: 100%;min-height: 0;padding-bottom: 4px;"></div>
+        <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;border-radius: 10px;background-color: #f8fafc;display: flex;align-items: center;width: 100%;height: 44px;padding: 6px 8px 6px 16px;grid-column-gap: 8px;">
+          <input type="text" id="skills_input" class="public-enlistment-input" placeholder="Type a skill, then press Enter or + to add" autocomplete="off" style="border: none;background: transparent;flex: 1;min-width: 0;padding: 0;font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #0f172a;outline: none;">
+          <button type="button" id="enlistment-skills-add" aria-label="Add skill" style="border: none;background: #eef4f8;border-radius: 8px;display: flex;align-items: center;justify-content: center;width: 32px;height: 32px;flex-shrink: 0;cursor: pointer;padding: 0;">
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M0 4.0838H8.1676M4.0838 0V8.1676" transform="translate(1.24 1.24)" style="stroke: #1b3a6b;stroke-width: 2;stroke-linecap: round;"></path></svg>
+          </button>
         </div>
+        <x-field-error field="skills" />
       </div>
     </div>
 
@@ -91,58 +94,116 @@
 @push('scripts')
 <script>
   (function () {
-    var hiddenInput = document.getElementById('skills');
-    var tagsContainer = document.getElementById('enlistment-skills-tags');
-    var skillsInput = document.getElementById('skills_input');
-    if (!hiddenInput || !tagsContainer || !skillsInput) return;
-
-    var skills = (hiddenInput.value || '')
-      .split(',')
-      .map(function (s) { return s.trim(); })
-      .filter(Boolean);
-
-    function syncHidden() {
-      hiddenInput.value = skills.join(', ');
+    function parseSkillsCsv(value) {
+      return (value || '')
+        .split(',')
+        .map(function (s) { return s.trim(); })
+        .filter(Boolean);
     }
 
-    function renderTags() {
-      tagsContainer.innerHTML = '';
-      skills.forEach(function (skill, index) {
-        var tag = document.createElement('div');
-        tag.style.cssText = 'border-radius:6px;background-color:#eef4f8;display:flex;align-items:center;grid-column-gap:6px;padding:6px 12px;';
-        tag.innerHTML =
-          '<span class="text" style="font-size:12px;font-family:Inter,system-ui,sans-serif;font-weight:700;text-transform:uppercase;color:#1b3a6b;">' +
-          skill +
-          '</span>' +
-          '<button type="button" aria-label="Remove ' + skill + '" style="border:none;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center;">' +
-          '<svg width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5.2 2.8L2.8 5.2M2.8 2.8L5.2 5.2M8 4C8 6.21 6.21 8 4 8 1.79 8 0 6.21 0 4 0 1.79 1.79 0 4 0 6.21 0 8 1.79 8 4Z" transform="translate(0.89 0.89)" style="stroke:#1b3a6b;stroke-width:1.5;stroke-linecap:round;"></path></svg>' +
-          '</button>';
-        tag.querySelector('button').addEventListener('click', function () {
-          skills.splice(index, 1);
-          syncHidden();
-          renderTags();
-        });
-        tagsContainer.appendChild(tag);
+    function hasSkill(skills, skill) {
+      var lower = skill.toLowerCase();
+      return skills.some(function (existing) {
+        return existing.toLowerCase() === lower;
       });
     }
 
-    function addSkill(value) {
-      var skill = value.trim();
-      if (!skill || skills.indexOf(skill) !== -1) return;
-      skills.push(skill);
+    function initEnlistmentSkills() {
+      var root = document.getElementById('enlistment-skills-root');
+      if (!root || root.dataset.bound === '1') return;
+
+      var hiddenInput = document.getElementById('skills');
+      var tagsContainer = document.getElementById('enlistment-skills-tags');
+      var skillsInput = document.getElementById('skills_input');
+      var addButton = document.getElementById('enlistment-skills-add');
+      var form = root.closest('form');
+      if (!hiddenInput || !tagsContainer || !skillsInput || !addButton) return;
+
+      root.dataset.bound = '1';
+
+      var skills = parseSkillsCsv(hiddenInput.value);
+
+      function syncHidden() {
+        hiddenInput.value = skills.join(', ');
+      }
+
+      function renderTags() {
+        tagsContainer.innerHTML = '';
+        skills.forEach(function (skill, index) {
+          var tag = document.createElement('div');
+          tag.style.cssText = 'border-radius:6px;background-color:#eef4f8;display:flex;align-items:center;grid-column-gap:6px;padding:6px 12px;';
+          tag.innerHTML =
+            '<span class="text" style="font-size:12px;font-family:Inter,system-ui,sans-serif;font-weight:700;text-transform:uppercase;color:#1b3a6b;">' +
+            skill +
+            '</span>' +
+            '<button type="button" aria-label="Remove ' + skill + '" style="border:none;background:transparent;padding:0;cursor:pointer;display:flex;align-items:center;">' +
+            '<svg width="12" height="12" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5.2 2.8L2.8 5.2M2.8 2.8L5.2 5.2M8 4C8 6.21 6.21 8 4 8 1.79 8 0 6.21 0 4 0 1.79 1.79 0 4 0 6.21 0 8 1.79 8 4Z" transform="translate(0.89 0.89)" style="stroke:#1b3a6b;stroke-width:1.5;stroke-linecap:round;"></path></svg>' +
+            '</button>';
+          tag.querySelector('button').addEventListener('click', function () {
+            skills.splice(index, 1);
+            syncHidden();
+            renderTags();
+          });
+          tagsContainer.appendChild(tag);
+        });
+      }
+
+      function commitSkillInput() {
+        var raw = skillsInput.value.trim();
+        if (!raw) return;
+
+        raw.split(',').forEach(function (part) {
+          var skill = part.trim();
+          if (!skill || hasSkill(skills, skill)) return;
+          skills.push(skill);
+        });
+
+        skillsInput.value = '';
+        syncHidden();
+        renderTags();
+      }
+
+      skillsInput.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter') return;
+        event.preventDefault();
+        commitSkillInput();
+      });
+
+      addButton.addEventListener('click', function () {
+        commitSkillInput();
+        skillsInput.focus();
+      });
+
+      if (form) {
+        form.addEventListener('submit', function (event) {
+          commitSkillInput();
+          if (skills.length > 0) return;
+
+          event.preventDefault();
+          event.stopImmediatePropagation();
+
+          if (window.PesoAlert) {
+            window.PesoAlert.show({
+              type: 'warning',
+              title: 'Add at least one skill',
+              message: 'Type a skill and press Enter or the + button to add it before submitting.',
+              ok: 'Got it',
+            }).then(function () {
+              skillsInput.focus();
+            });
+          } else {
+            skillsInput.focus();
+          }
+        }, true);
+      }
+
       syncHidden();
       renderTags();
     }
 
-    skillsInput.addEventListener('keydown', function (event) {
-      if (event.key !== 'Enter') return;
-      event.preventDefault();
-      addSkill(skillsInput.value);
-      skillsInput.value = '';
-    });
-
-    syncHidden();
-    renderTags();
+    document.addEventListener('DOMContentLoaded', initEnlistmentSkills);
+    document.addEventListener('turbo:load', initEnlistmentSkills);
+    document.addEventListener('turbo:render', initEnlistmentSkills);
   })();
 </script>
 @endpush

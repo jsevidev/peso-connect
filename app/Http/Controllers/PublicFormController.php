@@ -21,7 +21,7 @@ class PublicFormController extends Controller
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['required', 'string', 'max:50'],
             'education' => ['required', 'string', 'max:255'],
-            'skills' => ['nullable', 'string'],
+            'skills' => ['required', 'string', 'max:2000'],
         ]);
 
         $jobPosting = JobPosting::where('job_title', $validated['job_position'])->first();
