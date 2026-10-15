@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     @include('partials.admin.styles')
     @include('partials.shared.page-transitions-styles')
+    @include('partials.shared.feedback-styles')
     @stack('styles')
   </head>
   <body class="admin-login-body">
@@ -17,6 +18,7 @@
       @yield('content')
     </div>
     @include('partials.admin.confirm-dialog')
+    @include('partials.shared.peso-alert')
     @include('partials.admin.scripts')
     @stack('scripts')
   </body>

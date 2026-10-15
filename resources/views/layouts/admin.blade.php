@@ -13,6 +13,7 @@
     @include('partials.shared.turbo')
     @include('partials.admin.styles')
     @include('partials.shared.page-transitions-styles')
+    @include('partials.shared.feedback-styles')
     @stack('styles')
   </head>
   <body class="admin-body">
@@ -31,6 +32,7 @@
     </div>
 
     @include('partials.admin.confirm-dialog')
+    @include('partials.shared.peso-alert')
     @include('partials.admin.scripts')
     @include('partials.admin.live-polling')
     @stack('scripts')

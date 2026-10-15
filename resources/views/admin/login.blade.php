@@ -5,18 +5,7 @@
 @section('content')
 <div class="admin-login-wrap">
   <div class="admin-login-card">
-    @if (session('error'))
-      <div class="admin-flash admin-flash--danger" role="alert">
-        <span class="admin-flash__icon" aria-hidden="true">!</span>
-        <span>{{ session('error') }}</span>
-      </div>
-    @endif
-    @if (session('status'))
-      <div class="admin-flash admin-flash--success" role="status">
-        <span class="admin-flash__icon" aria-hidden="true">✓</span>
-        <span>{{ session('status') }}</span>
-      </div>
-    @endif
+    @include('partials.shared.flash-bridge')
     <div class="admin-login-icon" aria-hidden="true">
       <img src="{{ asset('assets/img/peso-logo.png') }}" alt="" width="56" height="56" style="border-radius: 50%; object-fit: cover;">
     </div>

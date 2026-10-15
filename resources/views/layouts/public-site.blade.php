@@ -13,6 +13,7 @@
     @include('partials.shared.turbo')
     @include('partials.public.styles')
     @include('partials.shared.page-transitions-styles')
+    @include('partials.shared.feedback-styles')
   </head>
   <body style="background-color: @yield('body-bg', '#fff');margin:0;">
     @include('partials.shared.page-transitions')
@@ -25,6 +26,7 @@
       </div>
     </div>
 
+    @include('partials.shared.peso-alert')
     @include('partials.public.scripts')
   </body>
 </html>
