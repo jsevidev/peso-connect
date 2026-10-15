@@ -12,13 +12,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     @include('partials.shared.turbo')
     @include('partials.public.styles')
+    @include('partials.shared.page-transitions-styles')
   </head>
   <body style="background-color: @yield('body-bg', '#fff');margin:0;">
+    @include('partials.shared.page-transitions')
     <div class="public-page" style="background-color: @yield('page-bg', '#fff');display: flex;flex-direction: column;row-gap: 0px;align-items: stretch;justify-content: flex-start;width: 100%;min-height: 100vh;position: relative;">
       @include('partials.public.header')
 
-      @yield('content')
-      @include('partials.public.footer')
+      <div class="peso-page-transition peso-page-transition--public">
+        @yield('content')
+        @include('partials.public.footer')
+      </div>
     </div>
 
     @include('partials.public.scripts')

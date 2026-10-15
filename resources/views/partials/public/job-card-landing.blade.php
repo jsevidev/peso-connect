@@ -5,14 +5,9 @@
 @endphp
 
 <article class="public-landing-job-card">
-  <div class="public-landing-job-card__head">
-    <div class="public-landing-job-card__logo">
-      <img src="https://placehold.co/48x48?text=company-logo" alt="{{ $job['company'] }} logo" width="48" height="48">
-    </div>
-    <div class="public-landing-job-card__meta">
-      <h3 class="public-landing-job-card__title">{{ $job['title'] }}</h3>
-      <p class="public-landing-job-card__company">{{ $job['company'] }}</p>
-    </div>
+  <div class="public-landing-job-card__meta">
+    <h3 class="public-landing-job-card__title">{{ $job['title'] }}</h3>
+    <p class="public-landing-job-card__company">{{ $job['company'] }}</p>
   </div>
 
   <div class="public-landing-job-card__details">

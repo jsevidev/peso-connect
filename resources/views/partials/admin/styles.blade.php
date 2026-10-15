@@ -105,9 +105,6 @@ svg {
 
 /* Admin layout */
 .admin-body { margin: 0; background: #f4f6f9; }
-.turbo-progress-bar {
-  display: none;
-}
 .admin-sidebar {
   contain: layout style paint;
 }

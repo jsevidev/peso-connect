@@ -8,10 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     @include('partials.admin.styles')
+    @include('partials.shared.page-transitions-styles')
     @stack('styles')
   </head>
   <body class="admin-login-body">
-    @yield('content')
+    @include('partials.shared.page-transitions')
+    <div class="peso-page-transition">
+      @yield('content')
+    </div>
     @include('partials.admin.confirm-dialog')
     @include('partials.admin.scripts')
     @stack('scripts')

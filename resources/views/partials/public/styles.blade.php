@@ -50,10 +50,6 @@ html, body {
   overflow-x: hidden;
 }
 
-.turbo-progress-bar {
-  display: none;
-}
-
 #public-header {
   contain: layout style paint;
 }
@@ -306,32 +302,8 @@ html, body {
   filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.02));
 }
 
-.public-landing-job-card__head {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-}
-
-.public-landing-job-card__logo {
-  overflow: hidden;
-  border-radius: 12px;
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.public-landing-job-card__logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 .public-landing-job-card__meta {
-  min-width: 0;
-  flex: 1;
+  width: 100%;
 }
 
 .public-landing-job-card__title {

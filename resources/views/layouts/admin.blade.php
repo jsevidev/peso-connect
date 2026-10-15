@@ -12,15 +12,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     @include('partials.shared.turbo')
     @include('partials.admin.styles')
+    @include('partials.shared.page-transitions-styles')
     @stack('styles')
   </head>
   <body class="admin-body">
+    @include('partials.shared.page-transitions')
     <div class="admin-shell">
       @include('partials.admin.sidebar')
 
       <div class="admin-main">
         @include('partials.admin.topbar')
-        <div class="admin-content">
+        <div class="admin-content peso-page-transition">
           @include('partials.admin.flash-status')
           @yield('content')
         </div>
