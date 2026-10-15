@@ -128,62 +128,127 @@
     }
 
     function fieldLabelFor(el) {
+      var text = '';
       if (el.labels && el.labels.length) {
-        return el.labels[0].textContent.replace(/\s+/g, ' ').trim();
+        text = el.labels[0].textContent;
+      } else {
+        var labelledBy = el.getAttribute('aria-labelledby');
+        if (labelledBy) {
+          var labelEl = document.getElementById(labelledBy);
+          if (labelEl) text = labelEl.textContent;
+        }
       }
-      var labelledBy = el.getAttribute('aria-labelledby');
-      if (labelledBy) {
-        var labelEl = document.getElementById(labelledBy);
-        if (labelEl) return labelEl.textContent.replace(/\s+/g, ' ').trim();
-      }
+      text = (text || '').replace(/\s+/g, ' ').trim().replace(/\s*\*\s*$/, '');
+      if (text) return text;
       return el.getAttribute('placeholder') || el.name || el.id || 'Field';
+    }
+
+    function friendlyValidationMessage(el) {
+      var tag = (el.tagName || '').toLowerCase();
+      var type = (el.getAttribute('type') || '').toLowerCase();
+
+      if (tag === 'select') {
+        return 'Please select an option from the list.';
+      }
+      if (type === 'checkbox') {
+        return 'Please check this box to continue.';
+      }
+      if (type === 'email') {
+        return 'Please enter a valid email address.';
+      }
+      if (type === 'tel') {
+        return 'Please enter a valid phone number.';
+      }
+      if (type === 'date') {
+        return 'Please choose a date.';
+      }
+      if (type === 'file') {
+        return 'Please choose a file to upload.';
+      }
+      if (el.validity && el.validity.valueMissing) {
+        return 'This field is required.';
+      }
+      if (el.validity && el.validity.typeMismatch) {
+        return 'The value entered is not in the correct format.';
+      }
+      return el.validationMessage || 'This field is required.';
+    }
+
+    function shouldUsePesoValidationPopup(form) {
+      if (!(form instanceof HTMLFormElement)) return false;
+      if (form.getAttribute('data-skip-validation-popup') === 'true') return false;
+      var method = (form.getAttribute('method') || 'get').toLowerCase();
+      return method !== 'get';
+    }
+
+    function syncPostFormsNovalidate() {
+      document.querySelectorAll('form').forEach(function (form) {
+        if (!shouldUsePesoValidationPopup(form)) return;
+        form.setAttribute('novalidate', 'novalidate');
+      });
+    }
+
+    function clearFieldInvalidIfValid(el) {
+      if (!el || !el.classList || !el.classList.contains('peso-field-invalid')) return;
+      if (typeof el.checkValidity === 'function' && el.checkValidity()) {
+        el.classList.remove('peso-field-invalid');
+        el.removeAttribute('aria-invalid');
+      }
+    }
+
+    function showPesoFormValidationPopup(form) {
+      var invalidEls = form.querySelectorAll(':invalid');
+      if (!invalidEls.length) return;
+
+      var items = [];
+      var fields = [];
+
+      invalidEls.forEach(function (el) {
+        if (el.name) fields.push(el.name);
+        var label = fieldLabelFor(el);
+        items.push(label + ': ' + friendlyValidationMessage(el));
+      });
+
+      markPesoFieldInvalid(fields);
+
+      window.PesoAlert.show({
+        type: 'warning',
+        title: 'Please complete the form',
+        message: 'Some required fields are missing or invalid.',
+        items: items.slice(0, 10),
+        ok: 'Got it',
+      }).then(function () {
+        invalidEls[0].focus();
+      });
     }
 
     function bindPesoFormValidation() {
       if (window.__pesoFormValidationBound) return;
       window.__pesoFormValidationBound = true;
 
-      document.addEventListener('input', function (event) {
+      document.addEventListener('invalid', function (event) {
         var el = event.target;
-        if (!el.classList || !el.classList.contains('peso-field-invalid')) return;
-        if (typeof el.checkValidity === 'function' && el.checkValidity()) {
-          el.classList.remove('peso-field-invalid');
-          el.removeAttribute('aria-invalid');
-        }
+        if (!el || !el.form || !shouldUsePesoValidationPopup(el.form)) return;
+        event.preventDefault();
+      }, true);
+
+      document.addEventListener('input', function (event) {
+        clearFieldInvalidIfValid(event.target);
+      });
+
+      document.addEventListener('change', function (event) {
+        clearFieldInvalidIfValid(event.target);
       });
 
       document.addEventListener('submit', function (event) {
         var form = event.target;
-        if (!(form instanceof HTMLFormElement)) return;
-        if (form.method && form.method.toLowerCase() === 'get') return;
-        if (form.getAttribute('data-skip-validation-popup') === 'true') return;
+        if (!shouldUsePesoValidationPopup(form)) return;
 
         if (form.checkValidity()) return;
 
         event.preventDefault();
-        event.stopPropagation();
-
-        var invalidEls = form.querySelectorAll(':invalid');
-        var items = [];
-        var fields = [];
-
-        invalidEls.forEach(function (el) {
-          if (el.name) fields.push(el.name);
-          var msg = el.validationMessage || 'This field is required.';
-          items.push(fieldLabelFor(el) + ': ' + msg);
-        });
-
-        markPesoFieldInvalid(fields);
-
-        window.PesoAlert.show({
-          type: 'warning',
-          title: 'Please complete the form',
-          message: 'Some required fields are missing or invalid.',
-          items: items.slice(0, 10),
-          ok: 'Got it',
-        }).then(function () {
-          if (invalidEls.length) invalidEls[0].focus();
-        });
+        event.stopImmediatePropagation();
+        showPesoFormValidationPopup(form);
       }, true);
     }
 
@@ -227,6 +292,7 @@
 
     function bootPesoFeedback() {
       bindPesoFormValidation();
+      syncPostFormsNovalidate();
       bootPesoFlash();
     }
 
