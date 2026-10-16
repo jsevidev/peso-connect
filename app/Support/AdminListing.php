@@ -147,6 +147,9 @@ class AdminListing
             'employer' => $referral->employer,
             'date' => $referral->created_at->format('M j, Y'),
             'status' => $referral->status,
+            'applicant_id' => $referral->applicant_id,
+            'employer_id' => $referral->employer_id,
+            'from_submission' => (bool) $referral->applicant_id,
         ];
     }
 

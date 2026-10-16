@@ -31,9 +31,9 @@ class ReferralLetter
 
         $profile = self::profileFromSources($referral, $applicant, $overrides);
 
-        $recipientName = $overrides['recipient_name']
+        $recipientName = $employer?->contact_person
+            ?? $overrides['recipient_name']
             ?? $referral?->recipient_name
-            ?? $employer?->contact_person
             ?? '';
 
         $company = $overrides['employer']
@@ -52,16 +52,20 @@ class ReferralLetter
             ?? $referral?->job_title
             ?? '';
 
-        $candidateName = $overrides['name']
+        $candidateName = $profile['name']
+            ?? $overrides['name']
             ?? $overrides['candidate_name']
             ?? $referral?->fullname
-            ?? $profile['name']
             ?? '';
 
         $gender = $profile['gender'] ?? null;
         $date = self::parseDate($overrides['letter_date'] ?? $referral?->created_at ?? now());
 
         return [
+            'referral_id' => $referral?->id,
+            'applicant_id' => $referral?->applicant_id,
+            'employer_id' => $referral?->employer_id ?? $employer?->id,
+            'from_submission' => (bool) $referral?->applicant_id,
             'date_display' => $date->format('d F Y'),
             'recipient_name' => strtoupper(trim($recipientName)),
             'recipient_title' => $overrides['recipient_title'] ?? 'Manager',
@@ -78,6 +82,8 @@ class ReferralLetter
             'email' => $profile['email'] ?? '—',
             'education' => $profile['education'] ?? '—',
             'skills' => $profile['skills'] ?? '—',
+            'gender' => $gender,
+            'birth_date' => $profile['birth_date'] ?? null,
             'signatory_name' => $config['signatory']['name'],
             'signatory_title' => $config['signatory']['title'],
             'footer' => $config['footer'],
@@ -96,22 +102,39 @@ class ReferralLetter
      */
     private static function profileFromSources(?Referral $referral, ?Applicant $applicant, array $overrides): array
     {
+        if ($applicant) {
+            return [
+                'name' => $applicant->fullname,
+                'gender' => $applicant->gender,
+                'birth_date' => $applicant->date_of_birth?->format('Y-m-d'),
+                'born' => self::formatBorn($applicant->date_of_birth),
+                'address' => $applicant->address,
+                'phone' => $applicant->contact_number,
+                'email' => $applicant->email_address,
+                'education' => $applicant->education,
+                'skills' => $applicant->skills,
+            ];
+        }
+
         $stored = is_array($referral?->candidate_profile) ? $referral->candidate_profile : [];
 
-        $name = $overrides['name'] ?? $applicant?->fullname ?? $stored['name'] ?? $referral?->fullname ?? '';
-        $gender = $overrides['gender'] ?? $applicant?->gender ?? $stored['gender'] ?? null;
+        $name = $overrides['name'] ?? $stored['name'] ?? $referral?->fullname ?? '';
+        $gender = $overrides['gender'] ?? $stored['gender'] ?? null;
 
-        $birth = $overrides['birth_date'] ?? $applicant?->date_of_birth ?? $stored['birth_date'] ?? null;
+        $birth = $overrides['birth_date'] ?? $stored['birth_date'] ?? null;
 
         return [
             'name' => $name,
             'gender' => $gender,
+            'birth_date' => $birth instanceof \DateTimeInterface
+                ? $birth->format('Y-m-d')
+                : (is_string($birth) && $birth !== '' ? $birth : null),
             'born' => self::formatBorn($birth),
-            'address' => $overrides['address'] ?? $applicant?->address ?? $stored['address'] ?? null,
-            'phone' => $overrides['phone'] ?? $applicant?->contact_number ?? $stored['phone'] ?? null,
-            'email' => $overrides['email'] ?? $applicant?->email_address ?? $stored['email'] ?? null,
-            'education' => $overrides['education'] ?? $applicant?->education ?? $stored['education'] ?? null,
-            'skills' => $overrides['skills'] ?? $applicant?->skills ?? $stored['skills'] ?? null,
+            'address' => $overrides['address'] ?? $stored['address'] ?? null,
+            'phone' => $overrides['phone'] ?? $stored['phone'] ?? null,
+            'email' => $overrides['email'] ?? $stored['email'] ?? null,
+            'education' => $overrides['education'] ?? $stored['education'] ?? null,
+            'skills' => $overrides['skills'] ?? $stored['skills'] ?? null,
         ];
     }
 

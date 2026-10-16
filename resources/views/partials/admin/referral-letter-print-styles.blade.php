@@ -113,8 +113,27 @@
     color: #475569;
     margin: 10px 0 4px;
   }
+  .peso-official-referral-letter__field-note {
+    margin: 0 0 8px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #64748b;
+    font-style: italic;
+  }
 
   @media print {
+    @page {
+      size: letter;
+      margin: 0.32in 0.45in;
+    }
+
+    html, body {
+      height: auto !important;
+      overflow: hidden !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
     body.peso-print-referral-letter * {
       visibility: hidden !important;
     }
@@ -126,10 +145,63 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 100%;
+      width: calc(100% / var(--peso-letter-print-scale, 1));
       border: none;
-      padding: 0.4in 0.55in;
+      border-radius: 0;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      transform: scale(var(--peso-letter-print-scale, 1));
+      transform-origin: top left;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      overflow: hidden;
     }
+
+    body.peso-print-referral-letter .peso-official-referral-letter {
+      font-size: 11px;
+      line-height: 1.32;
+      padding: 0;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__letterhead {
+      margin-bottom: 6px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__logo-slot {
+      width: 52px;
+      height: 52px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__gov {
+      font-size: 9px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__office {
+      font-size: 11px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__office-sub {
+      font-size: 9px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__title {
+      font-size: 13px;
+      margin: 8px 0 10px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__body p {
+      margin-bottom: 5px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__profile {
+      margin: 5px 0 8px 16px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__profile li {
+      margin-bottom: 2px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__signatory {
+      margin-top: 10px;
+    }
+    body.peso-print-referral-letter .peso-official-referral-letter__footer {
+      margin-top: 10px;
+      padding-top: 6px;
+      font-size: 8.5px;
+      gap: 4px 10px;
+    }
+
     body.peso-print-referral-letter .admin-modal-backdrop.is-open {
       position: static !important;
       background: transparent !important;

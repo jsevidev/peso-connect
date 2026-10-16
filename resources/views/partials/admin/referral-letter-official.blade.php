@@ -71,7 +71,9 @@
 
     <div class="peso-official-referral-letter__address-block">
       @if ($isForm)
-        <input class="peso-official-referral-letter__input peso-official-referral-letter__input--block" type="text" name="recipient_name" id="referral_recipient_name" placeholder="Recipient name (e.g. hiring manager)" value="{{ old('recipient_name') }}">
+        <input type="hidden" name="recipient_name" id="referral_recipient_name" value="{{ old('recipient_name') }}">
+        <p data-letter-field="recipient_name" id="referral_recipient_name_display" class="peso-official-referral-letter__recipient-name">—</p>
+        <p class="peso-official-referral-letter__field-note">Filled from the selected employer’s contact person. Update it under Employer Management if needed.</p>
       @else
         <p data-letter-field="recipient_name" class="peso-official-referral-letter__recipient-name">{{ $letter['recipient_name'] }}</p>
       @endif

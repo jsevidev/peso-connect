@@ -88,13 +88,37 @@
         if (!employerSelect) return;
         var option = employerSelect.options[employerSelect.selectedIndex];
         if (!option || !option.value) return;
-        if (companyMirror) companyMirror.textContent = option.getAttribute('data-name') || option.textContent.trim();
-        if (recipientInput && !recipientInput.value.trim()) {
-          recipientInput.value = option.getAttribute('data-contact') || '';
+
+        var companyName = option.getAttribute('data-name') || option.textContent.trim();
+        var contactPerson = (option.getAttribute('data-contact') || '').trim();
+        var address = option.getAttribute('data-address') || '';
+
+        if (companyMirror) companyMirror.textContent = companyName || 'Company name';
+
+        if (recipientInput) recipientInput.value = contactPerson;
+
+        var recipientDisplay = document.getElementById('referral_recipient_name_display');
+        if (recipientDisplay) {
+          recipientDisplay.textContent = contactPerson ? contactPerson.toUpperCase() : '—';
         }
-        if (cityInput && !cityInput.value.trim()) {
-          var address = option.getAttribute('data-address') || '';
-          if (/ozamiz\s*city/i.test(address)) cityInput.value = 'Ozamiz City';
+
+        if (cityInput) {
+          if (/ozamiz\s*city/i.test(address)) {
+            cityInput.value = 'Ozamiz City';
+          } else if (address) {
+            var parts = address.split(',').map(function (part) { return part.trim(); }).filter(Boolean);
+            cityInput.value = parts.length ? parts[parts.length - 1] : cityInput.value;
+          }
+        }
+
+        var root = document.querySelector('#form-create-referral [data-letter-root]');
+        if (root) {
+          var letterRecipient = root.querySelector('[data-letter-field="recipient_name"]');
+          if (letterRecipient) {
+            letterRecipient.textContent = contactPerson ? contactPerson.toUpperCase() : '—';
+          }
+          var letterCompany = root.querySelector('[data-letter-field="company"]');
+          if (letterCompany && companyName) letterCompany.textContent = companyName;
         }
       }
 
@@ -128,24 +152,79 @@
       syncCreateReferralLetterPreview();
     }
 
+    window.prepareReferralLetterPrintFit = function () {
+      var letter = document.querySelector('body.peso-print-referral-letter [data-letter-root]');
+      if (!letter) return function () {};
+
+      letter.style.removeProperty('--peso-letter-print-scale');
+      var pageHeightPx = 10 * 96 - 0.64 * 96;
+      var contentHeight = letter.scrollHeight;
+      if (contentHeight > pageHeightPx && contentHeight > 0) {
+        var scale = pageHeightPx / contentHeight;
+        letter.style.setProperty('--peso-letter-print-scale', String(Math.max(0.72, scale)));
+      }
+
+      return function resetReferralLetterPrintFit() {
+        letter.style.removeProperty('--peso-letter-print-scale');
+      };
+    };
+
     window.populateCreateReferralModal = function (data) {
-      var nameInput = document.getElementById('referral_name');
-      if (data.name && nameInput) nameInput.value = data.name;
+      data = data || {};
+
+      var setValue = function (id, value) {
+        var el = document.getElementById(id);
+        if (!el || value === undefined || value === null || value === '' || value === '—') return;
+        el.value = value;
+      };
+
+      setValue('referral_name', data.name || data.candidate_name);
+      setValue('referral_birth_date', data.birth_date);
+      setValue('referral_address', data.address);
+      setValue('referral_phone', data.phone);
+      setValue('referral_email', data.email);
+      setValue('referral_education', data.education);
+      setValue('referral_skills', data.skills);
+      setValue('referral_recipient_city', data.city);
+      setValue('referral_gender', data.gender);
 
       var employerSelect = document.getElementById('referral_employer_id');
       var jobSelect = document.getElementById('referral_job');
+      var applicantSelect = document.getElementById('referral_applicant_id');
 
       if (employerSelect && data.employerId) {
-        employerSelect.value = data.employerId;
-      } else if (employerSelect && data.employer) {
+        employerSelect.value = String(data.employerId);
+      } else if (employerSelect && data.employer && data.employer !== 'Pending Assignment') {
         Array.prototype.forEach.call(employerSelect.options, function (option) {
-          if (option.textContent.trim() === data.employer) option.selected = true;
+          if (option.textContent.trim() === data.employer || option.getAttribute('data-name') === data.employer) {
+            option.selected = true;
+          }
         });
       }
 
-      if (jobSelect && data.job) jobSelect.value = data.job;
+      var jobTitle = data.job || data.position;
+      if (jobSelect && jobTitle) {
+        jobSelect.value = jobTitle;
+        if (jobSelect.value !== jobTitle) {
+          Array.prototype.forEach.call(jobSelect.options, function (option) {
+            if (option.textContent.trim() === jobTitle) option.selected = true;
+          });
+        }
+      }
+
+      var applicantId = data.applicant_id || data.applicantId;
+      if (applicantSelect && applicantId) {
+        applicantSelect.value = String(applicantId);
+      }
 
       if (employerSelect) employerSelect.dispatchEvent(new Event('change'));
+      if (applicantSelect && applicantId) applicantSelect.dispatchEvent(new Event('change'));
+
+      var createRoot = document.querySelector('#form-create-referral [data-letter-root]');
+      if (createRoot && window.renderOfficialReferralLetter && data.candidate_display) {
+        window.renderOfficialReferralLetter(createRoot, data);
+      }
+
       syncCreateReferralLetterPreview();
     };
 

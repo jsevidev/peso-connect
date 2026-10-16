@@ -63,6 +63,10 @@
         var letterRoot = modal.querySelector('[data-letter-root]');
         window.fetchReferralLetter(trigger.dataset.itemId)
           .then(function (data) {
+            window.__lastReferralLetterPayload = data;
+            if (modal) {
+              modal.dataset.referralId = data.referral_id ? String(data.referral_id) : (trigger.dataset.itemId || '');
+            }
             if (letterRoot && window.renderOfficialReferralLetter) {
               window.renderOfficialReferralLetter(letterRoot, data);
             }
@@ -221,8 +225,13 @@
               if (window.renderOfficialReferralLetter && letterRoot) {
                 window.renderOfficialReferralLetter(letterRoot, data);
               }
+              window.__lastReferralLetterPayload = data;
               document.body.classList.add('peso-print-referral-letter');
+              var resetPrintFit = window.prepareReferralLetterPrintFit
+                ? window.prepareReferralLetterPrintFit()
+                : function () {};
               window.print();
+              resetPrintFit();
               document.body.classList.remove('peso-print-referral-letter');
               host.hidden = true;
               host.innerHTML = '';
@@ -233,8 +242,12 @@
         var printTrigger = event.target.closest('[data-admin-print]');
         if (printTrigger) {
           document.body.classList.add('peso-print-referral-letter');
+          var resetPreviewPrintFit = window.prepareReferralLetterPrintFit
+            ? window.prepareReferralLetterPrintFit()
+            : function () {};
           window.print();
           window.addEventListener('afterprint', function cleanupPrintClass() {
+            resetPreviewPrintFit();
             document.body.classList.remove('peso-print-referral-letter');
             window.removeEventListener('afterprint', cleanupPrintClass);
           });
@@ -246,11 +259,7 @@
           var preview = document.getElementById('modal-referral-preview');
           if (!preview) return;
 
-          var data = {
-            name: preview.querySelector('[data-modal-field="name"]')?.textContent || '',
-            job: preview.querySelector('[data-modal-field="job"]')?.textContent || '',
-            employer: preview.querySelector('[data-modal-field="employer"]')?.textContent || '',
-          };
+          var data = window.__lastReferralLetterPayload || {};
 
           closeModal(preview);
 

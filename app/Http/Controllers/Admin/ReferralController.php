@@ -42,6 +42,8 @@ class ReferralController extends Controller
 
     public function letter(Referral $referral): JsonResponse
     {
+        $referral->load(['applicant', 'employerRecord']);
+
         return response()->json(ReferralLetter::fromReferral($referral));
     }
 
@@ -89,7 +91,7 @@ class ReferralController extends Controller
             'fullname' => $validated['name'],
             'job_title' => $validated['job'],
             'employer' => $employer->name,
-            'recipient_name' => $validated['recipient_name'] ?? $employer->contact_person,
+            'recipient_name' => $employer->contact_person ?: ($validated['recipient_name'] ?? null),
             'recipient_city' => $validated['recipient_city'] ?? null,
             'candidate_profile' => $candidateProfile,
             'status' => 'Pending Review',

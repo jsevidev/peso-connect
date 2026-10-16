@@ -72,6 +72,32 @@ foreach ($updates as $key => $value) {
 file_put_contents($path, rtrim($contents).PHP_EOL);
 PHP
 
+echo "Waiting for Postgres to accept connections..."
+attempt=1
+max_attempts=36
+while [ "$attempt" -le "$max_attempts" ]; do
+  if php <<'PHP'
+<?php
+require __DIR__.'/vendor/autoload.php';
+$app = require __DIR__.'/bootstrap/app.php';
+$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+$kernel->bootstrap();
+Illuminate\Support\Facades\DB::connection()->getPdo();
+PHP
+  then
+    echo "Postgres is ready."
+    break
+  fi
+  echo "Postgres unavailable (attempt ${attempt}/${max_attempts}), retrying in 10s..."
+  sleep 10
+  attempt=$((attempt + 1))
+done
+
+if [ "$attempt" -gt "$max_attempts" ]; then
+  echo "ERROR: Postgres did not become ready in time (common during DB instance upgrades — wait for DB status Available, then redeploy)."
+  exit 1
+fi
+
 echo "Running migrations against Postgres..."
 php artisan migrate --force --no-interaction
 php artisan migrate:status --no-interaction || true
