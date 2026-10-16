@@ -157,11 +157,11 @@
       if (!letter) return function () {};
 
       letter.style.removeProperty('--peso-letter-print-scale');
-      var pageHeightPx = 10 * 96 - 0.64 * 96;
+      var pageHeightPx = 10 * 96 - 0.56 * 96;
       var contentHeight = letter.scrollHeight;
       if (contentHeight > pageHeightPx && contentHeight > 0) {
         var scale = pageHeightPx / contentHeight;
-        letter.style.setProperty('--peso-letter-print-scale', String(Math.max(0.72, scale)));
+        letter.style.setProperty('--peso-letter-print-scale', String(Math.max(0.94, scale)));
       }
 
       return function resetReferralLetterPrintFit() {

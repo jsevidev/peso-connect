@@ -124,7 +124,7 @@
   @media print {
     @page {
       size: letter;
-      margin: 0.32in 0.45in;
+      margin: 0.28in 0.4in;
     }
 
     html, body {
@@ -159,47 +159,47 @@
     }
 
     body.peso-print-referral-letter .peso-official-referral-letter {
-      font-size: 11px;
-      line-height: 1.32;
+      font-size: 13px;
+      line-height: 1.4;
       padding: 0;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__letterhead {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__logo-slot {
-      width: 52px;
-      height: 52px;
+      width: 64px;
+      height: 64px;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__gov {
-      font-size: 9px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__office {
       font-size: 11px;
     }
+    body.peso-print-referral-letter .peso-official-referral-letter__office {
+      font-size: 13px;
+    }
     body.peso-print-referral-letter .peso-official-referral-letter__office-sub {
-      font-size: 9px;
+      font-size: 11px;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__title {
-      font-size: 13px;
-      margin: 8px 0 10px;
+      font-size: 16px;
+      margin: 10px 0 12px;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__body p {
-      margin-bottom: 5px;
+      margin-bottom: 7px;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__profile {
-      margin: 5px 0 8px 16px;
+      margin: 6px 0 10px 18px;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__profile li {
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__signatory {
-      margin-top: 10px;
+      margin-top: 14px;
     }
     body.peso-print-referral-letter .peso-official-referral-letter__footer {
-      margin-top: 10px;
-      padding-top: 6px;
-      font-size: 8.5px;
-      gap: 4px 10px;
+      margin-top: 14px;
+      padding-top: 8px;
+      font-size: 10px;
+      gap: 6px 14px;
     }
 
     body.peso-print-referral-letter .admin-modal-backdrop.is-open {
