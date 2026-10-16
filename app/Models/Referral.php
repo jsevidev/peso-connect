@@ -15,8 +15,18 @@ class Referral extends Model
         'fullname',
         'job_title',
         'employer',
+        'recipient_name',
+        'recipient_city',
+        'candidate_profile',
         'status',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'candidate_profile' => 'array',
+        ];
+    }
 
     protected static function booted(): void
     {

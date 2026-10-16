@@ -59,11 +59,24 @@
         renderReadOnlySkillTags(modal.querySelector('#enlistee-details-skills'), trigger.dataset.skills);
       }
 
-      if (modal.id === 'modal-referral-preview') {
-        var subject = modal.querySelector('[data-modal-field="subject"]');
-        if (subject && trigger.dataset.name) {
-          subject.textContent = 'Subject: Endorsement of ' + trigger.dataset.name;
-        }
+      if (modal.id === 'modal-referral-preview' && trigger.dataset.itemId && window.fetchReferralLetter) {
+        var letterRoot = modal.querySelector('[data-letter-root]');
+        window.fetchReferralLetter(trigger.dataset.itemId)
+          .then(function (data) {
+            if (letterRoot && window.renderOfficialReferralLetter) {
+              window.renderOfficialReferralLetter(letterRoot, data);
+            }
+          })
+          .catch(function () {
+            if (letterRoot && window.renderOfficialReferralLetter) {
+              window.renderOfficialReferralLetter(letterRoot, {
+                candidate_display: trigger.dataset.name || '—',
+                company: trigger.dataset.employer || '—',
+                position: trigger.dataset.job || '—',
+                date_display: trigger.dataset.date || '—',
+              });
+            }
+          });
       }
 
       if (modal.id === 'modal-edit-announcement') {
@@ -194,9 +207,37 @@
           return;
         }
 
+        var printReferralTrigger = event.target.closest('[data-admin-print-referral]');
+        if (printReferralTrigger && printReferralTrigger.dataset.itemId && window.fetchReferralLetter) {
+          var host = document.getElementById('referral-print-host');
+          var template = document.querySelector('#referral-preview-letter-host [data-letter-root]');
+          if (!host || !template) return;
+          window.fetchReferralLetter(printReferralTrigger.dataset.itemId)
+            .then(function (data) {
+              host.hidden = false;
+              host.innerHTML = '';
+              host.appendChild(template.cloneNode(true));
+              var letterRoot = host.querySelector('[data-letter-root]');
+              if (window.renderOfficialReferralLetter && letterRoot) {
+                window.renderOfficialReferralLetter(letterRoot, data);
+              }
+              document.body.classList.add('peso-print-referral-letter');
+              window.print();
+              document.body.classList.remove('peso-print-referral-letter');
+              host.hidden = true;
+              host.innerHTML = '';
+            });
+          return;
+        }
+
         var printTrigger = event.target.closest('[data-admin-print]');
         if (printTrigger) {
+          document.body.classList.add('peso-print-referral-letter');
           window.print();
+          window.addEventListener('afterprint', function cleanupPrintClass() {
+            document.body.classList.remove('peso-print-referral-letter');
+            window.removeEventListener('afterprint', cleanupPrintClass);
+          });
           return;
         }
 

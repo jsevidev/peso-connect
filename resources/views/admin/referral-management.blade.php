@@ -104,7 +104,7 @@
               <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M8.667 4.667L4.667 8.667M4.667 4.667L8.667 8.667M13.334 6.667C13.334 10.349 10.349 13.334 6.667 13.334 2.985 13.334 0 10.349 0 6.667 0 2.985 2.985 0 6.667 0 10.349 0 13.334 2.985 13.334 6.667Z" transform="translate(1.15 1.15)" stroke="#404d66" stroke-width="2" stroke-linecap="round"/></svg>
             </button>
           </form>
-          <button type="button" class="admin-icon-btn admin-icon-btn--neutral" title="Print referral" aria-label="Print referral" data-admin-print>
+          <button type="button" class="admin-icon-btn admin-icon-btn--neutral" title="Print referral" aria-label="Print referral" data-admin-print-referral data-item-id="{{ $referral['id'] }}">
             <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.667 10.668H1.333C0.98 10.668 0.641 10.527 0.391 10.277 0.141 10.027 0 9.688 0 9.334V6.001C0 5.647 0.141 5.308 0.391 5.058 0.641 4.808 0.98 4.668 1.333 4.668H12.001C12.355 4.668 12.694 4.808 12.944 5.058 13.194 5.308 13.334 5.647 13.334 6.001V9.334C13.334 9.688 13.194 10.027 12.944 10.277 12.694 10.527 12.355 10.668 12.001 10.668H10.668M2.667 4.668V0.667C2.667 0.49 2.737 0.32 2.862 0.195 2.987 0.07 3.157 0 3.334 0H10.001C10.178 0 10.347 0.07 10.472 0.195 10.597 0.32 10.668 0.49 10.668 0.667V4.668M3.334 8.001H10.001C10.369 8.001 10.668 8.299 10.668 8.667V12.668C10.668 13.036 10.369 13.334 10.001 13.334H3.334C2.965 13.334 2.667 13.036 2.667 12.668V8.667C2.667 8.299 2.965 8.001 3.334 8.001Z" transform="translate(1.15 1.15)" stroke="#404d66" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
           <button type="button" class="admin-icon-btn admin-icon-btn--neutral" title="Preview referral" aria-label="Preview referral"
@@ -134,7 +134,13 @@
 ])
 @endsection
 
+<div id="referral-print-host" hidden aria-hidden="true"></div>
+
 @push('modals')
-  @include('partials.admin.modals.create-referral-letter')
+  @include('partials.admin.modals.create-referral-letter', [
+    'employers' => $employers,
+    'enlistees' => $enlistees,
+    'jobOptions' => $jobOptions,
+  ])
   @include('partials.admin.modals.referral-preview')
 @endpush

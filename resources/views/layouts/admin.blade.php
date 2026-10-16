@@ -14,6 +14,7 @@
     @include('partials.admin.styles')
     @include('partials.shared.page-transitions-styles')
     @include('partials.shared.feedback-styles')
+    @include('partials.admin.referral-letter-print-styles')
     @stack('styles')
   </head>
   <body class="admin-body">

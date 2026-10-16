@@ -114,6 +114,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/enlistees/delete', [ApplicantController::class, 'destroy'])->name('enlistees.delete');
 
         Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
+        Route::get('/referrals/{referral}/letter', [ReferralController::class, 'letter'])->name('referrals.letter');
         Route::post('/referrals', [ReferralController::class, 'store'])->name('referrals.store');
         Route::post('/referrals/approve', [ReferralController::class, 'approve'])->name('referrals.approve');
         Route::post('/referrals/deny', [ReferralController::class, 'deny'])->name('referrals.deny');
