@@ -12,8 +12,10 @@
       </div>
       <p class="admin-referral-preview__desc">Review the official referral letter before approving or printing.</p>
 
-      <div id="referral-preview-letter-host">
-        @include('partials.admin.referral-letter-official', ['letterMode' => 'view'])
+      <div class="admin-referral-preview__scroll">
+        <div id="referral-preview-letter-host">
+          @include('partials.admin.referral-letter-official', ['letterMode' => 'view'])
+        </div>
       </div>
 
       <div class="admin-referral-preview__actions">

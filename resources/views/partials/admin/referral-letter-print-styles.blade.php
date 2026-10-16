@@ -114,9 +114,6 @@
     margin: 10px 0 4px;
   }
 
-  .admin-modal--referral-letter,
-  .admin-modal--referral-preview { max-width: 820px; }
-
   @media print {
     body.peso-print-referral-letter * {
       visibility: hidden !important;

@@ -423,11 +423,21 @@ svg {
 }
 .admin-icon-btn--neutral { background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; }
 .admin-btn--create { border-radius: 8px; padding: 10px 16px; gap: 8px; }
-.admin-modal--referral-letter { max-width: 640px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08); }
-.admin-modal--referral-preview { max-width: 640px; padding: 0; background: transparent; box-shadow: none; overflow: visible; }
+.admin-modal--referral-letter {
+  max-width: 820px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  max-height: min(92dvh, calc(100vh - 32px));
+}
+.admin-modal--referral-preview {
+  max-width: 820px; max-height: min(92dvh, calc(100vh - 32px));
+  padding: 0; background: transparent; box-shadow: none; overflow: hidden;
+  display: flex; flex-direction: column; min-height: 0;
+}
+.admin-modal--referral-preview > .admin-referral-preview {
+  flex: 1 1 auto; min-height: 0;
+}
 .admin-referral-letter-modal__header {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
-  padding: 24px 28px 16px; border-bottom: none;
+  padding: 20px 24px 12px; border-bottom: 1px solid #e2e8f0; flex-shrink: 0;
 }
 .admin-referral-letter-modal__title {
   font-size: 18px; font-weight: 700; color: #1b2538; font-family: Inter, system-ui, sans-serif; margin: 0;
@@ -435,9 +445,14 @@ svg {
 .admin-referral-letter-modal__subtitle {
   font-size: 14px; line-height: 1.45; color: #667385; margin-top: 6px; font-family: Inter, system-ui, sans-serif;
 }
-.admin-referral-letter-modal__body { padding: 0 24px 22px; }
+.admin-referral-letter-modal__body {
+  padding: 16px 24px 20px;
+  flex: 1 1 auto; min-height: 0; overflow-x: hidden; overflow-y: auto;
+  overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+}
 .admin-referral-letter-modal__footer {
-  display: flex; justify-content: flex-end; gap: 12px; padding: 16px 28px 20px;
+  display: flex; justify-content: flex-end; gap: 12px; padding: 14px 24px 18px;
+  border-top: 1px solid #e2e8f0; background: #f8fafc; flex-shrink: 0;
 }
 .admin-referral-letter {
   border-radius: 12px; background: #f4f6f9; padding: 20px 24px;
@@ -583,10 +598,18 @@ svg {
 
 .admin-referral-preview {
   background: #fff; border: 1px solid #e2e8f0; border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(27, 58, 107, 0.06); padding: 24px 24px 0; width: 100%;
+  box-shadow: 0 4px 16px rgba(27, 58, 107, 0.06); width: 100%;
+  display: flex; flex-direction: column; min-height: 0; max-height: 100%; overflow: hidden;
+  padding: 24px 0 0;
+}
+.admin-referral-preview__scroll {
+  flex: 1 1 auto; min-height: 0; overflow-x: hidden; overflow-y: auto;
+  overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  padding: 0 24px 8px;
 }
 .admin-referral-preview__header {
   display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px;
+  flex-shrink: 0; padding: 0 24px;
 }
 .admin-referral-preview__title-wrap {
   display: flex; align-items: center; gap: 8px;
@@ -600,9 +623,11 @@ svg {
 }
 .admin-referral-preview__desc {
   font-size: 13px; color: #5a6e85; margin: -8px 0 18px; font-family: Inter, system-ui, sans-serif; line-height: 1.5;
+  flex-shrink: 0; padding: 0 24px;
 }
 .admin-referral-preview__actions {
-  display: flex; flex-direction: column; gap: 10px; padding: 10px 0 24px;
+  display: flex; flex-direction: column; gap: 10px; padding: 10px 24px 24px;
+  flex-shrink: 0; border-top: 1px solid #e2e8f0; background: #f8fafc;
 }
 .admin-referral-preview__actions-row {
   display: flex; gap: 12px; width: 100%;
