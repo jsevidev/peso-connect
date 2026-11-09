@@ -19,11 +19,7 @@ class FtjsCertification
         $fullName = trim($certification?->fullname ?? $applicant?->fullname ?? '');
         $gender = $applicant?->gender ?? null;
 
-        $issuedAt = $certification?->updated_at
-            ?? $certification?->date_requested
-            ?? now();
-
-        $date = self::parseDate($issuedAt);
+        $issuedAt = now();
 
         return [
             'certification_id' => $certification?->id,
@@ -31,8 +27,7 @@ class FtjsCertification
             'confirm_name' => self::confirmName($fullName, $gender),
             'pronoun_subject' => self::pronounSubject($gender),
             'pronoun_object' => self::pronounObject($gender),
-            'certification_date_display' => $date->format('j F Y'),
-            'certification_date_short' => $date->format('n/j/Y'),
+            'certification_date_display' => $issuedAt->format('j F Y'),
             'city' => $config['default_city'],
             'contact_line' => $config['contact_line'],
             'signatory_name' => $config['signatory']['name'],

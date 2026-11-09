@@ -124,10 +124,6 @@
   'query' => request()->except('page'),
 ])
 
-<div id="ftjs-certification-print-host" hidden aria-hidden="true"></div>
-<div id="ftjs-certification-print-template" hidden aria-hidden="true">
-  @include('partials.admin.ftjs-certification-official')
-</div>
 @endsection
 
 @push('scripts')

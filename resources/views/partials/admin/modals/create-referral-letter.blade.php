@@ -1,7 +1,8 @@
 <div id="modal-create-referral" class="admin-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-create-referral-title">
   <div class="admin-modal admin-modal--referral-letter">
-    <form action="{{ route('admin.referrals.store') }}" method="POST" id="form-create-referral">
+    <form action="{{ route('admin.referrals.store') }}" method="POST" id="form-create-referral" data-store-url="{{ route('admin.referrals.store') }}">
       @csrf
+      <input type="hidden" name="referral_id" id="referral_edit_id" value="">
       <div class="admin-referral-letter-modal__header">
         <div>
           <h2 id="modal-create-referral-title" class="admin-referral-letter-modal__title">Create Referral Letter</h2>

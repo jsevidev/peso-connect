@@ -194,6 +194,9 @@
           var id = openTrigger.getAttribute('data-open-modal');
           var modal = document.getElementById(id);
           if (!modal) return;
+          if (id === 'modal-create-referral' && typeof window.resetReferralLetterFormMode === 'function') {
+            window.resetReferralLetterFormMode();
+          }
           populateModalFromTrigger(openTrigger, modal);
           openModal(id);
           return;
@@ -212,45 +215,21 @@
         }
 
         var printReferralTrigger = event.target.closest('[data-admin-print-referral]');
-        if (printReferralTrigger && printReferralTrigger.dataset.itemId && window.fetchReferralLetter) {
-          var host = document.getElementById('referral-print-host');
-          var template = document.querySelector('#referral-preview-letter-host [data-letter-root]');
-          if (!host || !template) return;
-          window.fetchReferralLetter(printReferralTrigger.dataset.itemId)
-            .then(function (data) {
-              host.hidden = false;
-              host.innerHTML = '';
-              host.appendChild(template.cloneNode(true));
-              var letterRoot = host.querySelector('[data-letter-root]');
-              if (window.renderOfficialReferralLetter && letterRoot) {
-                window.renderOfficialReferralLetter(letterRoot, data);
-              }
-              window.__lastReferralLetterPayload = data;
-              document.body.classList.add('peso-print-referral-letter');
-              var resetPrintFit = window.prepareReferralLetterPrintFit
-                ? window.prepareReferralLetterPrintFit()
-                : function () {};
-              window.print();
-              resetPrintFit();
-              document.body.classList.remove('peso-print-referral-letter');
-              host.hidden = true;
-              host.innerHTML = '';
-            });
+        if (printReferralTrigger && printReferralTrigger.dataset.itemId) {
+          event.preventDefault();
+          var printUrl = '/admin/referrals/' + encodeURIComponent(printReferralTrigger.dataset.itemId) + '/letter/print';
+          window.open(printUrl, '_blank', 'noopener,noreferrer');
           return;
         }
 
         var printTrigger = event.target.closest('[data-admin-print]');
         if (printTrigger) {
-          document.body.classList.add('peso-print-referral-letter');
-          var resetPreviewPrintFit = window.prepareReferralLetterPrintFit
-            ? window.prepareReferralLetterPrintFit()
-            : function () {};
-          window.print();
-          window.addEventListener('afterprint', function cleanupPrintClass() {
-            resetPreviewPrintFit();
-            document.body.classList.remove('peso-print-referral-letter');
-            window.removeEventListener('afterprint', cleanupPrintClass);
-          });
+          var previewModal = document.getElementById('modal-referral-preview');
+          var referralId = previewModal && previewModal.dataset.referralId;
+          if (referralId) {
+            event.preventDefault();
+            window.open('/admin/referrals/' + encodeURIComponent(referralId) + '/letter/print', '_blank', 'noopener,noreferrer');
+          }
           return;
         }
 

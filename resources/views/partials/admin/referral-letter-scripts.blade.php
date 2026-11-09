@@ -149,6 +149,15 @@
       form.addEventListener('input', syncCreateReferralLetterPreview);
       form.addEventListener('change', syncCreateReferralLetterPreview);
 
+      var birthInput = document.getElementById('referral_birth_date');
+      if (birthInput) {
+        birthInput.addEventListener('change', function () {
+          var root = document.querySelector('#form-create-referral [data-letter-root]');
+          var bornEl = root && root.querySelector('[data-letter-field="born"]');
+          if (bornEl) bornEl.textContent = formatBornDisplay(birthInput.value);
+        });
+      }
+
       syncCreateReferralLetterPreview();
     }
 
@@ -169,8 +178,53 @@
       };
     };
 
+    function formatBornDisplay(isoDate) {
+      if (!isoDate) return '—';
+      var parts = String(isoDate).split('-');
+      if (parts.length !== 3) return isoDate;
+      var d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+      if (Number.isNaN(d.getTime())) return isoDate;
+      return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    function resetReferralLetterFormMode() {
+      var form = document.getElementById('form-create-referral');
+      if (!form) return;
+      var storeUrl = form.getAttribute('data-store-url') || form.action;
+      form.action = storeUrl;
+      form.removeAttribute('data-http-method');
+      var idInput = document.getElementById('referral_edit_id');
+      if (idInput) idInput.value = '';
+      var methodInput = form.querySelector('input[name="_method"]');
+      if (methodInput) methodInput.remove();
+    }
+
+    function setReferralLetterEditMode(referralId) {
+      var form = document.getElementById('form-create-referral');
+      if (!form || !referralId) return;
+      form.action = '/admin/referrals/' + encodeURIComponent(referralId);
+      form.setAttribute('data-http-method', 'PUT');
+      var idInput = document.getElementById('referral_edit_id');
+      if (idInput) idInput.value = String(referralId);
+      if (!form.querySelector('input[name="_method"]')) {
+        var methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.value = 'PUT';
+        form.appendChild(methodInput);
+      }
+    }
+
+    window.resetReferralLetterFormMode = resetReferralLetterFormMode;
+
     window.populateCreateReferralModal = function (data) {
       data = data || {};
+
+      if (data.referral_id) {
+        setReferralLetterEditMode(data.referral_id);
+      } else {
+        resetReferralLetterFormMode();
+      }
 
       var setValue = function (id, value) {
         var el = document.getElementById(id);
@@ -221,7 +275,7 @@
       if (applicantSelect && applicantId) applicantSelect.dispatchEvent(new Event('change'));
 
       var createRoot = document.querySelector('#form-create-referral [data-letter-root]');
-      if (createRoot && window.renderOfficialReferralLetter && data.candidate_display) {
+      if (createRoot && window.renderOfficialReferralLetter) {
         window.renderOfficialReferralLetter(createRoot, data);
       }
 

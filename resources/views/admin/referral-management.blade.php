@@ -134,8 +134,6 @@
 ])
 @endsection
 
-<div id="referral-print-host" hidden aria-hidden="true"></div>
-
 @push('modals')
   @include('partials.admin.modals.create-referral-letter', [
     'employers' => $employers,

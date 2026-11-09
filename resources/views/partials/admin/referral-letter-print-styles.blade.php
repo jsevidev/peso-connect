@@ -54,12 +54,66 @@
   }
   .peso-official-referral-letter__office-sub { margin: 1px 0 0; font-size: 11px; color: #334155; }
 
+  .peso-official-referral-letter__letterhead-row {
+    display: grid;
+    grid-template-columns: 86px 1fr 86px;
+    align-items: center;
+    column-gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .peso-official-referral-letter__logo-col {
+    display: flex;
+    align-items: center;
+  }
+
+  .peso-official-referral-letter__logo-col--left {
+    justify-content: flex-start;
+  }
+
+  .peso-official-referral-letter__logo-col--right {
+    justify-content: flex-end;
+  }
+
+  .peso-official-referral-letter__letterhead-center {
+    text-align: center;
+    min-width: 0;
+  }
+
+  .peso-official-referral-letter__rule {
+    border-top: 1px solid #1e293b;
+    margin: 8px 0 10px;
+    height: 0;
+  }
+
+  .peso-official-referral-letter__page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
   .peso-official-referral-letter__title {
     text-align: center;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 700;
-    font-style: italic;
-    margin: 12px 0 14px;
+    font-style: normal;
+    margin: 0 0 12px;
+  }
+
+  .peso-official-referral-letter__profile {
+    margin: 8px 0 12px;
+    padding-left: 18px;
+    list-style-type: disc;
+  }
+
+  .peso-official-referral-letter__profile li {
+    margin-bottom: 6px;
+  }
+
+  .peso-official-referral-letter__footer-line {
+    margin: 0;
+    text-align: center;
+    font-size: 10px;
   }
 
   .peso-official-referral-letter__body p { margin: 0 0 8px; }
@@ -67,12 +121,6 @@
   .peso-official-referral-letter__reference { font-weight: 700; margin-top: 10px !important; }
   .peso-official-referral-letter__salutation { margin-top: 10px !important; }
   .peso-official-referral-letter__intro { margin-top: 8px !important; text-align: justify; }
-
-  .peso-official-referral-letter__profile {
-    margin: 8px 0 12px 18px;
-    padding: 0;
-  }
-  .peso-official-referral-letter__profile li { margin-bottom: 4px; }
 
   .peso-official-referral-letter__closing,
   .peso-official-referral-letter__thanks { text-align: justify; }
@@ -83,13 +131,11 @@
   .peso-official-referral-letter__footer {
     margin-top: 18px;
     padding-top: 10px;
-    border-top: 1px solid #cbd5e1;
+    border-top: none;
     font-size: 10px;
     color: #334155;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-    justify-content: center;
+    display: block;
+    text-align: center;
   }
   .peso-official-referral-letter__footer p { margin: 0; }
   .peso-official-referral-letter__footer-icon { margin-right: 4px; }
@@ -121,164 +167,4 @@
     font-style: italic;
   }
 
-  .peso-official-ftjs-certification__rule {
-    border-top: 3px double #1e293b;
-    margin: 4px 0 12px;
-  }
-
-  .peso-official-ftjs-certification__title {
-    text-align: center;
-    font-size: 17px;
-    font-weight: 800;
-    letter-spacing: 0.22em;
-    margin: 0 0 14px;
-  }
-
-  .peso-official-ftjs-certification__salutation {
-    font-weight: 700;
-    margin-bottom: 10px !important;
-  }
-
-  .peso-official-ftjs-certification__paragraph {
-    text-align: justify;
-    margin: 0 0 10px !important;
-  }
-
-  .peso-official-ftjs-certification__date-line {
-    margin: 12px 0 !important;
-  }
-
-  .peso-official-ftjs-certification__signature-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 32px;
-    margin-top: 20px;
-  }
-
-  .peso-official-ftjs-certification__signature-block {
-    min-width: 220px;
-    max-width: 48%;
-  }
-
-  .peso-official-ftjs-certification__signature-block--received {
-    text-align: right;
-  }
-
-  .peso-official-ftjs-certification__signature-label {
-    margin: 0 0 8px !important;
-    font-style: italic;
-  }
-
-  .peso-official-ftjs-certification__signature-space {
-    height: 36px;
-  }
-
-  .peso-official-ftjs-certification__signatory-name {
-    font-weight: 700;
-    margin: 0 0 2px !important;
-  }
-
-  .peso-official-ftjs-certification__received-date {
-    margin: 0 !important;
-    font-weight: 600;
-  }
-
-  @media print {
-    @page {
-      size: letter;
-      margin: 0.28in 0.4in;
-    }
-
-    html, body {
-      height: auto !important;
-      overflow: hidden !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    body.peso-print-referral-letter * {
-      visibility: hidden !important;
-    }
-    body.peso-print-referral-letter [data-letter-root],
-    body.peso-print-referral-letter [data-letter-root] * {
-      visibility: visible !important;
-    }
-    body.peso-print-referral-letter [data-letter-root] {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: calc(100% / var(--peso-letter-print-scale, 1));
-      border: none;
-      border-radius: 0;
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-      transform: scale(var(--peso-letter-print-scale, 1));
-      transform-origin: top left;
-      page-break-inside: avoid;
-      break-inside: avoid;
-      overflow: hidden;
-    }
-
-    body.peso-print-referral-letter .peso-official-referral-letter {
-      font-size: 13px;
-      line-height: 1.4;
-      padding: 0;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__letterhead {
-      margin-bottom: 8px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__logo-slot {
-      width: 64px;
-      height: 64px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__gov {
-      font-size: 11px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__office {
-      font-size: 13px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__office-sub {
-      font-size: 11px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__title {
-      font-size: 16px;
-      margin: 10px 0 12px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__body p {
-      margin-bottom: 7px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__profile {
-      margin: 6px 0 10px 18px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__profile li {
-      margin-bottom: 3px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__signatory {
-      margin-top: 14px;
-    }
-    body.peso-print-referral-letter .peso-official-referral-letter__footer {
-      margin-top: 14px;
-      padding-top: 8px;
-      font-size: 10px;
-      gap: 6px 14px;
-    }
-
-    body.peso-print-referral-letter .peso-official-ftjs-certification__title {
-      font-size: 16px;
-      letter-spacing: 0.18em;
-      margin-bottom: 12px;
-    }
-
-    body.peso-print-referral-letter .peso-official-ftjs-certification__signature-space {
-      height: 30px;
-    }
-
-    body.peso-print-referral-letter .admin-modal-backdrop.is-open {
-      position: static !important;
-      background: transparent !important;
-      display: block !important;
-    }
-  }
 </style>

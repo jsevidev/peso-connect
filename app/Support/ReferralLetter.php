@@ -102,8 +102,10 @@ class ReferralLetter
      */
     private static function profileFromSources(?Referral $referral, ?Applicant $applicant, array $overrides): array
     {
-        if ($applicant) {
-            return [
+        $stored = is_array($referral?->candidate_profile) ? $referral->candidate_profile : [];
+
+        $base = $applicant
+            ? [
                 'name' => $applicant->fullname,
                 'gender' => $applicant->gender,
                 'birth_date' => $applicant->date_of_birth?->format('Y-m-d'),
@@ -113,29 +115,60 @@ class ReferralLetter
                 'email' => $applicant->email_address,
                 'education' => $applicant->education,
                 'skills' => $applicant->skills,
+            ]
+            : [
+                'name' => $stored['name'] ?? $referral?->fullname ?? '',
+                'gender' => $stored['gender'] ?? null,
+                'birth_date' => $stored['birth_date'] ?? null,
+                'born' => self::formatBorn($stored['birth_date'] ?? null),
+                'address' => $stored['address'] ?? null,
+                'phone' => $stored['phone'] ?? null,
+                'email' => $stored['email'] ?? null,
+                'education' => $stored['education'] ?? null,
+                'skills' => $stored['skills'] ?? null,
             ];
+
+        return self::mergeLetterProfile($base, $stored, $overrides);
+    }
+
+    /**
+     * @param  array<string, mixed>  $base
+     * @param  array<string, mixed>  $stored
+     * @param  array<string, mixed>  $overrides
+     * @return array<string, mixed>
+     */
+    private static function mergeLetterProfile(array $base, array $stored, array $overrides): array
+    {
+        $keys = ['name', 'gender', 'birth_date', 'address', 'phone', 'email', 'education', 'skills'];
+
+        foreach ($keys as $key) {
+            if (array_key_exists($key, $overrides) && self::filled($overrides[$key])) {
+                $base[$key] = $overrides[$key];
+            } elseif (array_key_exists($key, $stored) && self::filled($stored[$key])) {
+                $base[$key] = $stored[$key];
+            }
         }
 
-        $stored = is_array($referral?->candidate_profile) ? $referral->candidate_profile : [];
+        $birth = $base['birth_date'] ?? null;
+        $base['birth_date'] = $birth instanceof \DateTimeInterface
+            ? $birth->format('Y-m-d')
+            : (is_string($birth) && $birth !== '' ? $birth : null);
+        $base['born'] = self::formatBorn($base['birth_date']);
 
-        $name = $overrides['name'] ?? $stored['name'] ?? $referral?->fullname ?? '';
-        $gender = $overrides['gender'] ?? $stored['gender'] ?? null;
+        return $base;
+    }
 
-        $birth = $overrides['birth_date'] ?? $stored['birth_date'] ?? null;
+    private static function filled(mixed $value): bool
+    {
+        if ($value === null) {
+            return false;
+        }
 
-        return [
-            'name' => $name,
-            'gender' => $gender,
-            'birth_date' => $birth instanceof \DateTimeInterface
-                ? $birth->format('Y-m-d')
-                : (is_string($birth) && $birth !== '' ? $birth : null),
-            'born' => self::formatBorn($birth),
-            'address' => $overrides['address'] ?? $stored['address'] ?? null,
-            'phone' => $overrides['phone'] ?? $stored['phone'] ?? null,
-            'email' => $overrides['email'] ?? $stored['email'] ?? null,
-            'education' => $overrides['education'] ?? $stored['education'] ?? null,
-            'skills' => $overrides['skills'] ?? $stored['skills'] ?? null,
-        ];
+        if (is_string($value)) {
+            return trim($value) !== '';
+        }
+
+        return true;
     }
 
     private static function parseDate(mixed $value): Carbon

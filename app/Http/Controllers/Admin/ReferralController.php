@@ -47,6 +47,17 @@ class ReferralController extends Controller
         return response()->json(ReferralLetter::fromReferral($referral));
     }
 
+    public function printPage(Referral $referral): View
+    {
+        $referral->load(['applicant', 'employerRecord']);
+
+        return view('admin.referral-letter-print', [
+            'letter' => ReferralLetter::compose($referral, [
+                'letter_date' => now()->toDateString(),
+            ]),
+        ]);
+    }
+
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -69,19 +80,7 @@ class ReferralController extends Controller
         $jobPosting = JobPosting::where('job_title', $validated['job'])->first();
         $applicantId = $validated['applicant_id'] ?? null;
 
-        $candidateProfile = null;
-        if (! $applicantId) {
-            $candidateProfile = array_filter([
-                'name' => $validated['name'],
-                'gender' => $validated['gender'] ?? null,
-                'birth_date' => $validated['birth_date'] ?? null,
-                'address' => $validated['address'] ?? null,
-                'phone' => $validated['phone'] ?? null,
-                'email' => $validated['email'] ?? null,
-                'education' => $validated['education'] ?? null,
-                'skills' => $validated['skills'] ?? null,
-            ]);
-        }
+        $candidateProfile = self::candidateProfileFromValidated($validated);
 
         Referral::create([
             'admin_id' => session('admin_id'),
@@ -106,6 +105,71 @@ class ReferralController extends Controller
         return redirect()
             ->route('admin.referrals.index')
             ->with('status', 'Referral letter for "'.$validated['name'].'" created successfully.');
+    }
+
+    public function update(Request $request, Referral $referral): RedirectResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'employer_id' => ['required', 'integer', 'exists:employers,id'],
+            'job' => ['required', 'string', 'max:255'],
+            'applicant_id' => ['nullable', 'integer', 'exists:applicants,id'],
+            'recipient_name' => ['nullable', 'string', 'max:255'],
+            'recipient_city' => ['nullable', 'string', 'max:255'],
+            'gender' => ['nullable', 'string', 'max:20'],
+            'birth_date' => ['nullable', 'date'],
+            'address' => ['nullable', 'string'],
+            'phone' => ['nullable', 'string', 'max:50'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'education' => ['nullable', 'string', 'max:255'],
+            'skills' => ['nullable', 'string'],
+        ]);
+
+        $employer = Employer::findOrFail($validated['employer_id']);
+        $jobPosting = JobPosting::where('job_title', $validated['job'])->first();
+        $applicantId = $validated['applicant_id'] ?? null;
+
+        $referral->update([
+            'applicant_id' => $applicantId,
+            'employer_id' => $employer->id,
+            'job_posting_id' => $jobPosting?->id,
+            'fullname' => $validated['name'],
+            'job_title' => $validated['job'],
+            'employer' => $employer->name,
+            'recipient_name' => $employer->contact_person ?: ($validated['recipient_name'] ?? $referral->recipient_name),
+            'recipient_city' => $validated['recipient_city'] ?? $referral->recipient_city,
+            'candidate_profile' => self::candidateProfileFromValidated($validated),
+        ]);
+
+        ActivityLogger::record(
+            session('admin_id'),
+            'Updated Referral',
+            'Referral letter for '.$validated['name']
+        );
+
+        return redirect()
+            ->route('admin.referrals.index')
+            ->with('status', 'Referral letter for "'.$validated['name'].'" updated successfully.');
+    }
+
+    /**
+     * @param  array<string, mixed>  $validated
+     * @return array<string, mixed>|null
+     */
+    private static function candidateProfileFromValidated(array $validated): ?array
+    {
+        $profile = array_filter([
+            'name' => $validated['name'],
+            'gender' => $validated['gender'] ?? null,
+            'birth_date' => $validated['birth_date'] ?? null,
+            'address' => $validated['address'] ?? null,
+            'phone' => $validated['phone'] ?? null,
+            'email' => $validated['email'] ?? null,
+            'education' => $validated['education'] ?? null,
+            'skills' => $validated['skills'] ?? null,
+        ], static fn ($value) => $value !== null && $value !== '');
+
+        return $profile !== [] ? $profile : null;
     }
 
     public function approve(Request $request): RedirectResponse

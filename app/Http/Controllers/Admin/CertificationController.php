@@ -40,6 +40,14 @@ class CertificationController extends Controller
         return response()->json(FtjsCertification::fromCertification($certification));
     }
 
+    public function printPage(Certification $certification): View
+    {
+        return view('admin.ftjs-certification-print', [
+            'certificate' => FtjsCertification::fromCertification($certification),
+            'certificationId' => $certification->id,
+        ]);
+    }
+
     public function print(Request $request): JsonResponse|RedirectResponse
     {
         $validated = $request->validate([
