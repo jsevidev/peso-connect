@@ -36,10 +36,12 @@
             <option value="Inactive">Inactive</option>
           </select>
         </div>
-        <label class="admin-checkbox" style="display: flex; align-items: center; gap: 8px;">
-          <input type="checkbox" name="peso_verified" value="1" data-modal-field="peso-verified" data-modal-boolean="1">
-          <span>Mark as PESO verified partner</span>
-        </label>
+        <div class="admin-form-field">
+          <label class="admin-checkbox" for="edit_employer_peso_verified">
+            <input type="checkbox" id="edit_employer_peso_verified" name="peso_verified" value="1" data-modal-field="peso-verified" data-modal-boolean="1">
+            <span>Mark as PESO verified partner</span>
+          </label>
+        </div>
       </div>
       <div class="admin-modal__footer">
         <button type="button" class="admin-btn admin-btn--ghost" data-close-modal>Cancel</button>

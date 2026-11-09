@@ -74,19 +74,19 @@
           <span class="admin-badge {{ \App\Support\AdminListing::certificationStatusClass($cert['status']) }}">{{ $cert['status'] }}</span>
         </div>
         <div class="admin-ftjs-table__col-actions">
-          <div class="admin-ftjs-actions">
+          <div class="admin-ftjs-actions admin-row-actions">
             <form action="{{ route('admin.certifications.print') }}" method="POST">
               @csrf
               <input type="hidden" name="id" value="{{ $cert['id'] }}">
               <input type="hidden" name="name" value="{{ $cert['name'] }}">
-              <button type="submit" class="admin-ftjs-btn admin-ftjs-btn--print">
-                <svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 8H1C0.735 8 0.48 7.895 0.293 7.707 0.105 7.52 0 7.266 0 7V4.5C0 4.235 0.105 3.981 0.293 3.793 0.48 3.606 0.735 3.5 1 3.5H9C9.266 3.5 9.52 3.606 9.707 3.793 9.895 3.981 10 4.235 10 4.5V7C10 7.266 9.895 7.52 9.707 7.707 9.52 7.895 9.266 8 9 8H8M2 3.5V0.5C2 0.367 2.053 0.24 2.147 0.146 2.24 0.053 2.368 0 2.5 0H7.5C7.633 0 7.76 0.053 7.854 0.146 7.948 0.24 8 0.367 8 0.5V3.5M2.5 6H7.5C7.777 6 8 6.224 8 6.5V9.5C8 9.777 7.777 10 7.5 10H2.5C2.224 10 2 9.777 2 9.5V6.5C2 6.224 2.224 6 2.5 6Z" transform="translate(1.2 1.2)" stroke="#1b3a6b" stroke-width="2" stroke-linecap="round"/></svg>
+              <button type="submit" class="admin-btn admin-btn--outline admin-btn--sm">
+                @include('partials.admin.icon', ['name' => 'print-sm'])
                 Print
               </button>
             </form>
             @if ($cert['status'] === 'Claimed')
-              <button type="button" class="admin-ftjs-btn admin-ftjs-btn--claimed" disabled>
-                <svg width="14" height="14" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M8 0L2.5 5.5 0 3" transform="translate(1.25 1.36)" stroke="#5a6e85" stroke-width="2" stroke-linecap="round"/></svg>
+              <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" disabled>
+                @include('partials.admin.icon', ['name' => 'check'])
                 Claimed
               </button>
             @else
@@ -98,8 +98,8 @@
                 @csrf
                 <input type="hidden" name="id" value="{{ $cert['id'] }}">
                 <input type="hidden" name="name" value="{{ $cert['name'] }}">
-                <button type="submit" class="admin-ftjs-btn admin-ftjs-btn--claim">
-                  <svg width="14" height="14" viewBox="0 0 10 8" fill="none" aria-hidden="true"><path d="M8 0L2.5 5.5 0 3" transform="translate(1.25 1.36)" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+                <button type="submit" class="admin-btn admin-btn--primary admin-btn--sm">
+                  @include('partials.admin.icon', ['name' => 'check'])
                   Mark Claimed
                 </button>
               </form>

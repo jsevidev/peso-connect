@@ -9,7 +9,7 @@
     <h1 class="admin-page-title">Enlistee Management</h1>
     <p class="admin-page-subtitle">Review, process, and track enlistees from public enlistment forms.</p>
   </div>
-  <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+  <div class="admin-page-header__actions">
     <div id="live-refresh-badge" class="admin-live-badge" hidden aria-live="polite">Live · just updated</div>
     <form action="{{ route('admin.enlistees.export') }}" method="POST" data-turbo="false">
       @csrf

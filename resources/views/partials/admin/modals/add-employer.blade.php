@@ -28,10 +28,19 @@
           <label class="admin-field-label" for="employer_address">Address</label>
           <textarea class="admin-textarea" id="employer_address" name="address" rows="3" placeholder="Office address"></textarea>
         </div>
-        <label class="admin-checkbox" style="display: flex; align-items: center; gap: 8px;">
-          <input type="checkbox" name="peso_verified" value="1">
-          <span>Mark as PESO verified partner</span>
-        </label>
+        <div class="admin-form-field">
+          <label class="admin-field-label" for="employer_status">Status</label>
+          <select class="admin-select" id="employer_status" name="status">
+            <option value="Active" selected>Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="admin-form-field">
+          <label class="admin-checkbox" for="employer_peso_verified">
+            <input type="checkbox" id="employer_peso_verified" name="peso_verified" value="1">
+            <span>Mark as PESO verified partner</span>
+          </label>
+        </div>
       </div>
       <div class="admin-modal__footer">
         <button type="button" class="admin-btn admin-btn--ghost" data-close-modal>Cancel</button>

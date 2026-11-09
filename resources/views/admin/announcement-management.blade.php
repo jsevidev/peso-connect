@@ -48,8 +48,8 @@
     <article class="admin-announcement-card">
       <div class="admin-announcement-card__head">
         <h2 class="admin-announcement-card__title">{{ $item['title'] }}</h2>
-        <div class="admin-announcement-card__actions">
-          <button type="button" class="admin-announcement-action" title="Preview" aria-label="Preview"
+        <div class="admin-announcement-card__actions admin-row-actions">
+          <button type="button" class="admin-icon-btn admin-icon-btn--muted" title="Preview" aria-label="Preview"
             data-open-modal="modal-preview-announcement"
             data-item-id="{{ $item['id'] }}"
             data-title="{{ $item['title'] }}"
@@ -58,9 +58,9 @@
             data-category="{{ $item['category'] ?? '' }}"
             data-publish-date="{{ $item['publish_date'] ?? '' }}"
             data-status="{{ $item['status'] }}">
-            <svg width="16" height="12" viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M0.042 4.898C-0.014 4.748-0.014 4.584 0.042 4.434 0.583 3.122 1.501 2 2.681 1.211 3.86 0.421 5.248 0 6.667 0 8.086 0 9.474 0.421 10.653 1.211 11.833 2 12.751 3.122 13.292 4.434 13.348 4.584 13.348 4.748 13.292 4.898 12.751 6.21 11.833 7.332 10.653 8.122 9.474 8.911 8.086 9.333 6.667 9.333 5.248 9.333 3.86 8.911 2.681 8.122 1.501 7.332 0.583 6.21 0.042 4.898ZM8.667 4.666C8.667 5.771 7.772 6.666 6.667 6.666 5.563 6.666 4.667 5.771 4.667 4.666 4.667 3.561 5.563 2.666 6.667 2.666 7.772 2.666 8.667 3.561 8.667 4.666Z" transform="translate(1.15 1.21)" stroke="#475569" stroke-width="2" stroke-linecap="round"/></svg>
+            @include('partials.admin.icon', ['name' => 'preview'])
           </button>
-          <button type="button" class="admin-announcement-action" title="Edit" aria-label="Edit"
+          <button type="button" class="admin-icon-btn admin-icon-btn--primary" title="Edit" aria-label="Edit"
             data-open-modal="modal-edit-announcement"
             data-item-id="{{ $item['id'] }}"
             data-title="{{ $item['title'] }}"
@@ -70,7 +70,7 @@
             data-publish-date="{{ $item['publish_date'] ?? '' }}"
             data-status="{{ $item['status'] }}"
             data-schedule-later="{{ $item['status'] === 'Scheduled' ? '1' : '0' }}">
-            <svg width="16" height="16" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M12.784 3.208C13.136 2.856 13.334 2.378 13.334 1.88 13.335 1.381 13.137 0.903 12.784 0.551 12.432 0.198 11.954 0 11.455 0 10.957 0 10.479 0.198 10.126 0.55L1.228 9.449C1.073 9.604 0.959 9.794 0.895 10.003L0.014 12.904C-0.003 12.962-0.005 13.023 0.01 13.081 0.025 13.14 0.055 13.193 0.098 13.235 0.14 13.278 0.194 13.308 0.252 13.323 0.31 13.337 0.372 13.336 0.429 13.319L3.332 12.439C3.54 12.375 3.73 12.261 3.885 12.107L12.784 3.208Z" transform="translate(1.15 1.15)" stroke="#475569" stroke-width="2" stroke-linecap="round"/></svg>
+            @include('partials.admin.icon', ['name' => 'edit'])
           </button>
           <form action="{{ route('admin.announcements.delete') }}" method="POST"
             data-confirm="“{{ $item['title'] }}” will be permanently removed from public announcements."
@@ -80,8 +80,8 @@
             @csrf
             <input type="hidden" name="id" value="{{ $item['id'] }}">
             <input type="hidden" name="title" value="{{ $item['title'] }}">
-            <button type="submit" class="admin-announcement-action admin-announcement-action--danger" title="Delete" aria-label="Delete">
-              <svg width="14" height="16" viewBox="0 0 14 15" fill="none" aria-hidden="true"><path d="M4.667 6V10M7.333 6V10M10.667 2.667V12C10.667 12.355 10.526 12.694 10.276 12.944 10.026 13.194 9.687 13.334 9.333 13.334H2.667C2.313 13.334 1.974 13.194 1.724 12.944 1.474 12.694 1.333 12.355 1.333 12V2.667M0 2.667H12M3.333 2.667V1.333C3.333 0.98 3.474 0.641 3.724 0.391 3.974 0.141 4.313 0 4.667 0H7.333C7.687 0 8.026 0.141 8.276 0.391 8.526 0.641 8.667 0.98 8.667 1.333V2.667" transform="translate(1.17 1.15)" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+            <button type="submit" class="admin-icon-btn admin-icon-btn--danger" title="Delete" aria-label="Delete">
+              @include('partials.admin.icon', ['name' => 'delete-bin'])
             </button>
           </form>
         </div>

@@ -17,7 +17,7 @@
     <img src="{{ asset('assets/img/peso-logo.png') }}" alt="PESO logo" class="admin-sidebar__logo" width="40" height="40" decoding="async" fetchpriority="high">
     <div>
       <div class="admin-sidebar__title">PESO</div>
-      <div class="admin-sidebar__subtitle">Gov Employment Platform</div>
+      <div class="admin-sidebar__subtitle">Administration Portal</div>
     </div>
   </div>
 

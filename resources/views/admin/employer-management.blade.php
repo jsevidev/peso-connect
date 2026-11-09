@@ -54,7 +54,7 @@
             <td><span class="admin-badge {{ \App\Support\AdminListing::statusClass($employer['status']) }}">{{ $employer['status'] }}</span></td>
             <td>
               <div class="admin-row-actions">
-                <button type="button" class="admin-icon-btn" title="Edit employer" aria-label="Edit employer"
+                <button type="button" class="admin-icon-btn admin-icon-btn--primary" title="Edit employer" aria-label="Edit employer"
                   data-open-modal="modal-edit-employer"
                   data-item-id="{{ $employer['id'] }}"
                   data-name="{{ $employer['name'] }}"
@@ -63,17 +63,17 @@
                   data-address="{{ $employer['address'] ?? '' }}"
                   data-peso-verified="{{ $employer['peso_verified'] ? '1' : '0' }}"
                   data-status="{{ $employer['status'] }}">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 1l3 3L4 13H1v-3L10 1z" stroke="#1b3a6b" stroke-width="1.5"/></svg>
+                  @include('partials.admin.icon', ['name' => 'edit'])
                 </button>
-                <form action="{{ route('admin.employers.delete') }}" method="POST" style="display: inline;"
+                <form action="{{ route('admin.employers.delete') }}" method="POST"
                   data-confirm="{{ $employer['job_count'] > 0 ? 'This employer has job postings and will be deactivated instead of deleted.' : 'This will permanently remove '.$employer['name'].' from employer records.' }}"
                   data-confirm-type="danger"
                   data-confirm-title="{{ $employer['job_count'] > 0 ? 'Deactivate employer?' : 'Delete employer?' }}"
                   data-confirm-ok="{{ $employer['job_count'] > 0 ? 'Deactivate' : 'Delete employer' }}">
                   @csrf
                   <input type="hidden" name="id" value="{{ $employer['id'] }}">
-                  <button type="submit" class="admin-icon-btn" title="{{ $employer['job_count'] > 0 ? 'Deactivate employer' : 'Delete employer' }}" aria-label="Remove employer">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10M5 4V2h4v2M5.5 6v5M8.5 6v5M3 4l.5 8h7L11 4" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <button type="submit" class="admin-icon-btn admin-icon-btn--danger" title="{{ $employer['job_count'] > 0 ? 'Deactivate employer' : 'Delete employer' }}" aria-label="Remove employer">
+                    @include('partials.admin.icon', ['name' => 'delete'])
                   </button>
                 </form>
               </div>

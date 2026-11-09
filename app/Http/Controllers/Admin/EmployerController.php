@@ -32,6 +32,7 @@ class EmployerController extends Controller
             'contact_email' => ['nullable', 'email', 'max:255'],
             'address' => ['nullable', 'string'],
             'peso_verified' => ['nullable', 'boolean'],
+            'status' => ['required', 'string', 'max:50'],
         ]);
 
         $employer = Employer::create([
@@ -41,7 +42,7 @@ class EmployerController extends Controller
             'contact_email' => $validated['contact_email'] ?? null,
             'address' => $validated['address'] ?? null,
             'peso_verified' => $request->boolean('peso_verified'),
-            'status' => 'Active',
+            'status' => $validated['status'],
         ]);
 
         ActivityLogger::record(

@@ -10,7 +10,7 @@
     <p class="admin-page-subtitle">Review, approve, and generate official LGU endorsement letters for job enlistees.</p>
   </div>
   <button type="button" class="admin-btn admin-btn--primary admin-btn--create" data-open-modal="modal-create-referral">
-    <svg width="14" height="14" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M0 4.0838H8.1676M4.0838 0V8.1676" transform="translate(1.24 1.24)" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+    @include('partials.admin.icon', ['name' => 'plus'])
     Create Referral
   </button>
 </div>
@@ -79,8 +79,8 @@
         <div class="admin-referral-table__col-status">
           <span class="admin-badge {{ \App\Support\AdminListing::referralStatusClass($referral['status']) }}">{{ $referral['status'] }}</span>
         </div>
-        <div class="admin-referral-table__col-actions">
-          <form action="{{ route('admin.referrals.approve') }}" method="POST" style="display: inline;"
+        <div class="admin-referral-table__col-actions admin-row-actions">
+          <form action="{{ route('admin.referrals.approve') }}" method="POST"
             data-confirm="Approve the referral request for {{ $referral['name'] }} and mark it ready for endorsement."
             data-confirm-type="success"
             data-confirm-title="Approve referral?"
@@ -88,11 +88,11 @@
             @csrf
             <input type="hidden" name="id" value="{{ $referral['id'] }}">
             <input type="hidden" name="name" value="{{ $referral['name'] }}">
-            <button type="submit" class="admin-icon-btn admin-icon-btn--neutral" title="Approve referral" aria-label="Approve referral">
-              <svg width="14" height="14" viewBox="0 0 13 10" fill="none"><path d="M10.666 0L3.333 7.333 0 4" transform="translate(1.19 1.27)" stroke="#404d66" stroke-width="2" stroke-linecap="round"/></svg>
+            <button type="submit" class="admin-icon-btn" title="Approve referral" aria-label="Approve referral">
+              @include('partials.admin.icon', ['name' => 'approve'])
             </button>
           </form>
-          <form action="{{ route('admin.referrals.deny') }}" method="POST" style="display: inline;"
+          <form action="{{ route('admin.referrals.deny') }}" method="POST"
             data-confirm="Deny the referral request for {{ $referral['name'] }}. The applicant will remain on record as denied."
             data-confirm-type="warning"
             data-confirm-title="Deny referral?"
@@ -100,21 +100,21 @@
             @csrf
             <input type="hidden" name="id" value="{{ $referral['id'] }}">
             <input type="hidden" name="name" value="{{ $referral['name'] }}">
-            <button type="submit" class="admin-icon-btn admin-icon-btn--neutral" title="Deny referral" aria-label="Deny referral">
-              <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M8.667 4.667L4.667 8.667M4.667 4.667L8.667 8.667M13.334 6.667C13.334 10.349 10.349 13.334 6.667 13.334 2.985 13.334 0 10.349 0 6.667 0 2.985 2.985 0 6.667 0 10.349 0 13.334 2.985 13.334 6.667Z" transform="translate(1.15 1.15)" stroke="#404d66" stroke-width="2" stroke-linecap="round"/></svg>
+            <button type="submit" class="admin-icon-btn" title="Deny referral" aria-label="Deny referral">
+              @include('partials.admin.icon', ['name' => 'deny'])
             </button>
           </form>
-          <button type="button" class="admin-icon-btn admin-icon-btn--neutral" title="Print referral" aria-label="Print referral" data-admin-print-referral data-item-id="{{ $referral['id'] }}">
-            <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.667 10.668H1.333C0.98 10.668 0.641 10.527 0.391 10.277 0.141 10.027 0 9.688 0 9.334V6.001C0 5.647 0.141 5.308 0.391 5.058 0.641 4.808 0.98 4.668 1.333 4.668H12.001C12.355 4.668 12.694 4.808 12.944 5.058 13.194 5.308 13.334 5.647 13.334 6.001V9.334C13.334 9.688 13.194 10.027 12.944 10.277 12.694 10.527 12.355 10.668 12.001 10.668H10.668M2.667 4.668V0.667C2.667 0.49 2.737 0.32 2.862 0.195 2.987 0.07 3.157 0 3.334 0H10.001C10.178 0 10.347 0.07 10.472 0.195 10.597 0.32 10.668 0.49 10.668 0.667V4.668M3.334 8.001H10.001C10.369 8.001 10.668 8.299 10.668 8.667V12.668C10.668 13.036 10.369 13.334 10.001 13.334H3.334C2.965 13.334 2.667 13.036 2.667 12.668V8.667C2.667 8.299 2.965 8.001 3.334 8.001Z" transform="translate(1.15 1.15)" stroke="#404d66" stroke-width="2" stroke-linecap="round"/></svg>
+          <button type="button" class="admin-icon-btn" title="Print referral" aria-label="Print referral" data-admin-print-referral data-item-id="{{ $referral['id'] }}">
+            @include('partials.admin.icon', ['name' => 'print'])
           </button>
-          <button type="button" class="admin-icon-btn admin-icon-btn--neutral" title="Preview referral" aria-label="Preview referral"
+          <button type="button" class="admin-icon-btn" title="Preview referral" aria-label="Preview referral"
             data-open-modal="modal-referral-preview"
             data-item-id="{{ $referral['id'] }}"
             data-name="{{ $referral['name'] }}"
             data-job="{{ $referral['job'] }}"
             data-employer="{{ $referral['employer'] }}"
             data-date="{{ $referral['date'] }}">
-            <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M6 0.664H1.333C0.98 0.664 0.641 0.805 0.391 1.055 0.141 1.305 0 1.644 0 1.997V11.331C0 11.684 0.141 12.024 0.391 12.274 0.641 12.524 0.98 12.664 1.333 12.664H10.667C11.02 12.664 11.359 12.524 11.609 12.274 11.859 12.024 12 11.684 12 11.331V6.664M10.25 0.414C10.515 0.149 10.875 0 11.25 0 11.625 0 11.985 0.149 12.25 0.414 12.515 0.679 12.664 1.039 12.664 1.414 12.664 1.789 12.515 2.149 12.25 2.414L6.241 8.424C6.083 8.582 5.888 8.698 5.673 8.76L3.757 9.32C3.327 9.337 3.341 9.082 3.904 6.992L4.241 6.424L10.25 0.414Z" transform="translate(1.16 1.16)" stroke="#404d66" stroke-width="2" stroke-linecap="round"/></svg>
+            @include('partials.admin.icon', ['name' => 'preview-document'])
           </button>
         </div>
       </div>

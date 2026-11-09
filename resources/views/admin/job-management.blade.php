@@ -66,14 +66,14 @@
             <td><span class="admin-badge {{ \App\Support\AdminListing::statusClass($job['status']) }}">{{ $job['status'] }}</span></td>
             <td>
               <div class="admin-row-actions">
-                <button type="button" class="admin-icon-btn" title="Edit job" aria-label="Edit job"
+                <button type="button" class="admin-icon-btn admin-icon-btn--primary" title="Edit job" aria-label="Edit job"
                   data-open-modal="modal-edit-job"
                   data-item-id="{{ $job['id'] }}"
                   data-title="{{ $job['title'] }}"
                   data-employer-id="{{ $job['employer_id'] }}"
                   data-type="{{ $job['type'] }}"
                   data-status="{{ $job['status'] }}">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 1l3 3L4 13H1v-3L10 1z" stroke="#1b3a6b" stroke-width="1.5"/></svg>
+                  @include('partials.admin.icon', ['name' => 'edit'])
                 </button>
                 <form action="{{ route('admin.jobs.archive') }}" method="POST"
                   data-confirm="“{{ $job['title'] }}” will be moved to archived listings and hidden from the public jobs page."
@@ -84,7 +84,7 @@
                   <input type="hidden" name="id" value="{{ $job['id'] }}">
                   <input type="hidden" name="title" value="{{ $job['title'] }}">
                   <button type="submit" class="admin-icon-btn admin-icon-btn--amber" title="Archive job" aria-label="Archive job">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 4h12M4 4V2h6v2M5 7v3M9 7v3M2 4l1 8h8l1-8" stroke="#d97706" stroke-width="1.5"/></svg>
+                    @include('partials.admin.icon', ['name' => 'archive'])
                   </button>
                 </form>
                 <form action="{{ route('admin.jobs.delete') }}" method="POST"
@@ -96,7 +96,7 @@
                   <input type="hidden" name="id" value="{{ $job['id'] }}">
                   <input type="hidden" name="title" value="{{ $job['title'] }}">
                   <button type="submit" class="admin-icon-btn admin-icon-btn--danger" title="Delete job" aria-label="Delete job">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10M5 4V2h4v2M3 4l1 9h6l1-9" stroke="#ef4444" stroke-width="1.5"/></svg>
+                    @include('partials.admin.icon', ['name' => 'delete-bin'])
                   </button>
                 </form>
               </div>

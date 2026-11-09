@@ -41,10 +41,8 @@
 </form>
 <form action="{{ route('admin.activity-logs.export') }}" method="POST" data-turbo="false">
   @csrf
-  <button type="submit" class="admin-activity-toolbar__export">
-    <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-      <path d="M9.3 12V7.3C9.3 7.2 9.3 7 9.1 6.9 9 6.7 8.8 6.7 8.7 6.7H3.3C3.2 6.7 3 6.7 2.9 6.9 2.7 7 2.7 7.2 2.7 7.3V12M2.7 0V2.7C2.7 2.8 2.7 3 2.9 3.1 3 3.3 3.2 3.3 3.3 3.3H8M8.1 0C8.5 0 8.8 0.1 9.1 0.4L11.6 2.9C11.9 3.2 12 3.5 12 3.9V10.7C12 11 11.9 11.4 11.6 11.6 11.4 11.9 11 12 10.7 12H1.3C1 12 0.6 11.9 0.4 11.6 0.1 11.4 0 11 0 10.7V1.3C0 1 0.1 0.6 0.4 0.4 0.6 0.1 1 0 1.3 0H8.1Z" transform="translate(1.17 1.17)" stroke="#1b3a6b" stroke-width="2" stroke-linecap="round"/>
-    </svg>
+  <button type="submit" class="admin-btn admin-btn--outline">
+    @include('partials.admin.icon', ['name' => 'export', 'size' => 16])
     Export Logs
   </button>
 </form>
