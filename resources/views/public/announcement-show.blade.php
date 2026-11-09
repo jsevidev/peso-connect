@@ -27,12 +27,6 @@
       </div>
       <div class="text" style="line-height: 1.7;font-size: 16px;font-family: Inter, system-ui, sans-serif;color: #334155;white-space: pre-line;">{{ $announcement['description'] }}</div>
     </div>
-    <div style="border-width: 1px 0px 0px;border-style: solid;border-color: #e2e8f0;width: 100%;height: 1px;"></div>
-    <div style="display: flex;justify-content: flex-end;width: 100%;">
-      <a href="{{ route($announcement['action_route']) }}" style="border-radius: 8px;background-color: #1b3a6b;display: inline-flex;align-items: center;padding: 12px 24px;text-decoration: none;">
-        <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 600;color: #fff;">{{ $announcement['action_label'] }}</span>
-      </a>
-    </div>
   </article>
 </div>
 @endsection
