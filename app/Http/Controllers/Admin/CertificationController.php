@@ -7,6 +7,8 @@ use App\Models\Certification;
 use App\Support\ActivityLogger;
 use App\Support\AdminListing;
 use App\Support\AdminStats;
+use App\Support\FtjsCertification;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -33,7 +35,12 @@ class CertificationController extends Controller
         return $this->updateStatus($request, 'Not Claimed', 'Approved FTJS Certification');
     }
 
-    public function print(Request $request): RedirectResponse
+    public function certificate(Certification $certification): JsonResponse
+    {
+        return response()->json(FtjsCertification::fromCertification($certification));
+    }
+
+    public function print(Request $request): JsonResponse|RedirectResponse
     {
         $validated = $request->validate([
             'id' => ['required', 'integer', 'exists:certifications,id'],
@@ -45,12 +52,16 @@ class CertificationController extends Controller
         ActivityLogger::record(
             session('admin_id'),
             'Printed FTJS Certificate',
-            'Certificate for '.$certification->fullname.' sent to print queue'
+            'Certificate for '.$certification->fullname
         );
+
+        if ($request->expectsJson()) {
+            return response()->json(['ok' => true]);
+        }
 
         return redirect()
             ->route('admin.certifications.index')
-            ->with('status', 'Certificate for "'.$certification->fullname.'" sent to print queue.');
+            ->with('status', 'Certificate for "'.$certification->fullname.'" sent to print.');
     }
 
     public function claim(Request $request): RedirectResponse

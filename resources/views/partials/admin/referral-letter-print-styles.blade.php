@@ -121,6 +121,69 @@
     font-style: italic;
   }
 
+  .peso-official-ftjs-certification__rule {
+    border-top: 3px double #1e293b;
+    margin: 4px 0 12px;
+  }
+
+  .peso-official-ftjs-certification__title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    margin: 0 0 14px;
+  }
+
+  .peso-official-ftjs-certification__salutation {
+    font-weight: 700;
+    margin-bottom: 10px !important;
+  }
+
+  .peso-official-ftjs-certification__paragraph {
+    text-align: justify;
+    margin: 0 0 10px !important;
+  }
+
+  .peso-official-ftjs-certification__date-line {
+    margin: 12px 0 !important;
+  }
+
+  .peso-official-ftjs-certification__signature-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    margin-top: 20px;
+  }
+
+  .peso-official-ftjs-certification__signature-block {
+    min-width: 220px;
+    max-width: 48%;
+  }
+
+  .peso-official-ftjs-certification__signature-block--received {
+    text-align: right;
+  }
+
+  .peso-official-ftjs-certification__signature-label {
+    margin: 0 0 8px !important;
+    font-style: italic;
+  }
+
+  .peso-official-ftjs-certification__signature-space {
+    height: 36px;
+  }
+
+  .peso-official-ftjs-certification__signatory-name {
+    font-weight: 700;
+    margin: 0 0 2px !important;
+  }
+
+  .peso-official-ftjs-certification__received-date {
+    margin: 0 !important;
+    font-weight: 600;
+  }
+
   @media print {
     @page {
       size: letter;
@@ -200,6 +263,16 @@
       padding-top: 8px;
       font-size: 10px;
       gap: 6px 14px;
+    }
+
+    body.peso-print-referral-letter .peso-official-ftjs-certification__title {
+      font-size: 16px;
+      letter-spacing: 0.18em;
+      margin-bottom: 12px;
+    }
+
+    body.peso-print-referral-letter .peso-official-ftjs-certification__signature-space {
+      height: 30px;
     }
 
     body.peso-print-referral-letter .admin-modal-backdrop.is-open {

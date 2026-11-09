@@ -75,15 +75,17 @@
         </div>
         <div class="admin-ftjs-table__col-actions">
           <div class="admin-ftjs-actions">
-            <form action="{{ route('admin.certifications.print') }}" method="POST">
-              @csrf
-              <input type="hidden" name="id" value="{{ $cert['id'] }}">
-              <input type="hidden" name="name" value="{{ $cert['name'] }}">
-              <button type="submit" class="admin-btn admin-btn--outline admin-btn--sm">
-                @include('partials.admin.icon', ['name' => 'print-sm'])
-                Print
-              </button>
-            </form>
+            <button
+              type="button"
+              class="admin-btn admin-btn--outline admin-btn--sm"
+              data-admin-print-ftjs
+              data-item-id="{{ $cert['id'] }}"
+              title="Print FTJS certification for {{ $cert['name'] }}"
+              aria-label="Print FTJS certification for {{ $cert['name'] }}"
+            >
+              @include('partials.admin.icon', ['name' => 'print-sm'])
+              Print
+            </button>
             @if ($cert['status'] === 'Claimed')
               <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" disabled>
                 @include('partials.admin.icon', ['name' => 'check'])
@@ -121,4 +123,13 @@
   'routeName' => 'admin.certifications.index',
   'query' => request()->except('page'),
 ])
+
+<div id="ftjs-certification-print-host" hidden aria-hidden="true"></div>
+<div id="ftjs-certification-print-template" hidden aria-hidden="true">
+  @include('partials.admin.ftjs-certification-official')
+</div>
 @endsection
+
+@push('scripts')
+  @include('partials.admin.ftjs-certification-scripts')
+@endpush

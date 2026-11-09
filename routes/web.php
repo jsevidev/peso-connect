@@ -126,6 +126,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/announcements/delete', [AnnouncementController::class, 'destroy'])->name('announcements.delete');
 
         Route::get('/certifications', [CertificationController::class, 'index'])->name('certifications.index');
+        Route::get('/certifications/{certification}/certificate', [CertificationController::class, 'certificate'])->name('certifications.certificate');
         Route::post('/certifications/approve', [CertificationController::class, 'approve'])->name('certifications.approve');
         Route::post('/certifications/print', [CertificationController::class, 'print'])->name('certifications.print');
         Route::post('/certifications/claim', [CertificationController::class, 'claim'])->name('certifications.claim');
