@@ -104,11 +104,15 @@ svg {
 }
 
 /* Admin layout */
+html {
+  overflow-x: hidden;
+}
 .admin-body {
   margin: 0;
   background: #f4f6f9;
   font-family: Inter, system-ui, sans-serif;
   color: #0f172a;
+  overflow-x: hidden;
 }
 .admin-sidebar {
   contain: layout style paint;
@@ -138,7 +142,9 @@ svg {
   background: #db3838; color: #fff; font-size: 14px; font-weight: 600; font-family: Inter, system-ui, sans-serif;
   text-align: center; cursor: pointer; border: none;
 }
-.admin-main { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
+.admin-main {
+  flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; overflow-x: hidden;
+}
 .admin-topbar {
   background: #fff; padding: 16px clamp(16px, 4vw, 32px); display: flex; align-items: center;
   justify-content: space-between; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 12px rgba(15,23,42,0.03);
@@ -237,7 +243,7 @@ svg {
   width: 16px; height: 16px; margin: 0; flex-shrink: 0; cursor: pointer; accent-color: #1b3a6b;
 }
 .admin-field-required { color: #ef4444; }
-.admin-table-wrap { overflow-x: auto; width: 100%; }
+.admin-table-wrap { overflow-x: auto; overflow-y: hidden; width: 100%; }
 .admin-table-wrap--fit { overflow-x: visible; }
 .admin-table { width: 100%; border-collapse: collapse; font-family: Inter, system-ui, sans-serif; min-width: 720px; }
 .admin-table--fit {
@@ -351,9 +357,27 @@ svg {
   background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4 4 8 0' stroke='%235a6e85' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 12px center;
 }
-.admin-referral-table-wrap { overflow-x: auto; margin-bottom: 24px; }
+.admin-referral-table-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: 24px;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+.admin-referral-table-wrap::-webkit-scrollbar {
+  height: 6px;
+}
+.admin-referral-table-wrap::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
 .admin-referral-table {
   min-width: 960px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 16px rgba(27, 58, 107, 0.06); background: #fff;
+}
+.admin-referral-table.admin-referral-table--ftjs {
+  min-width: 0;
+  width: 100%;
 }
 .admin-referral-table__head,
 .admin-referral-table__row {
@@ -395,9 +419,6 @@ svg {
 }
 .admin-ftjs-table__col-actions {
   flex: 0 0 220px; min-width: 220px; flex-shrink: 0; display: flex; justify-content: flex-end; align-items: center; gap: 8px;
-}
-.admin-referral-table--ftjs {
-  min-width: 100%;
 }
 .admin-referral-table--ftjs .admin-referral-table__head,
 .admin-referral-table--ftjs .admin-referral-table__row {
@@ -1133,8 +1154,8 @@ svg {
 }
 .admin-activity-toolbar__export:hover { background: #f8fafc; }
 .admin-activity-table-wrap {
-  border-radius: 20px; overflow: hidden; background: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); overflow-x: auto;
+  border-radius: 20px; overflow-x: auto; overflow-y: hidden; background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 .admin-activity-table__head,
 .admin-activity-table__row {
