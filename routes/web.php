@@ -93,6 +93,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/live/dashboard', [DashboardController::class, 'live'])->name('live.dashboard');
+        Route::get('/live/upcoming-activities', [DashboardController::class, 'liveUpcomingActivities'])->name('live.upcoming-activities');
 
         Route::get('/employers', [EmployerController::class, 'index'])->name('employers.index');
         Route::post('/employers', [EmployerController::class, 'store'])->name('employers.store');

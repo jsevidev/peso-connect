@@ -28,21 +28,20 @@
   </div>
 
   <div class="admin-card admin-dashboard-row__aside">
-    <h2 class="admin-section-title">Upcoming Activities</h2>
-    <div class="admin-activity-list">
-      @foreach ($upcomingActivities as $activity)
-        <div class="admin-activity-item">
-          <div class="admin-activity-date">
-            <span class="admin-activity-date__day">{{ $activity['day'] }}</span>
-            <span class="admin-activity-date__month">{{ $activity['month'] }}</span>
-          </div>
-          <div class="admin-activity-item__content">
-            <div class="admin-activity-item__title">{{ $activity['title'] }}</div>
-            <div class="admin-activity-item__details">{{ $activity['details'] }}</div>
-          </div>
-        </div>
-      @endforeach
+    <div class="admin-card__header" style="margin-bottom: 16px;padding: 0;">
+      <h2 class="admin-section-title" style="margin: 0;">Upcoming Activities</h2>
+      <a href="{{ route('admin.announcements.index') }}" class="admin-link-pill">Manage</a>
     </div>
+    <div
+      id="live-upcoming-activities"
+      data-live-url="{{ route('admin.live.upcoming-activities') }}"
+      data-live-interval="30000"
+    >
+      @include('admin.live.upcoming-activities', ['upcomingActivities' => $upcomingActivities])
+    </div>
+    <p class="admin-empty-hint" style="margin: 12px 0 0;font-size: 11px;color: #94a3b8;line-height: 1.4;">
+      Sourced from published and scheduled announcements in the system.
+    </p>
   </div>
 </div>
 @endsection

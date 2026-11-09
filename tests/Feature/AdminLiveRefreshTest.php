@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Admin;
+use App\Models\Announcement;
 use App\Models\Applicant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -76,5 +77,29 @@ class AdminLiveRefreshTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('Rows Test Applicant');
+    }
+
+    public function test_admin_can_fetch_live_upcoming_activities(): void
+    {
+        $admin = $this->actingAsAdmin();
+
+        Announcement::create([
+            'admin_id' => $admin->id,
+            'slug' => 'ozamiz-job-fair-2026',
+            'title' => 'Ozamiz City Job Fair',
+            'description' => 'Local employers and PESO placement drive at City Hall.',
+            'category' => 'Job Fair',
+            'status' => 'Scheduled',
+            'publish_date' => now()->addDays(3)->toDateString(),
+            'scheduled_date' => now()->addDays(3)->toDateString(),
+            'author_name' => 'PESO Ozamiz',
+        ]);
+
+        $response = $this->get('/admin/live/upcoming-activities', [
+            'X-Live-Refresh' => '1',
+        ]);
+
+        $response->assertOk();
+        $response->assertSee('Ozamiz City Job Fair');
     }
 }
