@@ -114,7 +114,7 @@
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
           @endif
         @endforeach
-        <label for="sort" class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #64748b;">Sort by:</label>
+        <label for="sort" class="public-jobs-sort-label">Sort by:</label>
         <select id="sort" name="sort" class="public-select public-select--toolbar" onchange="this.form.submit()">
           <option value="recent" @selected(($sort ?? 'recent') === 'recent')>Most Recent</option>
           <option value="salary_high" @selected(($sort ?? '') === 'salary_high')>Salary: High to Low</option>

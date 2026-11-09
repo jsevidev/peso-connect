@@ -903,6 +903,15 @@ html, body {
   background-position: right 14px center;
 }
 
+.public-jobs-sort-label {
+  font-size: 13px;
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 400;
+  color: #64748b;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .public-select--toolbar,
 .public-sort-select {
   min-height: 36px;
