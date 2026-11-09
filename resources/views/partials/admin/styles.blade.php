@@ -413,7 +413,7 @@ html {
 .admin-referral-table--ftjs .admin-referral-table__head,
 .admin-referral-table--ftjs .admin-referral-table__row {
   display: grid;
-  grid-template-columns: minmax(180px, 220px) 140px minmax(200px, 1fr) 140px minmax(210px, auto);
+  grid-template-columns: minmax(180px, 220px) 140px minmax(200px, 1fr) 140px 220px;
   gap: 0;
   column-gap: 16px;
   align-items: center;
@@ -440,7 +440,28 @@ html {
   justify-self: stretch;
   justify-content: flex-end;
 }
-.admin-ftjs-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: nowrap; }
+.admin-ftjs-actions {
+  display: grid;
+  grid-template-columns: 74px 132px;
+  gap: 8px;
+  align-items: center;
+  justify-content: end;
+  width: 214px;
+  max-width: 100%;
+  margin-left: auto;
+}
+.admin-ftjs-actions form {
+  display: block;
+  margin: 0;
+}
+.admin-ftjs-actions .admin-btn--sm {
+  width: 100%;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding-left: 8px;
+  padding-right: 8px;
+}
 .admin-btn--create { border-radius: 8px; padding: 10px 16px; gap: 8px; }
 .admin-modal--referral-letter {
   max-width: 820px; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);

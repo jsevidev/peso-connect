@@ -74,7 +74,7 @@
           <span class="admin-badge {{ \App\Support\AdminListing::certificationStatusClass($cert['status']) }}">{{ $cert['status'] }}</span>
         </div>
         <div class="admin-ftjs-table__col-actions">
-          <div class="admin-ftjs-actions admin-row-actions">
+          <div class="admin-ftjs-actions">
             <form action="{{ route('admin.certifications.print') }}" method="POST">
               @csrf
               <input type="hidden" name="id" value="{{ $cert['id'] }}">
