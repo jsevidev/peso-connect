@@ -1,6 +1,6 @@
 @extends('layouts.public-site')
 
-@section('title', 'Referral Requests - PESO Connect')
+@section('title', 'Referral Requests - PESO Ozamiz')
 
 @section('body-bg', '#f8fafc')
 
@@ -10,7 +10,7 @@
 <div class="public-content public-layout-row" style="display: flex;flex-direction: column;row-gap: 32px;width: 100%;padding: 40px clamp(20px, 5vw, 80px);">
   <div style="display: flex;flex-direction: column;row-gap: 6px;">
     <span class="text" style="font-size: 40px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1e293b;">Referral Requests</span>
-    <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #475569;">Request formal referral letters from Public Employment Service Office to potential employers</span>
+    <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #475569;">Request formal referral letters from the Public Employment Service Office in Ozamiz City to potential employers</span>
   </div>
 
   <div class="public-layout-row" style="display: flex;flex-direction: row;grid-column-gap: 32px;align-items: start;width: 100%;">

@@ -1,7 +1,7 @@
 @php
   $compact = $compact ?? false;
   $title = $compact ? $announcement['title'] : ($announcement['title_full'] ?? $announcement['title']);
-  $excerpt = $compact ? $announcement['excerpt'] : ($announcement['excerpt_full'] ?? $announcement['excerpt']);
+  $excerpt = $announcement['excerpt'] ?? '';
   $category = $compact ? ($announcement['category_landing'] ?? $announcement['category']) : $announcement['category'];
   $detailUrl = route('announcements.show', $announcement['slug']);
   $tag = $compact ? 'a' : 'article';
@@ -31,14 +31,9 @@
         <span style="border-radius: 50%;background-color: #626f84;width: 4px;height: 4px;opacity: 0.5;"></span>
         <span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #626f84;">{{ $announcement['date'] }}</span>
       </div>
-      <div style="display: flex;gap: 12px;flex-wrap: wrap;">
-        <a href="{{ $detailUrl }}" style="border-width: 1px;border-style: solid;border-color: #1b3a6b;border-radius: 8px;background-color: #fff;display: inline-flex;align-items: center;padding: 10px 20px;text-decoration: none;">
-          <span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;color: #1b3a6b;">Read more</span>
-        </a>
-        <a href="{{ route($announcement['action_route']) }}" style="border-radius: 8px;background-color: #1b3a6b;display: inline-flex;align-items: center;padding: 10px 20px;text-decoration: none;">
-          <span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;color: #fff;">{{ $announcement['action_label'] }}</span>
-        </a>
-      </div>
+      <a href="{{ $detailUrl }}" style="border-width: 1px;border-style: solid;border-color: #1b3a6b;border-radius: 8px;background-color: #fff;display: inline-flex;align-items: center;padding: 10px 20px;text-decoration: none;">
+        <span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;color: #1b3a6b;">Read more</span>
+      </a>
     </div>
   @endunless
 </{{ $tag }}>

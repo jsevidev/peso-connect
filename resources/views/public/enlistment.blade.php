@@ -1,6 +1,6 @@
 @extends('layouts.public-site')
 
-@section('title', 'Enlistment - PESO Connect')
+@section('title', 'Enlistment - PESO Ozamiz')
 
 @section('body-bg', '#f8fafc')
 
@@ -20,7 +20,7 @@
     <div style="border-width: 1px;border-style: solid;border-color: #e2e8f0;display: flex;flex-direction: row;align-items: center;width: 100%;padding: 24px;">
       <div style="display: flex;flex-direction: column;row-gap: 4px;flex: 1;min-width: 0;">
         <span class="text" style="font-size: 18px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #0f172a;">Enlist Now</span>
-        <span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #64748b;">Fill in your details to enlist as a job seeker on PESO</span>
+        <span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #64748b;">Fill in your details to enlist as a job seeker with PESO Ozamiz</span>
       </div>
       <a href="{{ url()->previous() !== url()->current() ? url()->previous() : route('home') }}" aria-label="Close" style="border-radius: 16px;background-color: #f8fafc;display: flex;align-items: center;justify-content: center;width: 32px;height: 32px;flex-shrink: 0;text-decoration: none;">
         <svg width="18" height="18" viewBox="0 0 17 17" fill="none" aria-hidden="true"><path d="M9.7508 5.2504L5.2504 9.7508M5.2504 5.2504L9.7508 9.7508M15.0012 7.5006C15.0012 11.6431 11.6431 15.0012 7.5006 15.0012 3.3581 15.0012 0 11.6431 0 7.5006 0 3.3581 3.3581 0 7.5006 0 11.6431 0 15.0012 3.3581 15.0012 7.5006Z" transform="translate(1.13 1.13)" style="stroke: #0f172a;stroke-width: 2;stroke-linecap: round;"></path></svg>

@@ -1,6 +1,6 @@
 @extends('layouts.public-site')
 
-@section('title', 'First-Time Job Seeker - PESO Connect')
+@section('title', 'First-Time Job Seeker - PESO Ozamiz')
 
 @section('body-bg', '#f8fafc')
 
@@ -10,14 +10,14 @@
 <div class="public-content" style="display: flex;flex-direction: column;row-gap: 32px;width: 100%;padding: 48px clamp(20px, 5vw, 120px) 96px;">
   <div style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">
     <span class="text" style="font-size: 48px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">First-Time Job Seeker Certification Request</span>
-    <span class="text" style="line-height: 24px;font-size: 16px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Complete the form below to register with the Public Employment Service Office (PESO) and avail of the free pre-employment document assistance benefits under Republic Act No. 11261.</span>
+    <span class="text" style="line-height: 24px;font-size: 16px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Complete the form below to register with the Public Employment Service Office (PESO) Ozamiz City and avail the free pre-employment document assistance benefits under Republic Act No. 11261.</span>
   </div>
 
   <div style="border-width: 0px 0px 0px 4px;border-style: solid;border-color: #1b3a6b;border-radius: 12px;background-color: #eef4fc;display: flex;flex-direction: row;grid-column-gap: 16px;align-items: center;width: 100%;padding: 16px;">
     <div style="flex-shrink: 0;width: 24px;height: 24px;color: #1b3a6b;font-weight: 700;font-size: 18px;line-height: 24px;text-align: center;" aria-hidden="true">i</div>
     <div style="display: flex;flex-direction: column;row-gap: 4px;flex: 1;">
       <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">Republic Act No. 11261 (First-Time Job Seeker Assistance Act)</span>
-      <span class="text" style="line-height: 18.2px;font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Under this law, you are qualified for one-time waiver of government fees for clearances (NBI, Police, Barangay, etc.) required for employment. Complete this process to receive your official PESO certification.</span>
+      <span class="text" style="line-height: 18.2px;font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Under this law, you are qualified for one-time waiver of government fees for clearances (NBI, Police, Barangay, etc.) required for employment. Complete this process to receive your official PESO Ozamiz certification.</span>
     </div>
   </div>
 
@@ -128,7 +128,7 @@
     <section style="display: flex;flex-direction: column;row-gap: 16px;width: 100%;">
       <div style="display: flex;flex-direction: column;row-gap: 6px;">
         <span class="text" style="font-size: 24px;font-family: Inter, system-ui, sans-serif;font-weight: 700;color: #1b3a6b;">Step 4: Identification</span>
-        <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Select the type of valid ID you will present at the PESO office.</span>
+        <span class="text" style="font-size: 14px;font-family: Inter, system-ui, sans-serif;color: #4b5563;">Select the type of valid ID you will present at the PESO Ozamiz office.</span>
       </div>
       <div style="display: flex;flex-direction: column;row-gap: 6px;max-width: 548px;width: 100%;">
         <label for="id_type" class="public-field-label public-field-label--dark">Valid ID Type <span class="public-field-required">*</span></label>
@@ -145,7 +145,7 @@
       <div style="display: flex;flex-direction: column;row-gap: 6px;max-width: 548px;width: 100%;">
         <label for="id_document" class="public-field-label public-field-label--dark">Upload ID copy (optional)</label>
         <input type="file" id="id_document" name="id_document" class="public-input public-input--gray" accept=".pdf,.jpg,.jpeg,.png">
-        <span class="text" style="font-size: 12px;font-family: Inter, system-ui, sans-serif;color: #64748b;">PDF, JPG, or PNG up to 5 MB. You may also bring your valid ID when visiting the PESO office.</span>
+        <span class="text" style="font-size: 12px;font-family: Inter, system-ui, sans-serif;color: #64748b;">PDF, JPG, or PNG up to 5 MB. You may also bring your valid ID when visiting the PESO Ozamiz office.</span>
         <x-field-error field="id_document" />
       </div>
     </section>

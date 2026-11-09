@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="turbo-cache-control" content="no-preview">
-    <title>@yield('title', 'PESO Connect')</title>
+    <title>@yield('title', 'PESO Ozamiz')</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/img/peso-logo.png') }}">
     <link rel="preload" href="{{ asset('assets/img/peso-logo.png') }}" as="image" type="image/png">
     <link rel="preconnect" href="https://cdn.divriots.com" crossorigin="">

@@ -506,6 +506,13 @@ html, body {
   color: #626f84;
 }
 
+.public-announcement-card--full .public-announcement-card__excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 .public-grid {
   flex-wrap: wrap !important;
   row-gap: 24px;

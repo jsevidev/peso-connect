@@ -1,12 +1,12 @@
 @extends('layouts.public-site')
 
-@section('title', 'PESO Connect - Find Your Next Opportunity')
+@section('title', 'PESO Ozamiz - Find Your Next Opportunity')
 
 @section('content')
 <section class="public-hero">
   <div class="public-hero__intro">
     <h1 class="public-hero__title">Find Your Next Opportunity</h1>
-    <p class="public-hero__subtitle">Browse verified job listings posted by the Public Employment Service Office (PESO) in your municipality.</p>
+    <p class="public-hero__subtitle">Browse verified job listings posted by the Public Employment Service Office (PESO) in Ozamiz City.</p>
   </div>
   <form action="{{ route('jobs.index') }}" method="GET" class="public-hero-search">
     <div class="public-hero-search__icon" aria-hidden="true">
@@ -25,7 +25,7 @@
   <div class="public-landing-grid public-landing-grid--services">
     @foreach ([
       ['route' => 'jobs.index', 'title' => 'Find Jobs', 'desc' => 'Access the latest job postings from local and overseas companies.', 'icon' => 'briefcase'],
-      ['route' => 'referral-requests', 'title' => 'Request Referral', 'desc' => 'Secure a PESO official referral letter to match your job applications.', 'icon' => 'referral'],
+      ['route' => 'referral-requests', 'title' => 'Request Referral', 'desc' => 'Secure an official PESO Ozamiz referral letter to match your job applications.', 'icon' => 'referral'],
       ['route' => 'first-time-job-seeker', 'title' => 'First-Time Job Seeker', 'desc' => 'Apply for benefits and free certificates under Republic Act 11261.', 'icon' => 'user'],
     ] as $service)
       <a href="{{ route($service['route']) }}" class="public-service-card">

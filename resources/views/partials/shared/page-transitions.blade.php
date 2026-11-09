@@ -2,9 +2,9 @@
   <div class="peso-nav-progress__bar"></div>
 </div>
 
-<div id="peso-session-loader" class="peso-session-loader @if(request()->is('admin', 'admin/*')) peso-session-loader--admin @endif" role="status" aria-live="polite" aria-label="Loading PESO Connect">
+<div id="peso-session-loader" class="peso-session-loader @if(request()->is('admin', 'admin/*')) peso-session-loader--admin @endif" role="status" aria-live="polite" aria-label="Loading PESO Ozamiz">
   <img src="{{ asset('assets/img/peso-logo.png') }}" alt="" class="peso-session-loader__logo" width="48" height="48" decoding="async">
-  <span class="peso-session-loader__label">Loading PESO Connect…</span>
+  <span class="peso-session-loader__label">Loading PESO Ozamiz…</span>
 </div>
 
 <script>

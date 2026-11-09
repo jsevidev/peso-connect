@@ -24,7 +24,7 @@
   <div class="public-landing-job-card__tags">
     <span class="public-landing-job-card__tag">{{ $job['type'] }}</span>
     @if ($job['peso_verified'])
-      <span class="public-landing-job-card__tag public-landing-job-card__tag--peso">Posted by PESO</span>
+      <span class="public-landing-job-card__tag public-landing-job-card__tag--peso">Posted by PESO Ozamiz</span>
     @endif
   </div>
 

@@ -1,6 +1,6 @@
 @extends('layouts.public-site')
 
-@section('title', $announcement['title'].' - PESO Connect')
+@section('title', $announcement['title'].' - PESO Ozamiz')
 
 @section('body-bg', '#f8fafc')
 

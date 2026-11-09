@@ -27,7 +27,7 @@
       <div style="display: flex;flex-wrap: wrap;row-gap: 8px;grid-column-gap: 8px;width: 100%;">
         <div style="border-radius: 6px;background-color: #eef4f8;padding: 4px 10px;"><span class="text" style="font-size: 12px;font-family: Inter, system-ui, sans-serif;font-weight: 600;color: #1b3a6b;">{{ $job['type'] }}</span></div>
         @if ($job['peso_verified'])
-          <div style="border-radius: 6px;background-color: #e0f2fe;padding: 4px 8px;"><span class="text" style="font-size: 11px;font-family: Inter, system-ui, sans-serif;font-weight: 700;text-transform: uppercase;color: #1b3a6b;">Posted by PESO</span></div>
+          <div style="border-radius: 6px;background-color: #e0f2fe;padding: 4px 8px;"><span class="text" style="font-size: 11px;font-family: Inter, system-ui, sans-serif;font-weight: 700;text-transform: uppercase;color: #1b3a6b;">Posted by PESO Ozamiz</span></div>
         @endif
       </div>
     </div>
