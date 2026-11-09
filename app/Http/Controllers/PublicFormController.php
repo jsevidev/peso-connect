@@ -9,12 +9,13 @@ use App\Models\Referral;
 use App\Support\AdminNotifier;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PublicFormController extends Controller
 {
     public function storeEnlistment(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'job_position' => ['required', 'string', 'max:255'],
             'full_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string'],
@@ -23,6 +24,23 @@ class PublicFormController extends Controller
             'education' => ['required', 'string', 'max:255'],
             'skills' => ['required', 'string', 'max:2000'],
         ]);
+
+        $submittedFromModal = $request->input('enlist_context') === 'modal';
+
+        if ($validator->fails()) {
+            $redirect = redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator);
+
+            if ($submittedFromModal) {
+                $redirect->with('open_enlist_modal', true);
+            }
+
+            return $redirect;
+        }
+
+        $validated = $validator->validated();
 
         $jobPosting = JobPosting::where('job_title', $validated['job_position'])->first();
 
@@ -45,7 +63,7 @@ class PublicFormController extends Controller
         );
 
         return redirect()
-            ->route('enlistment')
+            ->back()
             ->with('status', 'Your enlistment has been submitted. PESO staff will review your application.');
     }
 

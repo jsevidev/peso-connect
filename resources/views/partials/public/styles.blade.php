@@ -1110,5 +1110,50 @@ html, body {
 .public-flash--success .public-flash__icon { background: #d1fae5; }
 .public-flash__title { display: block; font-weight: 600; margin-bottom: 8px; }
 .public-flash__list { margin: 0; padding-left: 18px; font-size: 13px; }
+
+.public-enlist-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+  box-sizing: border-box;
+}
+
+.public-enlist-modal-backdrop[hidden] {
+  display: none !important;
+}
+
+.public-enlist-modal__panel {
+  width: 100%;
+  max-width: 560px;
+  max-height: min(92vh, 880px);
+  overflow: auto;
+  border-radius: 20px;
+}
+
+.public-enlist-modal__scroll {
+  max-height: calc(92vh - 200px);
+  overflow-y: auto;
+}
+
+body.public-enlist-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .public-enlist-modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .public-enlist-modal__panel {
+    max-height: 96vh;
+    border-radius: 20px 20px 0 0;
+  }
+}
 </style>
 @stack('styles')

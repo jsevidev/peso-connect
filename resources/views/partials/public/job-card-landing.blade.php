@@ -32,6 +32,6 @@
 
   <div class="public-landing-job-card__footer">
     <span class="public-landing-job-card__posted">{{ $postedLabel }}</span>
-    <a href="{{ route('enlistment', ['job' => $job['id']]) }}" class="public-landing-job-card__cta">Enlist Now</a>
+    <button type="button" data-open-enlist-modal data-job-title="{{ $job['title'] }}" class="public-landing-job-card__cta" style="border: none;cursor: pointer;font: inherit;">Enlist Now</button>
   </div>
 </article>

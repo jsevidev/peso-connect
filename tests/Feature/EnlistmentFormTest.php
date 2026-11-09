@@ -41,7 +41,7 @@ class EnlistmentFormTest extends TestCase
             'status' => 'Active',
         ]);
 
-        $response = $this->post('/enlistment', [
+        $response = $this->from('/jobs')->post('/enlistment', [
             'job_position' => 'Customer Service Representative',
             'full_name' => 'Maria Santos',
             'address' => 'Barangay 1, Pasay City',
@@ -49,9 +49,10 @@ class EnlistmentFormTest extends TestCase
             'phone' => '09171234567',
             'education' => 'College Graduate',
             'skills' => 'Communication, MS Office',
+            'enlist_context' => 'modal',
         ]);
 
-        $response->assertRedirect(route('enlistment'));
+        $response->assertRedirect('/jobs');
         $response->assertSessionHas('status');
 
         $this->assertDatabaseHas('applicants', [
@@ -65,13 +66,15 @@ class EnlistmentFormTest extends TestCase
 
     public function test_enlistment_form_shows_validation_errors(): void
     {
-        $response = $this->from('/enlistment')->post('/enlistment', [
+        $response = $this->from('/jobs')->post('/enlistment', [
             'full_name' => '',
             'email' => 'not-an-email',
+            'enlist_context' => 'modal',
         ]);
 
-        $response->assertRedirect('/enlistment');
+        $response->assertRedirect('/jobs');
         $response->assertSessionHasErrors(['job_position', 'full_name', 'email']);
+        $response->assertSessionHas('open_enlist_modal');
 
         $this->assertSame(0, Applicant::count());
     }

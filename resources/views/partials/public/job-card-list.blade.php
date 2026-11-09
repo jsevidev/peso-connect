@@ -36,7 +36,7 @@
       <div class="public-job-card__footer" style="display: flex;flex-direction: row;align-items: center;width: 100%;">
         <span class="text" style="font-size: 12px;font-family: Inter, system-ui, sans-serif;color: #64748b;margin: 0px auto 0px 0px;">{{ $postedLabel }}</span>
         <div style="display: flex;flex-direction: row;grid-column-gap: 8px;">
-          <a href="{{ route('enlistment', ['job' => $job['id']]) }}" style="border-radius: 12px;background-color: #f57c00;display: inline-flex;padding: 8px 14px;text-decoration: none;"><span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;color: #fff;">Enlist Now</span></a>
+          <button type="button" data-open-enlist-modal data-job-title="{{ $job['title'] }}" style="border-radius: 12px;background-color: #f57c00;display: inline-flex;padding: 8px 14px;border: none;cursor: pointer;"><span class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;font-weight: 600;color: #fff;">Enlist Now</span></button>
         </div>
       </div>
     </div>

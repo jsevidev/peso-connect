@@ -15,7 +15,10 @@
     @include('partials.shared.page-transitions-styles')
     @include('partials.shared.feedback-styles')
   </head>
-  <body style="background-color: @yield('body-bg', '#fff');margin:0;">
+  <body
+    style="background-color: @yield('body-bg', '#fff');margin:0;"
+    @if (session('open_enlist_modal')) data-open-enlist-modal="1" data-enlist-job-title="{{ old('job_position') }}" @endif
+  >
     @include('partials.shared.page-transitions')
     <div class="public-page" style="background-color: @yield('page-bg', '#fff');display: flex;flex-direction: column;row-gap: 0px;align-items: stretch;justify-content: flex-start;width: 100%;min-height: 100vh;position: relative;">
       @include('partials.public.header')
@@ -26,7 +29,12 @@
       </div>
     </div>
 
+    @unless (request()->routeIs('enlistment'))
+      @include('partials.public.modal-enlist-now')
+    @endunless
+    @include('partials.shared.flash-bridge')
     @include('partials.shared.peso-alert')
     @include('partials.public.scripts')
+    @include('partials.public.enlistment-form-scripts')
   </body>
 </html>
