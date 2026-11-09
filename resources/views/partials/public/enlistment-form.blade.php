@@ -39,7 +39,7 @@
   <div class="public-enlist-modal__scroll" style="display: flex;flex-direction: column;row-gap: 20px;width: 100%;padding: 24px 24px 32px;">
     <div style="display: flex;flex-direction: column;row-gap: 8px;width: 100%;">
       <label for="{{ $idPrefix }}_job_position" class="public-field-label" style="font-size: 13px;color: #0f172a;">Select Job Position <span class="public-field-required">*</span></label>
-      <select id="{{ $idPrefix }}_job_position" name="job_position" class="public-select public-enlistment-input" required>
+      <select id="{{ $idPrefix }}_job_position" name="job_position" class="public-select" required>
         <option value="" disabled @selected(! $selectedJobPosition)>Choose from posted jobs</option>
         @foreach ($jobs as $job)
           <option value="{{ $job['title'] }}" @selected($selectedJobPosition === $job['title'])>{{ $job['title'] }}</option>

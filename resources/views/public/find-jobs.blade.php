@@ -115,7 +115,7 @@
           @endif
         @endforeach
         <label for="sort" class="text" style="font-size: 13px;font-family: Inter, system-ui, sans-serif;color: #64748b;">Sort by:</label>
-        <select id="sort" name="sort" class="public-sort-select" onchange="this.form.submit()">
+        <select id="sort" name="sort" class="public-select public-select--toolbar" onchange="this.form.submit()">
           <option value="recent" @selected(($sort ?? 'recent') === 'recent')>Most Recent</option>
           <option value="salary_high" @selected(($sort ?? '') === 'salary_high')>Salary: High to Low</option>
           <option value="salary_low" @selected(($sort ?? '') === 'salary_low')>Salary: Low to High</option>

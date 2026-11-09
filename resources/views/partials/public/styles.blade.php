@@ -843,11 +843,74 @@ html, body {
 
 .public-select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='11' height='7' viewBox='0 0 11 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4.5 4.5 9 0' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  padding-right: 40px;
+  -webkit-appearance: none;
+  min-height: 44px;
+  border-radius: 10px;
+  background-color: #f8fafc;
+  padding: 10px 40px 10px 16px;
+  line-height: 1.35;
   cursor: pointer;
+  color-scheme: light;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4 4 8 0' stroke='%2364748b' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.public-select:hover:not(:disabled) {
+  border-color: #cbd5e1;
+  background-color: #fff;
+}
+
+.public-select:focus {
+  outline: none;
+  border-color: #4d80d9;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(27, 58, 107, 0.12);
+}
+
+.public-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  background-color: #f1f5f9;
+}
+
+.public-select option {
+  color: #0f172a;
+  background-color: #fff;
+}
+
+.public-page select:not([multiple]):not(.public-select) {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 44px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e2e8f0;
+  border-radius: 10px;
+  background-color: #f8fafc;
+  width: 100%;
+  padding: 10px 40px 10px 16px;
+  font-size: 14px;
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 400;
+  color: #0f172a;
+  box-sizing: border-box;
+  line-height: 1.35;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4 4 8 0' stroke='%2364748b' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.public-select--toolbar,
+.public-sort-select {
+  min-height: 36px;
+  padding: 8px 36px 8px 14px;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .public-textarea {
@@ -876,11 +939,13 @@ html, body {
   color: #0f172a;
 }
 
-.public-select.public-enlistment-input {
-  padding-right: 40px;
-}
-
 .public-enlistment-input::placeholder { color: #64748b; }
+
+@media (max-width: 640px) {
+  .public-select:not(.public-select--toolbar):not(.public-sort-select) {
+    font-size: 16px;
+  }
+}
 
 .public-checkbox-row {
   display: flex;
@@ -960,24 +1025,6 @@ html, body {
   font-weight: 600;
   text-decoration: underline;
   color: #f57c00;
-  cursor: pointer;
-}
-
-.public-sort-select {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #e2e8f0;
-  border-radius: 8px;
-  background-color: #fff;
-  padding: 8px 32px 8px 16px;
-  font-size: 13px;
-  font-family: Inter, system-ui, sans-serif;
-  font-weight: 600;
-  color: #0f172a;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' viewBox='0 0 9 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L3.5 3.5 7 0' stroke='%230f172a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
   cursor: pointer;
 }
 

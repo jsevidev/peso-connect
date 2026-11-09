@@ -45,7 +45,7 @@
         <div style="display: flex;flex-direction: row;grid-column-gap: 24px;flex-wrap: wrap;">
           <div style="display: flex;flex-direction: column;row-gap: 6px;flex: 1 1 240px;">
             <label for="sex" class="public-field-label public-field-label--dark">Sex <span class="public-field-required">*</span></label>
-            <select id="sex" name="sex" class="public-select public-input--gray" required>
+            <select id="sex" name="sex" class="public-select" required>
               <option value="" disabled @selected(! old('sex'))>Select Sex</option>
               <option value="male" @selected(old('sex') === 'male')>Male</option>
               <option value="female" @selected(old('sex') === 'female')>Female</option>
@@ -53,7 +53,7 @@
           </div>
           <div style="display: flex;flex-direction: column;row-gap: 6px;flex: 1 1 240px;">
             <label for="civil_status" class="public-field-label public-field-label--dark">Civil Status <span class="public-field-required">*</span></label>
-            <select id="civil_status" name="civil_status" class="public-select public-input--gray" required>
+            <select id="civil_status" name="civil_status" class="public-select" required>
               <option value="" disabled @selected(! old('civil_status'))>Select Civil Status</option>
               <option value="single" @selected(old('civil_status') === 'single')>Single</option>
               <option value="married" @selected(old('civil_status') === 'married')>Married</option>
@@ -132,7 +132,7 @@
       </div>
       <div style="display: flex;flex-direction: column;row-gap: 6px;max-width: 548px;width: 100%;">
         <label for="id_type" class="public-field-label public-field-label--dark">Valid ID Type <span class="public-field-required">*</span></label>
-        <select id="id_type" name="id_type" class="public-select public-input--gray" required>
+        <select id="id_type" name="id_type" class="public-select" required>
           <option value="" disabled @selected(! old('id_type'))>Select ID type</option>
           <option value="national-id" @selected(old('id_type') === 'national-id')>Philippine National ID</option>
           <option value="passport" @selected(old('id_type') === 'passport')>Passport</option>
