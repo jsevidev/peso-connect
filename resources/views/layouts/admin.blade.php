@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     @include('partials.shared.turbo')
     @include('partials.admin.styles')
+    @include('partials.shared.scrollbar-styles')
     @include('partials.shared.page-transitions-styles')
     @include('partials.shared.feedback-styles')
     @include('partials.admin.referral-letter-print-styles')

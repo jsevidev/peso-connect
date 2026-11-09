@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') — PESO Connect</title>
+    @include('partials.shared.scrollbar-styles')
     <style>
         body { font-family: Inter, system-ui, sans-serif; margin: 0; background: #f8f9fc; color: #1a253c; }
         .wrap { max-width: 720px; margin: 48px auto; padding: 0 24px; }

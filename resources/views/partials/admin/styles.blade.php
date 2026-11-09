@@ -361,16 +361,6 @@ html {
   overflow-x: auto;
   overflow-y: hidden;
   margin-bottom: 24px;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 transparent;
-}
-.admin-referral-table-wrap::-webkit-scrollbar {
-  height: 6px;
-}
-.admin-referral-table-wrap::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 999px;
 }
 .admin-referral-table {
   min-width: 960px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 16px rgba(27, 58, 107, 0.06); background: #fff;
