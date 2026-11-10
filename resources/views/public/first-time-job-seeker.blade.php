@@ -142,12 +142,6 @@
         </select>
         <x-field-error field="id_type" />
       </div>
-      <div style="display: flex;flex-direction: column;row-gap: 6px;max-width: 548px;width: 100%;">
-        <label for="id_document" class="public-field-label public-field-label--dark">Upload ID copy (optional)</label>
-        <input type="file" id="id_document" name="id_document" class="public-input public-input--gray" accept=".pdf,.jpg,.jpeg,.png">
-        <span class="text" style="font-size: 12px;font-family: Inter, system-ui, sans-serif;color: #64748b;">PDF, JPG, or PNG up to 5 MB. You may also bring your valid ID when visiting the PESO Ozamiz office.</span>
-        <x-field-error field="id_document" />
-      </div>
     </section>
 
     <div style="border-width: 1px 0px 0px;border-style: solid;border-color: #d1d5db;width: 100%;height: 1px;opacity: 0.6;"></div>

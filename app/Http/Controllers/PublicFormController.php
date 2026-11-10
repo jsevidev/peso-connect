@@ -128,7 +128,6 @@ class PublicFormController extends Controller
             'barangay' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
             'id_type' => ['required', 'string', 'max:100'],
-            'id_document' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:5120'],
             'filipino_citizen' => ['accepted'],
             'first_time_seeker' => ['accepted'],
             'actively_looking' => ['accepted'],
@@ -136,10 +135,6 @@ class PublicFormController extends Controller
             'certify_truth' => ['accepted'],
             'agree_oath' => ['accepted'],
         ]);
-
-        $documentPath = $request->file('id_document')
-            ? $request->file('id_document')->store('ftjs-documents', 'public')
-            : null;
 
         $applicant = Applicant::create([
             'email_address' => $validated['email'],
@@ -157,7 +152,6 @@ class PublicFormController extends Controller
             'fullname' => $validated['full_name'],
             'barangay' => $validated['barangay'].', '.$validated['city'],
             'id_type' => $validated['id_type'],
-            'id_document_path' => $documentPath,
             'date_requested' => now()->toDateString(),
             'status' => 'Pending',
         ]);
