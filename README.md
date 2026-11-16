@@ -33,11 +33,6 @@ php artisan serve
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-**Local database:** SQLite file at `database/database.sqlite` (created by migrate).
-
-**Default admin login:** `admin` / `admin123`
-
-## Admin routes
 
 | Page | URL |
 |------|-----|
